@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_1-scaling-params/2160p100/partial_movie_files/ScalingLawAnimation/3601600992_2909366811_223132457.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_1-scaling-params/2160p100/partial_movie_files/ScalingLawAnimation/244708026_2383251681_2409484749.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_1-scaling-params/2160p100/partial_movie_files/ScalingLawAnimation/244708026_2518443915_3292259723.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_1-scaling-params/2160p100/partial_movie_files/ScalingLawAnimation/244708026_3201849554_4120513065.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_1-scaling-params/2160p100/partial_movie_files/ScalingLawAnimation/244708026_3096255551_2242151022.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_1-scaling-params/2160p100/partial_movie_files/ScalingLawAnimation/244708026_2408024828_2259242918.mp4'

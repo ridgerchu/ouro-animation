@@ -1,0 +1,13 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/3601600992_2909366811_223132457.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_199707181_2409484749.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_2865982441_2427979958.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_3201849554_4241877143.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_2605178108_3395590747.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_3136354340_3391364183.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_4146399084_2193028755.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_519141552_4212833857.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_3201849554_2809072926.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_3760048295_2294849642.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_395397383_105541583.mp4'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/1_3-scaling-compute/2160p100/partial_movie_files/ComputeScalingAnimation/244708026_2408024828_73615085.mp4'
