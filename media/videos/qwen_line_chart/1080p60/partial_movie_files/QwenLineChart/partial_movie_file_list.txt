@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2257293077_3916445164_223132457.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2135761390_4281502861_3671695593.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2135761390_2147531547_964034222.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2135761390_974699013_1461190126.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2135761390_1280407223_3295446781.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2135761390_4252241234_74268415.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/qwen_line_chart/1080p60/partial_movie_files/QwenLineChart/2135761390_2844360058_2623164452.mp4'
