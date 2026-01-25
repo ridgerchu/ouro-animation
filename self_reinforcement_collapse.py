@@ -3,26 +3,26 @@ Self-Reinforcement Collapse 可视化动画
 运行命令:
   完整动画: manim -pql self_reinforcement_collapse.py SelfReinforcementCollapse
   单独场景: manim -pql self_reinforcement_collapse.py Part1Setup
-           manim -pql self_reinforcement_collapse.py Part2Collapse
            manim -pql self_reinforcement_collapse.py Part3FalseHope
            manim -pql self_reinforcement_collapse.py Part4TrainingLoop
            manim -pql self_reinforcement_collapse.py Part5ViciousCycle
            manim -pql self_reinforcement_collapse.py Part6Evidence
            manim -pql self_reinforcement_collapse.py Part7Teaser
   高质量渲染: manim -pqh self_reinforcement_collapse.py SelfReinforcementCollapse
+
+注意: 现在使用 4 个 loops (t=1 到 t=4)，不再有 t=5
 """
 
 from manim import *
 import numpy as np
 
 # ===== 颜色配置 =====
-# 退出深度颜色 t=1 to t=5 (purple → blue → teal → green → yellow)
+# 退出深度颜色 t=1 to t=4 (purple → blue → teal → green)
 DEPTH_COLORS = [
     "#9B59B6",  # t=1 purple
     "#3498DB",  # t=2 blue
     "#1ABC9C",  # t=3 teal
-    "#2ECC71",  # t=4 green
-    "#F1C40F",  # t=5 yellow (dominant)
+    "#2ECC71",  # t=4 green (dominant)
 ]
 
 WARNING_COLOR = "#E74C3C"     # 红色 - 警告
@@ -91,106 +91,23 @@ class LossBox(VGroup):
         self.add(self.rect, self.label)
 
 
-# ===== Part 1: Setting Up the Visualization =====
+# ===== Part 1: The Collapse Happens (直接展示) =====
 class Part1Setup(Scene):
-    """Part 1: Setting Up the Visualization (15-20 sec)"""
+    """Part 1: The Collapse Happens - 保留坐标轴标签、图例和高亮"""
     def construct(self):
-        # 标题
-        title = Tex(
-            "Self-Reinforcement Collapse",
-            font_size=40, color=WHITE
-        )
-        title.to_edge(UP, buff=0.4)
-        self.play(Write(title), run_time=1)
-
-        # 旁白说明
-        narration = Tex(
-            "Training Iterations vs Exit Probability",
-            font_size=24, color=GREY_B
-        )
-        narration.next_to(title, DOWN, buff=0.2)
-        self.play(Write(narration), run_time=0.8)
-
-        # ===== 创建坐标轴 =====
+        # ===== 创建坐标轴 (箭头缩小) =====
         axes = Axes(
             x_range=[0, 180, 30],
             y_range=[0, 1.1, 0.2],
             x_length=9,
             y_length=4.5,
-            axis_config={"color": GREY_B, "include_tip": True},
+            axis_config={"color": GREY_B, "include_tip": True, "tip_width": 0.15, "tip_height": 0.15},
             x_axis_config={"numbers_to_include": [0, 60, 120, 180]},
             y_axis_config={"numbers_to_include": [0, 0.2, 0.4, 0.6, 0.8, 1.0]},
         )
         axes.shift(DOWN * 0.3 + LEFT * 0.5)
 
-        # 轴标签
-        x_label = Tex("Training Iterations", font_size=22, color=GREY_B)
-        x_label.next_to(axes.x_axis, DOWN, buff=0.5)
-        y_label = MathTex(r"p_\theta(t|x)", font_size=22, color=GREY_B)
-        y_label.next_to(axes.y_axis, UP, buff=0.2)
-
-        self.play(Create(axes), Write(x_label), Write(y_label), run_time=1.5)
-
-        # ===== 图例 =====
-        legend_group = VGroup()
-        legend_title = Tex("Exit Depth", font_size=18, color=GREY_B)
-        legend_title.shift(RIGHT * 4.5 + UP * 2)
-        legend_group.add(legend_title)
-
-        for i, color in enumerate(DEPTH_COLORS):
-            dot = Dot(color=color, radius=0.08)
-            dot.shift(RIGHT * 4.2 + UP * (1.5 - i * 0.4))
-            label = Tex(f"t={i+1}", font_size=16, color=color)
-            label.next_to(dot, RIGHT, buff=0.15)
-            legend_group.add(dot, label)
-
-        self.play(FadeIn(legend_group), run_time=0.8)
-
-        # ===== 初始状态：所有线从相似的低值开始 =====
-        # 创建初始点
-        initial_dots = VGroup()
-        for i, color in enumerate(DEPTH_COLORS):
-            dot = Dot(axes.c2p(0, 0.2), color=color, radius=0.06)
-            initial_dots.add(dot)
-
-        self.play(
-            LaggedStart(*[FadeIn(d, scale=1.5) for d in initial_dots], lag_ratio=0.1),
-            run_time=0.8
-        )
-
-        # 说明文字
-        explain = Tex(
-            "All exit depths start with similar low probabilities",
-            font_size=20, color=GREY_B
-        )
-        explain.to_edge(DOWN, buff=0.5)
-        self.play(Write(explain), run_time=0.8)
-
-        self.wait(1.5)
-        self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=0.8)
-
-
-# ===== Part 2: The Collapse Happens =====
-class Part2Collapse(Scene):
-    """Part 2: The Collapse Happens (20-25 sec)"""
-    def construct(self):
-        # 标题
-        title = Tex("The Collapse Happens", font_size=36, color=WARNING_COLOR)
-        title.to_edge(UP, buff=0.4)
-        self.play(Write(title), run_time=0.8)
-
-        # ===== 创建坐标轴 =====
-        axes = Axes(
-            x_range=[0, 180, 30],
-            y_range=[0, 1.1, 0.2],
-            x_length=9,
-            y_length=4.5,
-            axis_config={"color": GREY_B, "include_tip": True},
-            x_axis_config={"numbers_to_include": [0, 60, 120, 180]},
-            y_axis_config={"numbers_to_include": [0, 0.2, 0.4, 0.6, 0.8, 1.0]},
-        )
-        axes.shift(DOWN * 0.3 + LEFT * 0.5)
-
+        # 坐标轴标签
         x_label = Tex("Training Iterations", font_size=20, color=GREY_B)
         x_label.next_to(axes.x_axis, DOWN, buff=0.5)
         y_label = MathTex(r"p_\theta(t|x)", font_size=20, color=GREY_B)
@@ -210,30 +127,20 @@ class Part2Collapse(Scene):
         self.play(FadeIn(legend_group), run_time=0.5)
 
         # ===== 定义概率曲线数据 =====
-        # t=1 to t=4: 逐渐下降到接近0
-        # t=5: 急剧上升到1.0
+        # t=1 to t=3: 逐渐下降到接近0
+        # t=4: 急剧上升到1.0
         def prob_curve(t_depth, x):
             """生成概率曲线"""
-            if t_depth < 5:  # t=1,2,3,4
+            if t_depth < 4:  # t=1,2,3
                 # 指数衰减
-                initial = 0.2
+                initial = 0.25
                 decay_rate = 0.02 + (t_depth - 1) * 0.005
                 return initial * np.exp(-decay_rate * x)
-            else:  # t=5
+            else:  # t=4
                 # S形上升
                 midpoint = 80
                 steepness = 0.05
-                return 0.2 + 0.8 / (1 + np.exp(-steepness * (x - midpoint)))
-
-        # 创建曲线
-        curves = VGroup()
-        for i, color in enumerate(DEPTH_COLORS):
-            curve = axes.plot(
-                lambda x, t=i+1: prob_curve(t, x),
-                color=color,
-                stroke_width=3
-            )
-            curves.add(curve)
+                return 0.25 + 0.75 / (1 + np.exp(-steepness * (x - midpoint)))
 
         # ===== 动画：逐步绘制曲线 =====
         # 使用 ValueTracker 来动画化
@@ -262,7 +169,7 @@ class Part2Collapse(Scene):
         # 动画：从0到180
         self.play(progress.animate.set_value(180), run_time=5, rate_func=linear)
 
-        # ===== 高亮 t=5 的主导 =====
+        # ===== 高亮 t=4 的主导 =====
         # 添加圆圈高亮
         highlight_circle = Circle(
             radius=0.3, color=CELEBRATE_COLOR, stroke_width=4
@@ -276,7 +183,7 @@ class Part2Collapse(Scene):
             color=CELEBRATE_COLOR, fill_opacity=0.2, stroke_width=2
         )
         badge_text = Tex(
-            r"Dominant: t=5, $p$ = 1.000",
+            r"Dominant: t=4, $p$ = 1.000",
             font_size=20, color=CELEBRATE_COLOR
         )
         badge_text.move_to(badge_rect.get_center())
@@ -289,16 +196,12 @@ class Part2Collapse(Scene):
             run_time=0.8
         )
 
-        # 说明
-        explain = Tex(
-            "The final loop absolutely dominates everything else!",
-            font_size=22, color=WARNING_COLOR
-        )
-        explain.to_edge(DOWN, buff=0.4)
-        self.play(Write(explain), run_time=0.8)
-
         self.wait(2)
         self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=0.8)
+
+
+# ===== Part 2: 原来的 Part 2 被合并到 Part 1，删除 =====
+# (此 Part 已合并到 Part1Setup)
 
 
 # ===== Part 3: The False Hope =====
@@ -397,9 +300,9 @@ class Part4TrainingLoop(Scene):
         self.play(Write(title), run_time=0.8)
 
         # ===== 训练流程图 =====
-        # 创建5个 Loop 方块
+        # 创建4个 Loop 方块
         loops = VGroup()
-        for i in range(5):
+        for i in range(4):
             loop = LoopBlock(f"Loop {i+1}", scale_factor=0.8)
             loops.add(loop)
         loops.arrange(RIGHT, buff=0.6)
@@ -416,7 +319,7 @@ class Part4TrainingLoop(Scene):
 
         # Loop 之间的箭头
         loop_arrows = VGroup()
-        for i in range(4):
+        for i in range(3):
             arrow = Arrow(
                 loops[i].get_right() + RIGHT * 0.05,
                 loops[i+1].get_left() + LEFT * 0.05,
@@ -516,7 +419,7 @@ class Part4TrainingLoop(Scene):
         self.play(FadeOut(explain2), run_time=0.3)
 
         # 给每个 Loss 添加概率标签
-        prob_values = [0.15, 0.15, 0.15, 0.15, 0.40]
+        prob_values = [0.15, 0.15, 0.15, 0.55]
         prob_labels = VGroup()
         for i, (loss, p) in enumerate(zip(loss_boxes, prob_values)):
             label = MathTex(f"p_{i+1}={p:.2f}", font_size=14, color=HIGHLIGHT_COLOR)
@@ -529,8 +432,8 @@ class Part4TrainingLoop(Scene):
         )
 
         # 缩放 Loss boxes 来显示权重
-        # p5=0.4 最大，其他较小
-        scale_factors = [0.6, 0.6, 0.6, 0.6, 1.2]
+        # p4=0.55 最大，其他较小
+        scale_factors = [0.6, 0.6, 0.6, 1.3]
         self.play(
             *[loss_boxes[i].animate.scale(sf) for i, sf in enumerate(scale_factors)],
             run_time=1
@@ -557,9 +460,9 @@ class Part5ViciousCycle(Scene):
         self.play(Write(title), run_time=0.8)
 
         # ===== Part A: 初始状态 =====
-        # 5个 Exit Gates，概率都约为0.2
+        # 4个 Exit Gates，概率都约为0.25
         gates = VGroup()
-        for i in range(5):
+        for i in range(4):
             gate = VGroup()
             rect = RoundedRectangle(
                 width=1.2, height=0.8, corner_radius=0.1,
@@ -574,7 +477,7 @@ class Part5ViciousCycle(Scene):
         gates.shift(UP * 1.5)
 
         # 概率值标签
-        prob_values = [0.20, 0.20, 0.20, 0.20, 0.20]
+        prob_values = [0.25, 0.25, 0.25, 0.25]
         prob_labels = VGroup()
         for i, (gate, p) in enumerate(zip(gates, prob_values)):
             label = MathTex(f"{p:.2f}", font_size=18, color=GREY_B)
@@ -607,17 +510,17 @@ class Part5ViciousCycle(Scene):
         explain2.to_edge(DOWN, buff=2)
         self.play(Write(explain2), run_time=0.6)
 
-        # t=5 增加
-        new_prob5 = MathTex("0.25", font_size=18, color=CELEBRATE_COLOR)
-        new_prob5.move_to(prob_labels[4].get_center())
+        # t=4 增加
+        new_prob4 = MathTex("0.30", font_size=18, color=CELEBRATE_COLOR)
+        new_prob4.move_to(prob_labels[3].get_center())
 
-        # 高亮 t=5
-        highlight_rect = SurroundingRectangle(gates[4], color=CELEBRATE_COLOR, buff=0.1)
+        # 高亮 t=4
+        highlight_rect = SurroundingRectangle(gates[3], color=CELEBRATE_COLOR, buff=0.1)
 
         self.play(
-            Transform(prob_labels[4], new_prob5),
+            Transform(prob_labels[3], new_prob4),
             Create(highlight_rect),
-            gates[4][0].animate.set_stroke(CELEBRATE_COLOR, width=4),
+            gates[3][0].animate.set_stroke(CELEBRATE_COLOR, width=4),
             run_time=0.8
         )
 
@@ -645,10 +548,10 @@ class Part5ViciousCycle(Scene):
         )
         gradient_formula.next_to(gates, DOWN, buff=1)
 
-        # 箭头指向 t=5
+        # 箭头指向 t=4
         grad_arrow = Arrow(
             gradient_formula.get_right() + RIGHT * 0.1,
-            gates[4].get_bottom() + DOWN * 0.3,
+            gates[3].get_bottom() + DOWN * 0.3,
             color=GRADIENT_COLOR, stroke_width=3
         )
 
@@ -729,7 +632,7 @@ class Part5ViciousCycle(Scene):
 
         # 中心标签
         center_label = Tex(
-            "Current dominant:\n" + r"$t = 5$",
+            "Current dominant:\n" + r"$t = 4$",
             font_size=20, color=CELEBRATE_COLOR
         )
         center_label.move_to(center)
@@ -795,7 +698,7 @@ class Part6Evidence(Scene):
             y_range=[0, 1.1, 0.2],
             x_length=8,
             y_length=4,
-            axis_config={"color": GREY_B, "include_tip": True},
+            axis_config={"color": GREY_B, "include_tip": True, "tip_width": 0.15, "tip_height": 0.15},
             x_axis_config={"numbers_to_include": [0, 60, 120, 180]},
             y_axis_config={"numbers_to_include": [0, 0.2, 0.4, 0.6, 0.8, 1.0]},
         )
@@ -820,14 +723,14 @@ class Part6Evidence(Scene):
 
         # 定义曲线
         def prob_curve(t_depth, x):
-            if t_depth < 5:
-                initial = 0.2
+            if t_depth < 4:
+                initial = 0.25
                 decay_rate = 0.02 + (t_depth - 1) * 0.005
                 return initial * np.exp(-decay_rate * x)
             else:
                 midpoint = 80
                 steepness = 0.05
-                return 0.2 + 0.8 / (1 + np.exp(-steepness * (x - midpoint)))
+                return 0.25 + 0.75 / (1 + np.exp(-steepness * (x - midpoint)))
 
         # 动画绘制曲线
         progress = ValueTracker(0)
@@ -853,14 +756,14 @@ class Part6Evidence(Scene):
         # ===== 标注说明 =====
         # 早期阶段标注
         early_annotation = Tex(
-            "First batch favored t=5",
+            "First batch favored t=4",
             font_size=16, color=CELEBRATE_COLOR
         )
         early_annotation.shift(LEFT * 2 + UP * 2)
 
         early_arrow = Arrow(
             early_annotation.get_bottom(),
-            axes.c2p(20, 0.25),
+            axes.c2p(20, 0.28),
             color=CELEBRATE_COLOR, stroke_width=2
         )
 
@@ -960,98 +863,37 @@ class Part7Teaser(Scene):
 class SelfReinforcementCollapse(Scene):
     """完整的 Self-Reinforcement Collapse 动画"""
     def construct(self):
-        # Part 1: Setting Up the Visualization
-        self.part1_setup()
+        # Part 1: The Collapse Happens (合并了原来的 Part1 和 Part2)
+        self.part1_collapse()
 
-        # Part 2: The Collapse Happens
-        self.part2_collapse()
+        # Part 2: The False Hope (原来的 Part 3)
+        self.part2_false_hope()
 
-        # Part 3: The False Hope
-        self.part3_false_hope()
-
-        # Part 4: How Training Works
+        # Part 3: How Training Works (原来的 Part 4)
         self.part4_training_loop()
 
-        # Part 5: The Vicious Cycle
+        # Part 4: The Vicious Cycle (原来的 Part 5)
         self.part5_vicious_cycle()
 
-        # Part 6: Back to the Evidence
+        # Part 5: Back to the Evidence (原来的 Part 6)
         self.part6_evidence()
 
-        # Part 7: The Teaser for Solution
+        # Part 6: The Teaser for Solution (原来的 Part 7)
         self.part7_teaser()
 
-    def part1_setup(self):
-        """Part 1: Setting Up the Visualization"""
-        title = Tex("Self-Reinforcement Collapse", font_size=38, color=WHITE)
-        title.to_edge(UP, buff=0.4)
-        self.play(Write(title), run_time=0.8)
-
-        narration = Tex("Training Iterations vs Exit Probability", font_size=22, color=GREY_B)
-        narration.next_to(title, DOWN, buff=0.15)
-        self.play(Write(narration), run_time=0.6)
-
-        # 坐标轴
+    def part1_collapse(self):
+        """Part 1: The Collapse Happens - 保留坐标轴标签、图例和高亮"""
+        # 坐标轴 (箭头缩小)
         axes = Axes(
             x_range=[0, 180, 30], y_range=[0, 1.1, 0.2],
             x_length=8, y_length=4,
-            axis_config={"color": GREY_B, "include_tip": True},
+            axis_config={"color": GREY_B, "include_tip": True, "tip_width": 0.15, "tip_height": 0.15},
             x_axis_config={"numbers_to_include": [0, 60, 120, 180]},
             y_axis_config={"numbers_to_include": [0, 0.2, 0.4, 0.6, 0.8, 1.0]},
         )
         axes.shift(DOWN * 0.4 + LEFT * 0.5)
 
-        x_label = Tex("Training Iterations", font_size=18, color=GREY_B)
-        x_label.next_to(axes.x_axis, DOWN, buff=0.4)
-        y_label = MathTex(r"p_\theta(t|x)", font_size=18, color=GREY_B)
-        y_label.next_to(axes.y_axis, UP, buff=0.15)
-
-        self.play(Create(axes), Write(x_label), Write(y_label), run_time=1)
-
-        # 图例
-        legend = VGroup()
-        for i, color in enumerate(DEPTH_COLORS):
-            dot = Dot(color=color, radius=0.05)
-            dot.shift(RIGHT * 4.5 + UP * (1.5 - i * 0.3))
-            label = Tex(f"t={i+1}", font_size=12, color=color)
-            label.next_to(dot, RIGHT, buff=0.08)
-            legend.add(dot, label)
-        self.play(FadeIn(legend), run_time=0.5)
-
-        # 初始点
-        initial_dots = VGroup()
-        for color in DEPTH_COLORS:
-            dot = Dot(axes.c2p(0, 0.2), color=color, radius=0.05)
-            initial_dots.add(dot)
-
-        self.play(
-            LaggedStart(*[FadeIn(d, scale=1.3) for d in initial_dots], lag_ratio=0.08),
-            run_time=0.6
-        )
-
-        explain = Tex("All depths start with similar probabilities (~0.2)", font_size=18, color=GREY_B)
-        explain.to_edge(DOWN, buff=0.4)
-        self.play(Write(explain), run_time=0.6)
-
-        self.wait(1)
-        self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=0.6)
-
-    def part2_collapse(self):
-        """Part 2: The Collapse Happens"""
-        title = Tex("The Collapse Happens", font_size=32, color=WARNING_COLOR)
-        title.to_edge(UP, buff=0.4)
-        self.play(Write(title), run_time=0.6)
-
-        # 坐标轴
-        axes = Axes(
-            x_range=[0, 180, 30], y_range=[0, 1.1, 0.2],
-            x_length=8, y_length=4,
-            axis_config={"color": GREY_B, "include_tip": True},
-            x_axis_config={"numbers_to_include": [0, 60, 120, 180]},
-            y_axis_config={"numbers_to_include": [0, 0.2, 0.4, 0.6, 0.8, 1.0]},
-        )
-        axes.shift(DOWN * 0.4 + LEFT * 0.5)
-
+        # 坐标轴标签
         x_label = Tex("Training Iterations", font_size=18, color=GREY_B)
         x_label.next_to(axes.x_axis, DOWN, buff=0.4)
         y_label = MathTex(r"p_\theta(t|x)", font_size=18, color=GREY_B)
@@ -1071,14 +913,14 @@ class SelfReinforcementCollapse(Scene):
 
         # 概率曲线
         def prob_curve(t_depth, x):
-            if t_depth < 5:
-                initial = 0.2
+            if t_depth < 4:
+                initial = 0.25
                 decay_rate = 0.02 + (t_depth - 1) * 0.005
                 return initial * np.exp(-decay_rate * x)
             else:
                 midpoint = 80
                 steepness = 0.05
-                return 0.2 + 0.8 / (1 + np.exp(-steepness * (x - midpoint)))
+                return 0.25 + 0.75 / (1 + np.exp(-steepness * (x - midpoint)))
 
         progress = ValueTracker(0)
 
@@ -1107,21 +949,17 @@ class SelfReinforcementCollapse(Scene):
 
         badge = VGroup()
         badge_rect = RoundedRectangle(width=3, height=0.6, corner_radius=0.08, color=CELEBRATE_COLOR, fill_opacity=0.2, stroke_width=2)
-        badge_text = Tex(r"t=5 dominates: $p$=1.0", font_size=16, color=CELEBRATE_COLOR)
+        badge_text = Tex(r"t=4 dominates: $p$=1.0", font_size=16, color=CELEBRATE_COLOR)
         badge_text.move_to(badge_rect.get_center())
         badge.add(badge_rect, badge_text)
         badge.shift(RIGHT * 3 + DOWN * 1.5)
 
         self.play(Create(highlight), FadeIn(badge), run_time=0.6)
 
-        explain = Tex("Final loop dominates everything!", font_size=20, color=WARNING_COLOR)
-        explain.to_edge(DOWN, buff=0.4)
-        self.play(Write(explain), run_time=0.6)
-
         self.wait(1.5)
         self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=0.6)
 
-    def part3_false_hope(self):
+    def part2_false_hope(self):
         """Part 3: The False Hope"""
         # 庆祝
         celebrate = Tex("SOLVED DEEP LEARNING?", font_size=42, color=CELEBRATE_COLOR)
@@ -1164,14 +1002,14 @@ class SelfReinforcementCollapse(Scene):
 
         # Loop 方块
         loops = VGroup()
-        for i in range(5):
+        for i in range(4):
             loop = LoopBlock(f"L{i+1}", scale_factor=0.7)
             loops.add(loop)
         loops.arrange(RIGHT, buff=0.5)
         loops.shift(UP * 1.3)
 
         loop_arrows = VGroup()
-        for i in range(4):
+        for i in range(3):
             arrow = Arrow(loops[i].get_right() + RIGHT*0.03, loops[i+1].get_left() + LEFT*0.03, color=GREY_B, stroke_width=2, buff=0)
             loop_arrows.add(arrow)
 
@@ -1183,7 +1021,7 @@ class SelfReinforcementCollapse(Scene):
 
         # Loss boxes
         loss_boxes = VGroup()
-        for i in range(5):
+        for i in range(4):
             loss = LossBox(f"L_{i+1}", scale_factor=0.8)
             loss.next_to(loops[i], DOWN, buff=0.6)
             loss_boxes.add(loss)
@@ -1204,7 +1042,7 @@ class SelfReinforcementCollapse(Scene):
         self.play(Write(formula), Create(formula_box), run_time=0.8)
 
         # 概率标签
-        probs = [0.15, 0.15, 0.15, 0.15, 0.40]
+        probs = [0.15, 0.15, 0.15, 0.55]
         prob_labels = VGroup()
         for i, p in enumerate(probs):
             label = MathTex(f"p_{i+1}={p:.2f}", font_size=12, color=HIGHLIGHT_COLOR)
@@ -1214,7 +1052,7 @@ class SelfReinforcementCollapse(Scene):
         self.play(LaggedStart(*[Write(l) for l in prob_labels], lag_ratio=0.06), run_time=0.6)
 
         # 缩放显示权重
-        scales = [0.65, 0.65, 0.65, 0.65, 1.15]
+        scales = [0.65, 0.65, 0.65, 1.3]
         self.play(*[loss_boxes[i].animate.scale(s) for i, s in enumerate(scales)], run_time=0.8)
 
         explain2 = Tex(r"Higher $p$ $\rightarrow$ dominates weight updates", font_size=16, color=GREY_B)
@@ -1232,7 +1070,7 @@ class SelfReinforcementCollapse(Scene):
 
         # 初始 gates
         gates = VGroup()
-        for i in range(5):
+        for i in range(4):
             rect = RoundedRectangle(width=1, height=0.6, corner_radius=0.08, color=DEPTH_COLORS[i], fill_opacity=0.3, stroke_width=2)
             label = MathTex(f"p_{i+1}", font_size=18, color=WHITE)
             label.move_to(rect.get_center())
@@ -1241,7 +1079,7 @@ class SelfReinforcementCollapse(Scene):
         gates.arrange(RIGHT, buff=0.3)
         gates.shift(UP * 1.5)
 
-        probs = [0.20, 0.20, 0.20, 0.20, 0.20]
+        probs = [0.25, 0.25, 0.25, 0.25]
         prob_labels = VGroup()
         for i, (g, p) in enumerate(zip(gates, probs)):
             label = MathTex(f"{p:.2f}", font_size=14, color=GREY_B)
@@ -1258,15 +1096,15 @@ class SelfReinforcementCollapse(Scene):
         explain.to_edge(DOWN, buff=2)
         self.play(Write(explain), run_time=0.5)
 
-        # t=5 增加
-        new_prob = MathTex("0.25", font_size=14, color=CELEBRATE_COLOR)
-        new_prob.move_to(prob_labels[4].get_center())
-        highlight = SurroundingRectangle(gates[4], color=CELEBRATE_COLOR, buff=0.08)
+        # t=4 增加
+        new_prob = MathTex("0.30", font_size=14, color=CELEBRATE_COLOR)
+        new_prob.move_to(prob_labels[3].get_center())
+        highlight = SurroundingRectangle(gates[3], color=CELEBRATE_COLOR, buff=0.08)
 
         self.play(
-            Transform(prob_labels[4], new_prob),
+            Transform(prob_labels[3], new_prob),
             Create(highlight),
-            gates[4][0].animate.set_stroke(CELEBRATE_COLOR, width=3),
+            gates[3][0].animate.set_stroke(CELEBRATE_COLOR, width=3),
             run_time=0.6
         )
 
@@ -1314,7 +1152,7 @@ class SelfReinforcementCollapse(Scene):
             run_time=0.8
         )
 
-        center_label = Tex(r"Dominant: $t=5$", font_size=16, color=CELEBRATE_COLOR)
+        center_label = Tex(r"Dominant: $t=4$", font_size=16, color=CELEBRATE_COLOR)
         center_label.move_to(cycle_center)
         self.play(Write(center_label), run_time=0.4)
 
@@ -1345,7 +1183,7 @@ class SelfReinforcementCollapse(Scene):
         axes = Axes(
             x_range=[0, 180, 30], y_range=[0, 1.1, 0.2],
             x_length=7.5, y_length=3.8,
-            axis_config={"color": GREY_B, "include_tip": True},
+            axis_config={"color": GREY_B, "include_tip": True, "tip_width": 0.15, "tip_height": 0.15},
             x_axis_config={"numbers_to_include": [0, 60, 120, 180]},
             y_axis_config={"numbers_to_include": [0, 0.2, 0.4, 0.6, 0.8, 1.0]},
         )
@@ -1369,14 +1207,14 @@ class SelfReinforcementCollapse(Scene):
         self.play(FadeIn(legend), run_time=0.3)
 
         def prob_curve(t_depth, x):
-            if t_depth < 5:
-                initial = 0.2
+            if t_depth < 4:
+                initial = 0.25
                 decay_rate = 0.02 + (t_depth - 1) * 0.005
                 return initial * np.exp(-decay_rate * x)
             else:
                 midpoint = 80
                 steepness = 0.05
-                return 0.2 + 0.8 / (1 + np.exp(-steepness * (x - midpoint)))
+                return 0.25 + 0.75 / (1 + np.exp(-steepness * (x - midpoint)))
 
         progress = ValueTracker(0)
 
@@ -1399,7 +1237,7 @@ class SelfReinforcementCollapse(Scene):
         self.add(dynamic_curves)
 
         # 标注
-        early_note = Tex("First batch favored t=5", font_size=14, color=CELEBRATE_COLOR)
+        early_note = Tex("First batch favored t=4", font_size=14, color=CELEBRATE_COLOR)
         early_note.shift(LEFT * 2.5 + UP * 2)
         early_arrow = Arrow(early_note.get_bottom(), axes.c2p(20, 0.28), color=CELEBRATE_COLOR, stroke_width=1.5)
 
@@ -1468,11 +1306,11 @@ if __name__ == "__main__":
     print("  高质量:   manim -pqh self_reinforcement_collapse.py SelfReinforcementCollapse")
     print("\n单独场景:")
     print("  manim -pql self_reinforcement_collapse.py Part1Setup")
-    print("  manim -pql self_reinforcement_collapse.py Part2Collapse")
     print("  manim -pql self_reinforcement_collapse.py Part3FalseHope")
     print("  manim -pql self_reinforcement_collapse.py Part4TrainingLoop")
     print("  manim -pql self_reinforcement_collapse.py Part5ViciousCycle")
     print("  manim -pql self_reinforcement_collapse.py Part6Evidence")
     print("  manim -pql self_reinforcement_collapse.py Part7Teaser")
+    print("\n注意: 现在使用 4 个 loops (t=1 到 t=4)")
     print("=" * 60)
 
