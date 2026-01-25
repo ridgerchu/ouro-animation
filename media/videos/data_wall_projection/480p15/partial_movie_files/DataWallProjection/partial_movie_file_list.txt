@@ -1,0 +1,11 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4125701581_373874454_223132457.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_2375065806_2328620133.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_3586987892_3665930695.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_302386386_2932322641.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_4183409867_3706892017.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_640176938_3435306128.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_2757508746_3618664474.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_1111766665_3406822336.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_2552855209_4064828403.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/Slide_for_survival/media/videos/data_wall_projection/480p15/partial_movie_files/DataWallProjection/4199066159_2530284573_1396848961.mp4'

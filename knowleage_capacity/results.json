@@ -1,0 +1,3642 @@
+[
+  {
+    "total_loss": 264061.1051521301,
+    "p1_lossname_nats": 12.613915223884582,
+    "p2_lossvalue_nats": 26.106544007492065,
+    "N_people": 100000,
+    "P_params": 1014272,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.7730259557645562,
+      "Rmax": 5.643010934114897,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 2,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l2_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 147059.33588790894,
+    "p1_lossname_nats": 9.450886635732651,
+    "p2_lossvalue_nats": 13.829178656744958,
+    "N_people": 20000,
+    "P_params": 1014272,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7938518580237635,
+      "Rmax": 1.1743873035350123,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l2_sz20000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 212953.1546611786,
+    "p1_lossname_nats": 10.74729118938446,
+    "p2_lossvalue_nats": 20.36905520839691,
+    "N_people": 50000,
+    "P_params": 1014272,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.4273154389276401,
+      "Rmax": 2.8708019082487657,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l2_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 211829.70010375977,
+    "p1_lossname_nats": 12.167783207130432,
+    "p2_lossvalue_nats": 19.670134438562393,
+    "N_people": 100000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.9799172102289129,
+      "Rmax": 4.05985279116819,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 267963.3125896454,
+    "p1_lossname_nats": 13.815234676265717,
+    "p2_lossvalue_nats": 25.462304658317567,
+    "N_people": 200000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4371835164021576,
+      "Rmax": 7.977840683117203,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 61548.37496256828,
+    "p1_lossname_nats": 8.211153343248368,
+    "p2_lossvalue_nats": 3.0624970241367815,
+    "N_people": 20000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.8168677486942764,
+      "Rmax": 0.8449105677511747,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz20000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 128455.92598628998,
+    "p1_lossname_nats": 10.653006006956101,
+    "p2_lossvalue_nats": 10.150448055052758,
+    "N_people": 50000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.554558414556229,
+      "Rmax": 2.065392620388889,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 164454.15893936157,
+    "p1_lossname_nats": 12.104781932544709,
+    "p2_lossvalue_nats": 14.49323625369072,
+    "N_people": 100000,
+    "P_params": 1805312,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.9648842638472652,
+      "Rmax": 3.1703927000798666,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 6,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l6_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 241577.13622283936,
+    "p1_lossname_nats": 13.641973647022247,
+    "p2_lossvalue_nats": 22.761456650066375,
+    "N_people": 200000,
+    "P_params": 1805312,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.3625912834065086,
+      "Rmax": 6.230001225457522,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 6,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l6_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 65993.36275625229,
+    "p1_lossname_nats": 9.670158855104447,
+    "p2_lossvalue_nats": 2.5685579275250436,
+    "N_people": 50000,
+    "P_params": 1805312,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.5561959463782038,
+      "Rmax": 1.6128923937154864,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 6,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l6_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 122937.42109107971,
+    "p1_lossname_nats": 11.126507845020294,
+    "p2_lossvalue_nats": 8.974815813183785,
+    "N_people": 100000,
+    "P_params": 2200832,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.0376403277991066,
+      "Rmax": 2.6006292103016424,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 8,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l8_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 217902.29361724854,
+    "p1_lossname_nats": 13.008007537269592,
+    "p2_lossvalue_nats": 19.024067611646654,
+    "N_people": 200000,
+    "P_params": 2200832,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.5111052883072023,
+      "Rmax": 5.110383696862445,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 8,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l8_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 43198.30363178253,
+    "p1_lossname_nats": 7.92053056473732,
+    "p2_lossvalue_nats": 0.49890301008969545,
+    "N_people": 50000,
+    "P_params": 2200832,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.4017072923014042,
+      "Rmax": 1.3230332860860312,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 8,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h128_l8_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 84548.93481445312,
+    "p1_lossname_nats": 9.297582509231567,
+    "p2_lossvalue_nats": 5.2867635460913185,
+    "N_people": 100000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.8758368315566387,
+      "Rmax": 2.0332493016518023,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 200736.83681488037,
+    "p1_lossname_nats": 12.472323968410493,
+    "p2_lossvalue_nats": 18.248307368183134,
+    "N_people": 200000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.097681674999783,
+      "Rmax": 3.9954500401897453,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 24366.02346408367,
+    "p1_lossname_nats": 4.78502399353981,
+    "p2_lossvalue_nats": 0.059475606303103265,
+    "N_people": 20000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.4750021654736716,
+      "Rmax": 0.4231468258099053,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz20000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 29580.60887312889,
+    "p1_lossname_nats": 5.745176123714447,
+    "p2_lossvalue_nats": 0.1133734088409692,
+    "N_people": 50000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.161520026790328,
+      "Rmax": 1.034386791604366,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 39281.3248295784,
+    "p1_lossname_nats": 7.441635604238511,
+    "p2_lossvalue_nats": 0.26491640400066974,
+    "N_people": 100000,
+    "P_params": 3603712,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.740619560371725,
+      "Rmax": 1.5882367919985239,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 3,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l3_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 147983.01400852203,
+    "p1_lossname_nats": 11.566909791183472,
+    "p2_lossvalue_nats": 11.144068407082557,
+    "N_people": 200000,
+    "P_params": 3603712,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.2798772330156734,
+      "Rmax": 3.1209752533868325,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 3,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l3_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28633.015806913376,
+    "p1_lossname_nats": 5.665808327054977,
+    "p2_lossvalue_nats": 0.04126333563216031,
+    "N_people": 50000,
+    "P_params": 3603712,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.9103329615455673,
+      "Rmax": 0.8079929786518157,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 3,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l3_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 34650.33210229874,
+    "p1_lossname_nats": 6.809559641885757,
+    "p2_lossvalue_nats": 0.07965206251312047,
+    "N_people": 100000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.4549082601440515,
+      "Rmax": 1.3030428558668388,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 99278.86731243134,
+    "p1_lossname_nats": 11.304331247901917,
+    "p2_lossvalue_nats": 4.7650279356598855,
+    "N_people": 200000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.3067745153369836,
+      "Rmax": 2.5605530156152487,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 242194.5581626892,
+    "p1_lossname_nats": 13.402660669517518,
+    "p2_lossvalue_nats": 21.924499176120758,
+    "N_people": 500000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.604333849610581,
+      "Rmax": 6.250905163450823,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28406.533339977264,
+    "p1_lossname_nats": 5.6433805773258205,
+    "p2_lossvalue_nats": 0.026582149973209016,
+    "N_people": 50000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.747477183877909,
+      "Rmax": 0.6629046019630266,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 32200.120609998703,
+    "p1_lossname_nats": 6.398094387292862,
+    "p2_lossvalue_nats": 0.0288774429586716,
+    "N_people": 100000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.0816386140629304,
+      "Rmax": 0.9587311029572564,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 44759.828349113464,
+    "p1_lossname_nats": 8.304080957508088,
+    "p2_lossvalue_nats": 0.321692095390521,
+    "N_people": 200000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.0570044599878115,
+      "Rmax": 1.8839609194651132,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 201243.10492897034,
+    "p1_lossname_nats": 12.56261659412384,
+    "p2_lossvalue_nats": 16.264382904291153,
+    "N_people": 500000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.701589897019617,
+      "Rmax": 4.599186569231956,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28232.869664669037,
+    "p1_lossname_nats": 5.623391935110092,
+    "p2_lossvalue_nats": 0.016657797260954975,
+    "N_people": 50000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.550327714247794,
+      "Rmax": 0.48774087309097813,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31761.88089108467,
+    "p1_lossname_nats": 6.326987566709518,
+    "p2_lossvalue_nats": 0.017729577748710288,
+    "N_people": 100000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.857138841813829,
+      "Rmax": 0.7583477824083583,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 39888.775971889496,
+    "p1_lossname_nats": 7.88205188999176,
+    "p2_lossvalue_nats": 0.06140743014831096,
+    "N_people": 200000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.6531573016860224,
+      "Rmax": 1.4901963449537494,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 162956.69918346405,
+    "p1_lossname_nats": 12.00493352766037,
+    "p2_lossvalue_nats": 11.532198002040387,
+    "N_people": 500000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.6425166071572876,
+      "Rmax": 3.6379157043107395,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28174.14155459404,
+    "p1_lossname_nats": 5.617115783452988,
+    "p2_lossvalue_nats": 0.012928991803876124,
+    "N_people": 50000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.43539995444026736,
+      "Rmax": 0.38579869616992096,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 93265.76063632965,
+    "p1_lossname_nats": 10.253937434577942,
+    "p2_lossvalue_nats": 4.681073859530687,
+    "N_people": 500000,
+    "P_params": 10702336,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4433195522207245,
+      "Rmax": 2.565493728041172,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 12,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h256_l12_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31909.19822216034,
+    "p1_lossname_nats": 6.312248473548889,
+    "p2_lossvalue_nats": 0.04540722107011825,
+    "N_people": 100000,
+    "P_params": 5402112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.1971792142368824,
+      "Rmax": 1.059501910765009,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 2,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l2_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 23743.77667248249,
+    "p1_lossname_nats": 4.724127142906189,
+    "p2_lossvalue_nats": 0.01746500636022538,
+    "N_people": 20000,
+    "P_params": 5402112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.2480676033982189,
+      "Rmax": 0.220496753701342,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l2_sz20000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28154.894751548767,
+    "p1_lossname_nats": 5.598092462873459,
+    "p2_lossvalue_nats": 0.02291976981270127,
+    "N_people": 50000,
+    "P_params": 5402112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.6084260550617067,
+      "Rmax": 0.5390065946584025,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l2_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28058.71532511711,
+    "p1_lossname_nats": 5.592329531574249,
+    "p2_lossvalue_nats": 0.013902535656944383,
+    "N_people": 50000,
+    "P_params": 7175040,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.4582346379576666,
+      "Rmax": 0.4058198969041695,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 3,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l3_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31415.743684530258,
+    "p1_lossname_nats": 6.2584633109092715,
+    "p2_lossvalue_nats": 0.01738096631054068,
+    "N_people": 100000,
+    "P_params": 8947968,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7240860821134614,
+      "Rmax": 0.6396477933500192,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 4,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l4_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 137632.20614814758,
+    "p1_lossname_nats": 12.213321331501007,
+    "p2_lossvalue_nats": 8.117209015125036,
+    "N_people": 500000,
+    "P_params": 8947968,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4874007722414007,
+      "Rmax": 3.0684928559634144,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 4,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l4_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31343.002588748932,
+    "p1_lossname_nats": 6.252335613918304,
+    "p2_lossvalue_nats": 0.011844646459596698,
+    "N_people": 100000,
+    "P_params": 12493824,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.5187188369167112,
+      "Rmax": 0.4581101819720355,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 6,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l6_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 35363.51994085312,
+    "p1_lossname_nats": 7.044766204166413,
+    "p2_lossvalue_nats": 0.01920479633496143,
+    "N_people": 200000,
+    "P_params": 12493824,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.0189668816320105,
+      "Rmax": 0.9002124547562995,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 6,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l6_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 64640.630917072296,
+    "p1_lossname_nats": 10.032533254814147,
+    "p2_lossvalue_nats": 1.2213800159141421,
+    "N_people": 500000,
+    "P_params": 12493824,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.305505322863058,
+      "Rmax": 2.197627874651447,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 6,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l6_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31292.690021514893,
+    "p1_lossname_nats": 6.247900700378418,
+    "p2_lossvalue_nats": 0.007829108212905703,
+    "N_people": 100000,
+    "P_params": 16039680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.40412283763832374,
+      "Rmax": 0.3568367938865728,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 8,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l8_sz100000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 35100.99566078186,
+    "p1_lossname_nats": 7.001355946350098,
+    "p2_lossvalue_nats": 0.013458548166381661,
+    "N_people": 200000,
+    "P_params": 16039680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7945904438505969,
+      "Rmax": 0.7012045110833364,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 8,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l8_sz200000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 44474.94442129135,
+    "p1_lossname_nats": 8.636712278175354,
+    "p2_lossvalue_nats": 0.1437440289325081,
+    "N_people": 500000,
+    "P_params": 16039680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.9070704516890586,
+      "Rmax": 1.7118032207244311,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 8,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l8_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 41847.16412782669,
+    "p1_lossname_nats": 8.339245149803162,
+    "p2_lossvalue_nats": 0.020112580229947344,
+    "N_people": 500000,
+    "P_params": 23131392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.3355252548996415,
+      "Rmax": 1.1869919407958347,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 12,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h384_l12_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 23620.758224725723,
+    "p1_lossname_nats": 4.712551932668686,
+    "p2_lossvalue_nats": 0.008420565245696343,
+    "N_people": 20000,
+    "P_params": 8775680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.15277265516789215,
+      "Rmax": 0.13573286162793813,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h512_l2_sz20000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 27974.168734550476,
+    "p1_lossname_nats": 5.578553155183792,
+    "p2_lossvalue_nats": 0.011663384495605715,
+    "N_people": 50000,
+    "P_params": 8775680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.3747865843832713,
+      "Rmax": 0.3318003839113655,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h512_l2_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 48914.018280506134,
+    "p1_lossname_nats": 8.762977924060822,
+    "p2_lossvalue_nats": 0.37733361884355543,
+    "N_people": 500000,
+    "P_params": 15076352,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.0117080776892964,
+      "Rmax": 1.8211816680447128,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 4,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h512_l4_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 41653.74607753754,
+    "p1_lossname_nats": 8.285122626686096,
+    "p2_lossvalue_nats": 0.0295969560819678,
+    "N_people": 500000,
+    "P_params": 21377024,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.446635313401454,
+      "Rmax": 1.2844059062378954,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 6,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h512_l6_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 40662.86809682846,
+    "p1_lossname_nats": 8.112155155467986,
+    "p2_lossvalue_nats": 0.014025242853187956,
+    "N_people": 500000,
+    "P_params": 27677696,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.1222306974915035,
+      "Rmax": 0.9920181175264459,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 8,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h512_l8_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 39789.60776376724,
+    "p1_lossname_nats": 7.9477151921272275,
+    "p2_lossvalue_nats": 0.007270203235527151,
+    "N_people": 500000,
+    "P_params": 40279040,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7742054224215458,
+      "Rmax": 0.6816641082654711,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 12,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h512_l12_sz500000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 27856.873934984207,
+    "p1_lossname_nats": 5.5654138991355895,
+    "p2_lossvalue_nats": 0.00435537375874701,
+    "N_people": 50000,
+    "P_params": 17882112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.18400970150282658,
+      "Rmax": 0.16283166066084878,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 768,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 1,
+      "epoch": 999,
+      "filename": "model_h768_l2_sz50000_1_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 143140.52565717697,
+    "p1_lossname_nats": 10.9754851126194,
+    "p2_lossvalue_nats": 13.44448434073925,
+    "N_people": 20000,
+    "P_params": 1014272,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7614239869991908,
+      "Rmax": 1.1743873035350123,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l2_sz20000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 203838.66676139832,
+    "p1_lossname_nats": 12.642055576610565,
+    "p2_lossvalue_nats": 20.873652360057832,
+    "N_people": 50000,
+    "P_params": 1014272,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.2566734911339505,
+      "Rmax": 2.8708019082487657,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l2_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 210183.5981578827,
+    "p1_lossname_nats": 12.645607624912262,
+    "p2_lossvalue_nats": 18.880244985437393,
+    "N_people": 100000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.0118520402552167,
+      "Rmax": 4.05985279116819,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 267346.2399330139,
+    "p1_lossname_nats": 14.045068698692322,
+    "p2_lossvalue_nats": 25.32859369802475,
+    "N_people": 200000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4175102220359705,
+      "Rmax": 7.977840683117203,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 72356.54764986038,
+    "p1_lossname_nats": 9.320326812410354,
+    "p2_lossvalue_nats": 3.718471541184187,
+    "N_people": 20000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7807408555619642,
+      "Rmax": 0.8449105677511747,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz20000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 127852.84256744385,
+    "p1_lossname_nats": 11.193282777261734,
+    "p2_lossvalue_nats": 9.800327594971657,
+    "N_people": 50000,
+    "P_params": 1409792,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.544828696776774,
+      "Rmax": 2.065392620388889,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 4,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l4_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 165101.511967659,
+    "p1_lossname_nats": 12.329944899845124,
+    "p2_lossvalue_nats": 13.350947286844253,
+    "N_people": 100000,
+    "P_params": 1805312,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.0381753698397707,
+      "Rmax": 3.1703927000798666,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 6,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l6_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 242331.0442867279,
+    "p1_lossname_nats": 13.731882474708557,
+    "p2_lossvalue_nats": 21.984398074913024,
+    "N_people": 200000,
+    "P_params": 1805312,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4724169016950706,
+      "Rmax": 6.230001225457522,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 6,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l6_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 70811.70782709122,
+    "p1_lossname_nats": 9.979530144023895,
+    "p2_lossvalue_nats": 2.8106622479081156,
+    "N_people": 50000,
+    "P_params": 1805312,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.5341606658640332,
+      "Rmax": 1.6128923937154864,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 6,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l6_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 127637.20156002045,
+    "p1_lossname_nats": 12.142892166805268,
+    "p2_lossvalue_nats": 8.837748328971863,
+    "N_people": 100000,
+    "P_params": 2200832,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.9799991247932975,
+      "Rmax": 2.6006292103016424,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 8,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l8_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 219639.79473686218,
+    "p1_lossname_nats": 13.874143139839173,
+    "p2_lossvalue_nats": 19.58458659133911,
+    "N_people": 200000,
+    "P_params": 2200832,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.3240644336766847,
+      "Rmax": 5.110383696862445,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 8,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l8_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 49018.521604537964,
+    "p1_lossname_nats": 8.74692813129425,
+    "p2_lossvalue_nats": 0.7226248516723514,
+    "N_people": 50000,
+    "P_params": 2200832,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.3672884438280941,
+      "Rmax": 1.3230332860860312,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 128,
+      "n_layers": 8,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h128_l8_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 67729.7684879303,
+    "p1_lossname_nats": 9.698104616832733,
+    "p2_lossvalue_nats": 2.5023039707690478,
+    "N_people": 100000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.9980153070559197,
+      "Rmax": 2.0332493016518023,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 192010.8470478058,
+    "p1_lossname_nats": 12.762161835956574,
+    "p2_lossvalue_nats": 16.287340424776076,
+    "N_people": 200000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.268974761010462,
+      "Rmax": 3.9954500401897453,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 24524.17404460907,
+    "p1_lossname_nats": 4.843371831798554,
+    "p2_lossvalue_nats": 0.04436536289351061,
+    "N_people": 20000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.4745589740314083,
+      "Rmax": 0.4231468258099053,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz20000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31076.346291065216,
+    "p1_lossname_nats": 6.0864918674469,
+    "p2_lossvalue_nats": 0.08951228776536882,
+    "N_people": 50000,
+    "P_params": 2814976,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.1533851402084472,
+      "Rmax": 1.034386791604366,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l2_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 40140.68272781372,
+    "p1_lossname_nats": 7.747432091760635,
+    "p2_lossvalue_nats": 0.18832207507640122,
+    "N_people": 100000,
+    "P_params": 3603712,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.7314437766917259,
+      "Rmax": 1.5882367919985239,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 3,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l3_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 139149.67056179047,
+    "p1_lossname_nats": 11.970036458587646,
+    "p2_lossvalue_nats": 10.69828443031311,
+    "N_people": 200000,
+    "P_params": 3603712,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.283292682900622,
+      "Rmax": 3.1209752533868325,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 3,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l3_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 29201.461089134216,
+    "p1_lossname_nats": 5.786918118047714,
+    "p2_lossvalue_nats": 0.03802286410089582,
+    "N_people": 50000,
+    "P_params": 3603712,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.9079735959433768,
+      "Rmax": 0.8079929786518157,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 3,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l3_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 37020.35779809952,
+    "p1_lossname_nats": 7.302304779672623,
+    "p2_lossvalue_nats": 0.0685821739103645,
+    "N_people": 100000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.4390876859831996,
+      "Rmax": 1.3030428558668388,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 95067.6658706665,
+    "p1_lossname_nats": 11.181813204860687,
+    "p2_lossvalue_nats": 4.624567711532116,
+    "N_people": 200000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.3240495037674123,
+      "Rmax": 2.5605530156152487,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 242378.11296463013,
+    "p1_lossname_nats": 13.436911631011963,
+    "p2_lossvalue_nats": 22.1690186419487,
+    "N_people": 500000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.55855291913121,
+      "Rmax": 6.250905163450823,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28705.092545747757,
+    "p1_lossname_nats": 5.7080674820423125,
+    "p2_lossvalue_nats": 0.0238492201753892,
+    "N_people": 50000,
+    "P_params": 4392448,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7464597479016776,
+      "Rmax": 0.6629046019630266,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 4,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l4_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 33485.59696102142,
+    "p1_lossname_nats": 6.650959022426605,
+    "p2_lossvalue_nats": 0.03238017696817406,
+    "N_people": 100000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.075443222297066,
+      "Rmax": 0.9587311029572564,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 44898.62062835693,
+    "p1_lossname_nats": 8.465023816776275,
+    "p2_lossvalue_nats": 0.30516319453567264,
+    "N_people": 200000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.0500246243572477,
+      "Rmax": 1.8839609194651132,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 202798.23799324036,
+    "p1_lossname_nats": 12.928268410587311,
+    "p2_lossvalue_nats": 16.41874605116844,
+    "N_people": 500000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.6387563072227884,
+      "Rmax": 4.599186569231956,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28401.64958381653,
+    "p1_lossname_nats": 5.66018424115181,
+    "p2_lossvalue_nats": 0.014967413403303362,
+    "N_people": 50000,
+    "P_params": 5969920,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.5499035764950216,
+      "Rmax": 0.48774087309097813,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 6,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l6_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 32177.025718212128,
+    "p1_lossname_nats": 6.4101513331890105,
+    "p2_lossvalue_nats": 0.018131267151632345,
+    "N_people": 100000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.8555414758787989,
+      "Rmax": 0.7583477824083583,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 40826.447159290314,
+    "p1_lossname_nats": 8.069082115650177,
+    "p2_lossvalue_nats": 0.06138843502551317,
+    "N_people": 200000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.646007807532697,
+      "Rmax": 1.4901963449537494,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 165372.6545009613,
+    "p1_lossname_nats": 12.315051404094696,
+    "p2_lossvalue_nats": 11.714950192689896,
+    "N_people": 500000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.595410189365257,
+      "Rmax": 3.6379157043107395,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28269.58699631691,
+    "p1_lossname_nats": 5.638121553659439,
+    "p2_lossvalue_nats": 0.011862535545468563,
+    "N_people": 50000,
+    "P_params": 7547392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.4352093829862368,
+      "Rmax": 0.38579869616992096,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 8,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l8_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 96178.2572593689,
+    "p1_lossname_nats": 10.840133753871918,
+    "p2_lossvalue_nats": 4.56718746073842,
+    "N_people": 500000,
+    "P_params": 10702336,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4114854189964228,
+      "Rmax": 2.565493728041172,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 256,
+      "n_layers": 12,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h256_l12_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 32530.469388723373,
+    "p1_lossname_nats": 6.444422607088089,
+    "p2_lossvalue_nats": 0.04241174306217581,
+    "N_people": 100000,
+    "P_params": 5402112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.1937293522991133,
+      "Rmax": 1.059501910765009,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 2,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l2_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 23800.006139159203,
+    "p1_lossname_nats": 4.742867873215675,
+    "p2_lossvalue_nats": 0.012932877560146152,
+    "N_people": 20000,
+    "P_params": 5402112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.2479917120470748,
+      "Rmax": 0.220496753701342,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l2_sz20000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28252.737898111343,
+    "p1_lossname_nats": 5.625366634845734,
+    "p2_lossvalue_nats": 0.018193783779628575,
+    "N_people": 50000,
+    "P_params": 5402112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.6081249676718532,
+      "Rmax": 0.5390065946584025,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l2_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31544.43934559822,
+    "p1_lossname_nats": 6.288526453304291,
+    "p2_lossvalue_nats": 0.014812386165524367,
+    "N_people": 100000,
+    "P_params": 8947968,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7236427829352625,
+      "Rmax": 0.6396477933500192,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 4,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l4_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 133158.60576152802,
+    "p1_lossname_nats": 12.213471918582917,
+    "p2_lossvalue_nats": 9.144591857141256,
+    "N_people": 500000,
+    "P_params": 8947968,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.4045653518136847,
+      "Rmax": 3.0684928559634144,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 4,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l4_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31392.892525196075,
+    "p1_lossname_nats": 6.264956640720367,
+    "p2_lossvalue_nats": 0.010134351752724615,
+    "N_people": 100000,
+    "P_params": 12493824,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.5185928477953164,
+      "Rmax": 0.4581101819720355,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 6,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l6_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 35801.021318912506,
+    "p1_lossname_nats": 7.131492689800263,
+    "p2_lossvalue_nats": 0.020029801485186908,
+    "N_people": 200000,
+    "P_params": 12493824,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.0169449209964738,
+      "Rmax": 0.9002124547562995,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 6,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l6_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 64635.100449085236,
+    "p1_lossname_nats": 10.458050171947479,
+    "p2_lossvalue_nats": 1.1675926902487874,
+    "N_people": 500000,
+    "P_params": 12493824,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.2840430212425726,
+      "Rmax": 2.197627874651447,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 6,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l6_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 31347.057106494904,
+    "p1_lossname_nats": 6.25903849234581,
+    "p2_lossvalue_nats": 0.007896952163992683,
+    "N_people": 100000,
+    "P_params": 16039680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.4040220481252562,
+      "Rmax": 0.3568367938865728,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253503,
+      "name_tokens_masked": 25274,
+      "value_tokens_masked": 101382,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 8,
+      "size": 100000,
+      "dataset_size_k": 100,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_100k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l8_sz100000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 35288.49016904831,
+    "p1_lossname_nats": 7.039243782901764,
+    "p2_lossvalue_nats": 0.013467811553587672,
+    "N_people": 200000,
+    "P_params": 16039680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7939087100735404,
+      "Rmax": 0.7012045110833364,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253403,
+      "name_tokens_masked": 25325,
+      "value_tokens_masked": 101429,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 8,
+      "size": 200000,
+      "dataset_size_k": 200,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_200k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l8_sz200000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 44980.10511255264,
+    "p1_lossname_nats": 8.756201022338868,
+    "p2_lossvalue_nats": 0.14255482847206294,
+    "N_people": 500000,
+    "P_params": 16039680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.901750203247698,
+      "Rmax": 1.7118032207244311,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 8,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l8_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 42518.09437704086,
+    "p1_lossname_nats": 8.470236206722259,
+    "p2_lossvalue_nats": 0.022365675864601507,
+    "N_people": 500000,
+    "P_params": 23131392,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.3313700644528939,
+      "Rmax": 1.1869919407958347,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 384,
+      "n_layers": 12,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h384_l12_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 23655.840759396553,
+    "p1_lossname_nats": 4.722419821023941,
+    "p2_lossvalue_nats": 0.006749672069167718,
+    "N_people": 20000,
+    "P_params": 8775680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.15274570394748635,
+      "Rmax": 0.13573286162793813,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253845,
+      "name_tokens_masked": 25433,
+      "value_tokens_masked": 101538,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 2,
+      "size": 20000,
+      "dataset_size_k": 20,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_20k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h512_l2_sz20000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 28024.58619952202,
+    "p1_lossname_nats": 5.59213646121025,
+    "p2_lossvalue_nats": 0.009651568858337123,
+    "N_people": 50000,
+    "P_params": 8775680,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.3746914684959544,
+      "Rmax": 0.3318003839113655,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h512_l2_sz50000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 46242.20000886917,
+    "p1_lossname_nats": 8.80058464832306,
+    "p2_lossvalue_nats": 0.23709990101456643,
+    "N_people": 500000,
+    "P_params": 15076352,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 2.016618398656865,
+      "Rmax": 1.8211816680447128,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 4,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h512_l4_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 42388.2678437233,
+    "p1_lossname_nats": 8.432413523864746,
+    "p2_lossvalue_nats": 0.029204229886690154,
+    "N_people": 500000,
+    "P_params": 21377024,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.4416783731184342,
+      "Rmax": 1.2844059062378954,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 6,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h512_l6_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 41413.329461574554,
+    "p1_lossname_nats": 8.261153965568543,
+    "p2_lossvalue_nats": 0.014579918121756054,
+    "N_people": 500000,
+    "P_params": 27677696,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 1.118332972917722,
+      "Rmax": 0.9920181175264459,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 8,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h512_l8_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 40024.518115997314,
+    "p1_lossname_nats": 7.99430543718338,
+    "p2_lossvalue_nats": 0.007848794086111593,
+    "N_people": 500000,
+    "P_params": 40279040,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.7733606872236966,
+      "Rmax": 0.6816641082654711,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 253702,
+      "name_tokens_masked": 25415,
+      "value_tokens_masked": 101531,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 512,
+      "n_layers": 12,
+      "size": 500000,
+      "dataset_size_k": 500,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_500k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h512_l12_sz500000_4_epoch999_segmented.pt"
+    }
+  },
+  {
+    "total_loss": 27892.714120864868,
+    "p1_lossname_nats": 5.573226855516434,
+    "p2_lossvalue_nats": 0.004110466628661379,
+    "N_people": 50000,
+    "P_params": 17882112,
+    "S0": 106041600000000,
+    "N0": 160000000,
+    "capacity_ratio": {
+      "R": 0.1839791727064426,
+      "Rmax": 0.16283166066084878,
+      "units": "nats"
+    },
+    "mapping": {
+      "new_vocab_size": 4832,
+      "oov_token_replacements": 0
+    },
+    "mask_stats": {
+      "total_samples": 5000,
+      "total_tokens": 254007,
+      "name_tokens_masked": 25449,
+      "value_tokens_masked": 101573,
+      "overlapping_tokens": 0
+    },
+    "checkpoint_info": {
+      "hidden_dim": 768,
+      "n_layers": 2,
+      "size": 50000,
+      "dataset_size_k": 50,
+      "dataset_path": "/mnt/hdfs/zixuanw/dataset/bios_50k.parquet",
+      "max_loops": 4,
+      "epoch": 999,
+      "filename": "model_h768_l2_sz50000_4_epoch999_segmented.pt"
+    }
+  }
+]
