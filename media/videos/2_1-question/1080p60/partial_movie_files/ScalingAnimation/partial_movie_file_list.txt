@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/879171995_2815181591_223132457.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_2148046780_20824475.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_3201849554_1726298232.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_1684483875_2702380024.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_441614802_1711892541.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_1839128356_1448539625.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_795674734_370640198.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_2073034166_370640198.mov'
+file 'file:D:/Dropbox/repos/manim/ouro/ouro-animation/media/videos/2_1-question/1080p60/partial_movie_files/ScalingAnimation/2639118811_1839128356_1760313174.mov'
