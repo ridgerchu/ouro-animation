@@ -190,6 +190,9 @@ class ReasoningRadarChart(VGroup):
 class ReasoningIntroScene(Scene):
     """引入场景 - 标题"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 主标题
         title = MathTex(
             r"\text{Reasoning Performance Comparison}",
@@ -232,6 +235,9 @@ class ReasoningIntroScene(Scene):
 class ReasoningAxisScene(Scene):
     """显示雷达图坐标轴"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
         title = MathTex(
             r"\text{Reasoning Radar Chart Framework}",
@@ -287,6 +293,9 @@ class ReasoningAxisScene(Scene):
 class ReasoningModelsScene(Scene):
     """模型依次出现的场景"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
         title = MathTex(
             r"\text{Reasoning Performance Comparison}",
@@ -376,6 +385,9 @@ class ReasoningModelsScene(Scene):
 class ReasoningOuroHighlightScene(Scene):
     """Ouro 模型高亮展示场景"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
         title = MathTex(
             r"\text{Ouro Thinking Models - Superior Reasoning}",
@@ -597,6 +609,9 @@ class ReasoningOuroHighlightScene(Scene):
 class ReasoningRadarAnimation(Scene):
     """完整的推理能力雷达图动画"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # Scene 1: 显示坐标轴
         self.show_axis()
 

@@ -175,6 +175,9 @@ class ExtrapolationRadarChart(VGroup):
 class ExtrapolationRadarAnimation(Scene):
     """完整的外推性能雷达图动画"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # Scene 1: 显示坐标轴
         self.show_axis()
 

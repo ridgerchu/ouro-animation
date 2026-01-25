@@ -45,14 +45,16 @@ SECONDARY_TEXT = COLORS['secondary_text']
 class Scene1Title(Scene):
     """Scene 1: Section Title (2 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 背景渐变效果 - 使用深蓝到黑色
         # Manim 默认背景，我们通过添加渐变矩形实现
 
         # 标题
-        title = Text(
-            "Entropy Regularizer",
+        title = Tex(
+            r"\textbf{Entropy Regularizer}",
             font_size=72,
-            weight=BOLD,
             color=WHITE
         )
         title.scale(0.95)  # 初始稍小
@@ -77,14 +79,8 @@ class Scene2DistributionSpreading(Scene):
     使用折线图，并做 in-place 变换从 spiky 到 uniform
     """
     def construct(self):
-        # 标题
-        title = Text(
-            "The solution: spread probability across steps",
-            font_size=32,
-            color=WHITE
-        )
-        title.to_edge(UP, buff=0.5)
-        self.play(Write(title), run_time=1)
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
 
         # 数据
         before_probs = [0.02, 0.03, 0.05, 0.90]  # 坍塌分布 (spiky)
@@ -109,12 +105,12 @@ class Scene2DistributionSpreading(Scene):
         # X轴标签
         x_labels = VGroup()
         for i, step in enumerate(steps):
-            label = Text(str(step), font_size=20, color=SECONDARY_TEXT)
+            label = Tex(str(step), font_size=20, color=SECONDARY_TEXT)
             label.move_to(axes.c2p(i + 1, 0) + DOWN * 0.35)
             x_labels.add(label)
 
         # X轴标题
-        x_title = Text("Loop Step", font_size=18, color=SECONDARY_TEXT)
+        x_title = Tex(r"Loop Step", font_size=18, color=SECONDARY_TEXT)
         x_title.next_to(axes.x_axis, DOWN, buff=0.6)
 
         # Y轴标题
@@ -136,10 +132,6 @@ class Scene2DistributionSpreading(Scene):
             dot = Dot(point, color=EXIT_COLOR, radius=0.1)
             before_dots.add(dot)
 
-        # "Before" 标签
-        before_label = Text("Spiky Distribution", font_size=22, color=EXIT_COLOR, weight=BOLD)
-        before_label.to_corner(UR, buff=0.8)
-
         # 显示坐标轴
         self.play(Create(axes), Write(x_title), Write(y_title), run_time=0.6)
         self.play(
@@ -153,7 +145,6 @@ class Scene2DistributionSpreading(Scene):
             LaggedStart(*[FadeIn(d, scale=1.5) for d in before_dots], lag_ratio=0.15),
             run_time=1
         )
-        self.play(Write(before_label), run_time=0.4)
 
         # 等待一下
         self.wait(0.5)
@@ -169,23 +160,12 @@ class Scene2DistributionSpreading(Scene):
             dot = Dot(point, color=SURVIVE_COLOR, radius=0.1)
             after_dots.add(dot)
 
-        # "After" 标签
-        after_label = Text("Spread Distribution", font_size=22, color=SURVIVE_COLOR, weight=BOLD)
-        after_label.to_corner(UR, buff=0.8)
-
-        # 对勾
-        check_mark = MathTex(r"\checkmark", font_size=36, color=SURVIVE_COLOR)
-        check_mark.next_to(after_label, RIGHT, buff=0.3)
-
         # 变换动画 - in-place morphing
         self.play(
             Transform(before_line, after_line),
             *[Transform(before_dots[i], after_dots[i]) for i in range(4)],
-            Transform(before_label, after_label),
             run_time=2
         )
-
-        self.play(FadeIn(check_mark, scale=1.5), run_time=0.4)
 
         # 保持显示
         self.wait(1)
@@ -198,14 +178,10 @@ class Scene2DistributionSpreading(Scene):
 class Scene3LossFunction(Scene):
     """Scene 3: The Loss Function with Entropy Term (8 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
-        title = Text(
-            "Adding entropy regularization to the loss",
-            font_size=28,
-            color=SECONDARY_TEXT
-        )
-        title.to_edge(UP, buff=0.5)
-        self.play(Write(title), run_time=1)
 
         # ===== Phase A: 显示基础损失 (0-2s) =====
         # 第一项：期望任务损失
@@ -219,7 +195,7 @@ class Scene3LossFunction(Scene):
 
         # 下括号：expected task loss
         brace1 = Brace(term1[0][2:], DOWN, color=SECONDARY_TEXT)
-        brace1_label = Text("expected task loss", font_size=18, color=SECONDARY_TEXT)
+        brace1_label = Tex(r"expected task loss", font_size=18, color=SECONDARY_TEXT)
         brace1_label.next_to(brace1, DOWN, buff=0.1)
 
         self.play(GrowFromCenter(brace1), Write(brace1_label), run_time=0.8)
@@ -227,30 +203,38 @@ class Scene3LossFunction(Scene):
         self.wait(0.5)
 
         # ===== Phase B: 添加熵项 (2-5s) =====
-        # 完整公式
-        full_formula = MathTex(
-            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_\phi(t \mid x)\,\mathcal{L}^{(t)}",
+        # 准备熵项
+        entropy_term = MathTex(
             r"- \beta \cdot H\!\left(p_\phi(\cdot \mid x)\right)",
-            font_size=42
+            font_size=42,
+            color=LOOP_COLOR
         )
-        full_formula.shift(UP * 1)
+        # 先定位到 term1 右侧
+        entropy_term.next_to(term1, RIGHT, buff=0.1)
 
-        # 保持第一项不变，添加第二项
+        # 计算完整公式的中心位置
+        full_width = term1.get_width() + entropy_term.get_width() + 0.1
+        target_center = ORIGIN + UP * 1
+        shift_amount = target_center + LEFT * (full_width / 2 - term1.get_width() / 2) - term1.get_center()
+
+        # 左移第一项、大括号和标签，为第二项腾出空间
         self.play(
-            Transform(term1, full_formula[0]),
+            term1.animate.shift(shift_amount),
+            brace1.animate.shift(shift_amount),
+            brace1_label.animate.shift(shift_amount),
             run_time=0.5
         )
 
-        # 写入第二项（熵正则化项）- 用不同颜色
-        entropy_term = full_formula[1].copy()
-        entropy_term.set_color(LOOP_COLOR)
+        # 更新熵项位置
         entropy_term.next_to(term1, RIGHT, buff=0.1)
 
         self.play(Write(entropy_term), run_time=1.5)
 
-        # 第二项的下括号
+        # 第二项的下括号 - 与第一个括号对齐
         brace2 = Brace(entropy_term, DOWN, color=LOOP_COLOR)
-        brace2_label = Text("entropy regularization", font_size=18, color=LOOP_COLOR)
+        # 让两个括号在同一高度（顶部对齐）
+        brace2.align_to(brace1, UP)
+        brace2_label = Tex(r"entropy regularization", font_size=18, color=LOOP_COLOR)
         brace2_label.next_to(brace2, DOWN, buff=0.1)
 
         self.play(GrowFromCenter(brace2), Write(brace2_label), run_time=0.8)
@@ -268,6 +252,9 @@ class Scene3LossFunction(Scene):
 class Scene4ExitDistribution(Scene):
     """Scene 4: Exit Distribution Term (4 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 完整公式（半透明）
         full_formula = MathTex(
             r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_\phi(t \mid x)\,\mathcal{L}^{(t)} - \beta \cdot H\!\left(p_\phi(\cdot \mid x)\right)",
@@ -286,7 +273,7 @@ class Scene4ExitDistribution(Scene):
         self.play(Write(exit_dist), run_time=0.8)
 
         # 标签
-        exit_label = Text("Exit Distribution", font_size=28, color=LOOP_COLOR, weight=BOLD)
+        exit_label = Tex(r"\textbf{Exit Distribution}", font_size=28, color=LOOP_COLOR)
         exit_label.next_to(exit_dist, DOWN, buff=0.5)
 
         self.play(Write(exit_label), run_time=0.5)
@@ -323,11 +310,11 @@ class Scene4ExitDistribution(Scene):
         # 标签
         mini_labels = VGroup()
         for i in range(4):
-            label = Text(str(i + 1), font_size=14, color=SECONDARY_TEXT)
+            label = Tex(str(i + 1), font_size=14, color=SECONDARY_TEXT)
             label.move_to(mini_chart_center + RIGHT * (i - 1.5) * 0.6 + DOWN * 0.3)
             mini_labels.add(label)
 
-        mini_title = Text("P(exit at each step)", font_size=18, color=SECONDARY_TEXT)
+        mini_title = Tex(r"P(exit at each step)", font_size=18, color=SECONDARY_TEXT)
         mini_title.next_to(baseline, DOWN, buff=0.5)
 
         # 连接箭头
@@ -373,9 +360,12 @@ class Scene4ExitDistribution(Scene):
 class Scene5PriorDistribution(Scene):
     """Scene 5: Prior Distribution Term (4 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
-        title = Text(
-            "The target: a prior distribution",
+        title = Tex(
+            r"The target: a prior distribution",
             font_size=28,
             color=SECONDARY_TEXT
         )
@@ -398,7 +388,7 @@ class Scene5PriorDistribution(Scene):
         prior_highlight.move_to(kl_formula.get_center() + RIGHT * 2.2)
 
         # 标签
-        prior_label = Text("Prior Distribution", font_size=24, color=LOOP_COLOR, weight=BOLD)
+        prior_label = Tex(r"\textbf{Prior Distribution}", font_size=24, color=LOOP_COLOR)
         prior_label.next_to(prior_highlight, DOWN, buff=0.3)
 
         self.play(
@@ -438,7 +428,7 @@ class Scene5PriorDistribution(Scene):
         # 标签
         step_labels = VGroup()
         for i in range(4):
-            label = Text(str(i + 1), font_size=16, color=SECONDARY_TEXT)
+            label = Tex(str(i + 1), font_size=16, color=SECONDARY_TEXT)
             label.move_to(uniform_center + RIGHT * (i - 1.5) * 0.7 + DOWN * 0.3)
             step_labels.add(label)
 
@@ -472,7 +462,7 @@ class Scene5PriorDistribution(Scene):
         self.play(Write(uniform_formula), run_time=0.6)
 
         # 显示这是目标
-        target_text = Text("← Target we want to match", font_size=18, color=SECONDARY_TEXT)
+        target_text = Tex(r"$\leftarrow$ Target we want to match", font_size=18, color=SECONDARY_TEXT)
         target_text.next_to(uniform_bars, RIGHT, buff=0.5)
 
         self.play(Write(target_text), run_time=0.5)
@@ -487,9 +477,12 @@ class Scene5PriorDistribution(Scene):
 class Scene6KLDivergence(Scene):
     """Scene 6: KL Divergence Explanation (5 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
-        title = Text(
-            "KL Divergence: matching distributions",
+        title = Tex(
+            r"KL Divergence: matching distributions",
             font_size=28,
             color=SECONDARY_TEXT
         )
@@ -562,7 +555,7 @@ class Scene6KLDivergence(Scene):
         )
         kl_arrow.shift(DOWN * 0.5)
 
-        kl_label = Text("KL Divergence", font_size=20, color=HIGHLIGHT_COLOR)
+        kl_label = Tex(r"KL Divergence", font_size=20, color=HIGHLIGHT_COLOR)
         kl_label.next_to(kl_arrow, UP, buff=0.15)
 
         # 显示左侧分布
@@ -630,7 +623,7 @@ class Scene6KLDivergence(Scene):
         check_mark = MathTex(r"\checkmark", font_size=40, color=SURVIVE_COLOR)
         check_mark.next_to(kl_value, RIGHT, buff=0.3)
 
-        match_text = Text("Distributions matched!", font_size=20, color=SURVIVE_COLOR)
+        match_text = Tex(r"Distributions matched!", font_size=20, color=SURVIVE_COLOR)
         match_text.to_edge(DOWN, buff=0.8)
 
         self.play(
@@ -649,9 +642,12 @@ class Scene6KLDivergence(Scene):
 class Scene7BetaCoefficient(Scene):
     """Scene 7: The Beta Coefficient (4 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
-        title = Text(
-            "Modulating regularization strength with β",
+        title = Tex(
+            r"Modulating regularization strength with $\beta$",
             font_size=28,
             color=SECONDARY_TEXT
         )
@@ -684,7 +680,7 @@ class Scene7BetaCoefficient(Scene):
         self.remove(beta_copy)
 
         # 标签
-        beta_label = Text("strength coefficient", font_size=20, color=HIGHLIGHT_COLOR)
+        beta_label = Tex(r"strength coefficient", font_size=20, color=HIGHLIGHT_COLOR)
         beta_label.next_to(formula[1], DOWN, buff=0.5)
 
         self.play(Write(beta_label), run_time=0.4)
@@ -710,17 +706,17 @@ class Scene7BetaCoefficient(Scene):
         slider_knob.move_to(slider_center)
 
         # 标签
-        low_label = Text("β low", font_size=18, color=SECONDARY_TEXT)
+        low_label = Tex(r"$\beta$ low", font_size=18, color=SECONDARY_TEXT)
         low_label.next_to(slider_track, LEFT, buff=0.3)
 
-        high_label = Text("β high", font_size=18, color=SECONDARY_TEXT)
+        high_label = Tex(r"$\beta$ high", font_size=18, color=SECONDARY_TEXT)
         high_label.next_to(slider_track, RIGHT, buff=0.3)
 
         # 效果标签
-        exploitation_text = Text("More exploitation", font_size=18, color=EXIT_COLOR)
+        exploitation_text = Tex(r"More exploitation", font_size=18, color=EXIT_COLOR)
         exploitation_text.move_to(slider_center + LEFT * 2 + DOWN * 0.8)
 
-        exploration_text = Text("More exploration", font_size=18, color=SURVIVE_COLOR)
+        exploration_text = Tex(r"More exploration", font_size=18, color=SURVIVE_COLOR)
         exploration_text.move_to(slider_center + RIGHT * 2 + DOWN * 0.8)
 
         self.play(
@@ -753,8 +749,8 @@ class Scene7BetaCoefficient(Scene):
         )
 
         # 底部说明
-        tradeoff_text = Text(
-            "β controls the exploration–exploitation tradeoff",
+        tradeoff_text = Tex(
+            r"$\beta$ controls the exploration--exploitation tradeoff",
             font_size=22,
             color=WHITE
         )
@@ -774,6 +770,9 @@ class Scene8PonderNetGeometric(Scene):
     一条条曲线出现，显示不同 λ 值 (0.1-0.9)
     """
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # ===== Phase A: 引用 (0-2s) =====
         # 引用卡片
         citation_box = RoundedRectangle(
@@ -786,9 +785,9 @@ class Scene8PonderNetGeometric(Scene):
         )
         citation_box.to_corner(UL, buff=0.5)
 
-        citation_title = Text("PonderNet", font_size=24, weight=BOLD, color=WHITE)
-        citation_author = Text("Banino et al., 2021", font_size=16, color=SECONDARY_TEXT)
-        citation_org = Text("Google DeepMind", font_size=14, color=LOOP_COLOR)
+        citation_title = Tex(r"\textbf{PonderNet}", font_size=24, color=WHITE)
+        citation_author = Tex(r"Banino et al., 2021", font_size=16, color=SECONDARY_TEXT)
+        citation_org = Tex(r"Google DeepMind", font_size=14, color=LOOP_COLOR)
 
         citation_content = VGroup(citation_title, citation_author, citation_org)
         citation_content.arrange(DOWN, buff=0.15)
@@ -815,7 +814,7 @@ class Scene8PonderNetGeometric(Scene):
         axes.shift(DOWN * 0.3 + RIGHT * 0.5)
 
         # 轴标签
-        x_label = Text("Loop step t", font_size=18, color=SECONDARY_TEXT)
+        x_label = Tex(r"Loop step $t$", font_size=18, color=SECONDARY_TEXT)
         x_label.next_to(axes.x_axis, DOWN, buff=0.4)
 
         y_label = MathTex(r"\pi(t)", font_size=22, color=SECONDARY_TEXT)
@@ -902,8 +901,8 @@ class Scene8PonderNetGeometric(Scene):
             x_marks.add(x_mark)
 
         # 注释
-        problem_text = Text(
-            "Later steps undertrained!",
+        problem_text = Tex(
+            r"Later steps undertrained!",
             font_size=22,
             color=EXIT_COLOR
         )
@@ -927,14 +926,16 @@ class Scene8PonderNetGeometric(Scene):
 class Scene9KVCacheTransition(Scene):
     """Scene 9: Transition to KV-Cache Concern (4 seconds)"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # ===== Phase A: 成功确认 (0-1.5s) =====
         # 绿色对勾和文字
         success_check = MathTex(r"\checkmark", font_size=60, color=SURVIVE_COLOR)
-        success_text = Text(
-            "Looping Mechanism Working!",
+        success_text = Tex(
+            r"\textbf{Looping Mechanism Working!}",
             font_size=32,
-            color=SURVIVE_COLOR,
-            weight=BOLD
+            color=SURVIVE_COLOR
         )
 
         success_group = VGroup(success_check, success_text)
@@ -965,8 +966,8 @@ class Scene9KVCacheTransition(Scene):
         # ===== Phase B: 但是等等... (1.5-4s) =====
         # 转换为警告
         warning_icon = MathTex(r"\triangle", font_size=60, color=HIGHLIGHT_COLOR)
-        warning_text = Text(
-            "But each loop adds cost...",
+        warning_text = Tex(
+            r"But each loop adds cost...",
             font_size=28,
             color=HIGHLIGHT_COLOR
         )
@@ -1000,7 +1001,7 @@ class Scene9KVCacheTransition(Scene):
             )
             block.move_to(stack_center + UP * i * 0.7)
 
-            label = Text(label_text, font_size=16, color=WHITE)
+            label = Tex(label_text, font_size=16, color=WHITE)
             label.move_to(block.get_center())
 
             blocks.add(VGroup(block, label))
@@ -1025,7 +1026,7 @@ class Scene9KVCacheTransition(Scene):
         memory_bar_fill.align_to(memory_bar_bg, DOWN)
         memory_bar_fill.move_to(memory_bar_bg.get_center(), cdir=DOWN)
 
-        memory_label = Text("Memory", font_size=14, color=SECONDARY_TEXT)
+        memory_label = Tex(r"Memory", font_size=14, color=SECONDARY_TEXT)
         memory_label.next_to(memory_bar_bg, UP, buff=0.2)
 
         self.play(
@@ -1064,8 +1065,8 @@ class Scene9KVCacheTransition(Scene):
             )
 
         # 计算和内存图标
-        icons_text = Text(
-            "Each loop = More compute + More memory",
+        icons_text = Tex(
+            r"Each loop = More compute + More memory",
             font_size=22,
             color=EXIT_COLOR
         )
@@ -1083,8 +1084,8 @@ class Scene9KVCacheTransition(Scene):
 class EntropyRegularizer(Scene):
     """完整的 Entropy Regularizer 动画"""
     def construct(self):
-        # Scene 1: Section Title
-        self.scene1_title()
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
 
         # Scene 2: Distribution Spreading
         self.scene2_distribution_spreading()
@@ -1112,10 +1113,9 @@ class EntropyRegularizer(Scene):
 
     def scene1_title(self):
         """Scene 1: Section Title (2 seconds)"""
-        title = Text(
-            "Entropy Regularizer",
+        title = Tex(
+            r"\textbf{Entropy Regularizer}",
             font_size=72,
-            weight=BOLD,
             color=WHITE
         )
         title.scale(0.95)
@@ -1131,14 +1131,6 @@ class EntropyRegularizer(Scene):
 
     def scene2_distribution_spreading(self):
         """Scene 2: Distribution Spreading (6 seconds) - 折线图 in-place 变换"""
-        title = Text(
-            "The solution: spread probability across steps",
-            font_size=32,
-            color=WHITE
-        )
-        title.to_edge(UP, buff=0.5)
-        self.play(Write(title), run_time=0.8)
-
         # 数据
         before_probs = [0.02, 0.03, 0.05, 0.90]
         after_probs = [0.22, 0.28, 0.25, 0.25]
@@ -1157,11 +1149,11 @@ class EntropyRegularizer(Scene):
 
         x_labels = VGroup()
         for i in range(4):
-            label = Text(str(i + 1), font_size=20, color=SECONDARY_TEXT)
+            label = Tex(str(i + 1), font_size=20, color=SECONDARY_TEXT)
             label.move_to(axes.c2p(i + 1, 0) + DOWN * 0.35)
             x_labels.add(label)
 
-        x_title = Text("Loop Step", font_size=18, color=SECONDARY_TEXT)
+        x_title = Tex(r"Loop Step", font_size=18, color=SECONDARY_TEXT)
         x_title.next_to(axes.x_axis, DOWN, buff=0.6)
 
         y_title = MathTex(r"p(t|x)", font_size=26, color=SECONDARY_TEXT)
@@ -1180,9 +1172,6 @@ class EntropyRegularizer(Scene):
             dot = Dot(point, color=EXIT_COLOR, radius=0.1)
             before_dots.add(dot)
 
-        before_label = Text("Spiky Distribution", font_size=22, color=EXIT_COLOR, weight=BOLD)
-        before_label.to_corner(UR, buff=0.8)
-
         # 显示坐标轴
         self.play(Create(axes), Write(x_title), Write(y_title), run_time=0.5)
         self.play(LaggedStart(*[Write(l) for l in x_labels], lag_ratio=0.1), run_time=0.3)
@@ -1193,7 +1182,6 @@ class EntropyRegularizer(Scene):
             LaggedStart(*[FadeIn(d, scale=1.5) for d in before_dots], lag_ratio=0.1),
             run_time=0.8
         )
-        self.play(Write(before_label), run_time=0.3)
 
         self.wait(0.5)
 
@@ -1206,28 +1194,19 @@ class EntropyRegularizer(Scene):
             dot = Dot(point, color=SURVIVE_COLOR, radius=0.1)
             after_dots.add(dot)
 
-        after_label = Text("Spread Distribution", font_size=22, color=SURVIVE_COLOR, weight=BOLD)
-        after_label.to_corner(UR, buff=0.8)
-
-        check_mark = MathTex(r"\checkmark", font_size=36, color=SURVIVE_COLOR)
-        check_mark.next_to(after_label, RIGHT, buff=0.3)
-
         # 变换动画
         self.play(
             Transform(before_line, after_line),
             *[Transform(before_dots[i], after_dots[i]) for i in range(4)],
-            Transform(before_label, after_label),
             run_time=1.5
         )
-
-        self.play(FadeIn(check_mark, scale=1.5), run_time=0.3)
 
         self.wait(0.8)
         self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=0.6)
 
     def scene3_loss_function(self):
         """Scene 3: Loss Function (8 seconds)"""
-        title = Text("Adding entropy regularization to the loss", font_size=28, color=SECONDARY_TEXT)
+        title = Tex(r"Adding entropy regularization to the loss", font_size=28, color=SECONDARY_TEXT)
         title.to_edge(UP, buff=0.5)
         self.play(Write(title), run_time=0.8)
 
@@ -1240,19 +1219,38 @@ class EntropyRegularizer(Scene):
         self.play(Write(term1), run_time=1.2)
 
         brace1 = Brace(term1[0][2:], DOWN, color=SECONDARY_TEXT)
-        brace1_label = Text("expected task loss", font_size=18, color=SECONDARY_TEXT)
+        brace1_label = Tex(r"expected task loss", font_size=18, color=SECONDARY_TEXT)
         brace1_label.next_to(brace1, DOWN, buff=0.1)
         self.play(GrowFromCenter(brace1), Write(brace1_label), run_time=0.6)
 
         self.wait(0.3)
 
-        # 熵项
+        # 准备熵项
         entropy_term = MathTex(r"- \beta \cdot H\!\left(p_\phi(\cdot \mid x)\right)", font_size=42, color=LOOP_COLOR)
+        entropy_term.next_to(term1, RIGHT, buff=0.1)
+
+        # 计算完整公式的中心位置
+        full_width = term1.get_width() + entropy_term.get_width() + 0.1
+        target_center = ORIGIN + UP * 1
+        shift_amount = target_center + LEFT * (full_width / 2 - term1.get_width() / 2) - term1.get_center()
+
+        # 左移第一项、大括号和标签，为第二项腾出空间
+        self.play(
+            term1.animate.shift(shift_amount),
+            brace1.animate.shift(shift_amount),
+            brace1_label.animate.shift(shift_amount),
+            run_time=0.5
+        )
+
+        # 更新熵项位置并写入
         entropy_term.next_to(term1, RIGHT, buff=0.1)
         self.play(Write(entropy_term), run_time=1.2)
 
+        # 第二项的下括号 - 与第一个括号对齐
         brace2 = Brace(entropy_term, DOWN, color=LOOP_COLOR)
-        brace2_label = Text("entropy regularization", font_size=18, color=LOOP_COLOR)
+        # 让两个括号在同一高度（顶部对齐）
+        brace2.align_to(brace1, UP)
+        brace2_label = Tex(r"entropy regularization", font_size=18, color=LOOP_COLOR)
         brace2_label.next_to(brace2, DOWN, buff=0.1)
         self.play(GrowFromCenter(brace2), Write(brace2_label), run_time=0.6)
 
@@ -1274,7 +1272,7 @@ class EntropyRegularizer(Scene):
         exit_dist.shift(UP * 0.3)
         self.play(Write(exit_dist), run_time=0.6)
 
-        exit_label = Text("Exit Distribution", font_size=28, color=LOOP_COLOR, weight=BOLD)
+        exit_label = Tex(r"\textbf{Exit Distribution}", font_size=28, color=LOOP_COLOR)
         exit_label.next_to(exit_dist, DOWN, buff=0.4)
         self.play(Write(exit_label), run_time=0.4)
 
@@ -1293,7 +1291,7 @@ class EntropyRegularizer(Scene):
         self.play(Create(baseline), run_time=0.3)
         self.play(LaggedStart(*[GrowFromEdge(bar, DOWN) for bar in mini_bars], lag_ratio=0.1), run_time=0.6)
 
-        mini_title = Text("P(exit at each step)", font_size=18, color=SECONDARY_TEXT)
+        mini_title = Tex(r"P(exit at each step)", font_size=18, color=SECONDARY_TEXT)
         mini_title.next_to(baseline, DOWN, buff=0.4)
         self.play(Write(mini_title), run_time=0.3)
 
@@ -1302,7 +1300,7 @@ class EntropyRegularizer(Scene):
 
     def scene5_prior_distribution(self):
         """Scene 5: Prior Distribution (4 seconds)"""
-        title = Text("The target: a prior distribution", font_size=28, color=SECONDARY_TEXT)
+        title = Tex(r"The target: a prior distribution", font_size=28, color=SECONDARY_TEXT)
         title.to_edge(UP, buff=0.5)
         self.play(Write(title), run_time=0.6)
 
@@ -1310,7 +1308,7 @@ class EntropyRegularizer(Scene):
         kl_formula.shift(UP * 1)
         self.play(Write(kl_formula), run_time=0.8)
 
-        prior_label = Text("Prior Distribution", font_size=24, color=LOOP_COLOR, weight=BOLD)
+        prior_label = Tex(r"\textbf{Prior Distribution}", font_size=24, color=LOOP_COLOR)
         prior_label.next_to(kl_formula, DOWN, buff=0.5)
         self.play(Write(prior_label), run_time=0.4)
 
@@ -1339,7 +1337,7 @@ class EntropyRegularizer(Scene):
 
     def scene6_kl_divergence(self):
         """Scene 6: KL Divergence (5 seconds)"""
-        title = Text("KL Divergence: matching distributions", font_size=28, color=SECONDARY_TEXT)
+        title = Tex(r"KL Divergence: matching distributions", font_size=28, color=SECONDARY_TEXT)
         title.to_edge(UP, buff=0.5)
         self.play(Write(title), run_time=0.6)
 
@@ -1374,7 +1372,7 @@ class EntropyRegularizer(Scene):
         # KL 箭头
         kl_arrow = DoubleArrow(LEFT * 0.8, RIGHT * 0.8, color=HIGHLIGHT_COLOR, stroke_width=3)
         kl_arrow.shift(DOWN * 0.5)
-        kl_label = Text("KL Divergence", font_size=20, color=HIGHLIGHT_COLOR)
+        kl_label = Tex(r"KL Divergence", font_size=20, color=HIGHLIGHT_COLOR)
         kl_label.next_to(kl_arrow, UP, buff=0.15)
 
         self.play(
@@ -1418,7 +1416,7 @@ class EntropyRegularizer(Scene):
 
     def scene7_beta_coefficient(self):
         """Scene 7: Beta Coefficient (4 seconds)"""
-        title = Text("Modulating regularization strength with β", font_size=28, color=SECONDARY_TEXT)
+        title = Tex(r"Modulating regularization strength with $\beta$", font_size=28, color=SECONDARY_TEXT)
         title.to_edge(UP, buff=0.5)
         self.play(Write(title), run_time=0.6)
 
@@ -1427,7 +1425,7 @@ class EntropyRegularizer(Scene):
         formula.shift(UP * 1.5)
         self.play(Write(formula), run_time=0.8)
 
-        beta_label = Text("strength coefficient", font_size=20, color=HIGHLIGHT_COLOR)
+        beta_label = Tex(r"strength coefficient", font_size=20, color=HIGHLIGHT_COLOR)
         beta_label.next_to(formula[1], DOWN, buff=0.4)
         self.play(Write(beta_label), run_time=0.3)
 
@@ -1437,9 +1435,9 @@ class EntropyRegularizer(Scene):
         slider_knob = Circle(radius=0.15, color=HIGHLIGHT_COLOR, fill_opacity=1)
         slider_knob.move_to(slider_center)
 
-        low_label = Text("β low", font_size=18, color=SECONDARY_TEXT)
+        low_label = Tex(r"$\beta$ low", font_size=18, color=SECONDARY_TEXT)
         low_label.next_to(slider_track, LEFT, buff=0.3)
-        high_label = Text("β high", font_size=18, color=SECONDARY_TEXT)
+        high_label = Tex(r"$\beta$ high", font_size=18, color=SECONDARY_TEXT)
         high_label.next_to(slider_track, RIGHT, buff=0.3)
 
         self.play(Create(slider_track), FadeIn(slider_knob), Write(low_label), Write(high_label), run_time=0.5)
@@ -1448,7 +1446,7 @@ class EntropyRegularizer(Scene):
         self.play(slider_knob.animate.move_to(slider_center + LEFT * 2.5), run_time=0.5)
         self.play(slider_knob.animate.move_to(slider_center), run_time=0.3)
 
-        tradeoff_text = Text("β controls the exploration–exploitation tradeoff", font_size=22, color=WHITE)
+        tradeoff_text = Tex(r"$\beta$ controls the exploration--exploitation tradeoff", font_size=22, color=WHITE)
         tradeoff_text.to_edge(DOWN, buff=0.5)
         self.play(Write(tradeoff_text), run_time=0.5)
 
@@ -1460,8 +1458,8 @@ class EntropyRegularizer(Scene):
         # 引用
         citation_box = RoundedRectangle(width=3.5, height=1.2, corner_radius=0.1, color=SECONDARY_TEXT, fill_opacity=0.1, stroke_width=2)
         citation_box.to_corner(UL, buff=0.5)
-        citation_title = Text("PonderNet", font_size=22, weight=BOLD, color=WHITE)
-        citation_author = Text("Banino et al., 2021", font_size=14, color=SECONDARY_TEXT)
+        citation_title = Tex(r"\textbf{PonderNet}", font_size=22, color=WHITE)
+        citation_author = Tex(r"Banino et al., 2021", font_size=14, color=SECONDARY_TEXT)
         citation_content = VGroup(citation_title, citation_author)
         citation_content.arrange(DOWN, buff=0.1)
         citation_content.move_to(citation_box.get_center())
@@ -1476,7 +1474,7 @@ class EntropyRegularizer(Scene):
         )
         axes.shift(DOWN * 0.5 + RIGHT * 0.5)
 
-        x_label = Text("Loop step t", font_size=16, color=SECONDARY_TEXT)
+        x_label = Tex(r"Loop step $t$", font_size=16, color=SECONDARY_TEXT)
         x_label.next_to(axes.x_axis, DOWN, buff=0.3)
         y_label = MathTex(r"\pi(t)", font_size=20, color=SECONDARY_TEXT)
         y_label.next_to(axes.y_axis, UP, buff=0.2)
@@ -1533,7 +1531,7 @@ class EntropyRegularizer(Scene):
             x_mark.move_to(axes.c2p(t, 0.05))
             x_marks.add(x_mark)
 
-        problem_text = Text("Later steps undertrained!", font_size=20, color=EXIT_COLOR)
+        problem_text = Tex(r"Later steps undertrained!", font_size=20, color=EXIT_COLOR)
         problem_text.to_edge(DOWN, buff=0.5)
 
         self.play(LaggedStart(*[FadeIn(x, scale=1.5) for x in x_marks], lag_ratio=0.1), run_time=0.5)
@@ -1546,7 +1544,7 @@ class EntropyRegularizer(Scene):
         """Scene 9: KV-Cache Transition (4 seconds)"""
         # 成功
         success_check = MathTex(r"\checkmark", font_size=60, color=SURVIVE_COLOR)
-        success_text = Text("Looping Mechanism Working!", font_size=30, color=SURVIVE_COLOR, weight=BOLD)
+        success_text = Tex(r"\textbf{Looping Mechanism Working!}", font_size=30, color=SURVIVE_COLOR)
         success_group = VGroup(success_check, success_text)
         success_group.arrange(RIGHT, buff=0.4)
         success_group.shift(UP * 1.5)
@@ -1556,7 +1554,7 @@ class EntropyRegularizer(Scene):
 
         # 警告
         warning_icon = MathTex(r"\triangle", font_size=60, color=HIGHLIGHT_COLOR)
-        warning_text = Text("But each loop adds cost...", font_size=26, color=HIGHLIGHT_COLOR)
+        warning_text = Tex(r"But each loop adds cost...", font_size=26, color=HIGHLIGHT_COLOR)
         warning_group = VGroup(warning_icon, warning_text)
         warning_group.arrange(RIGHT, buff=0.3)
         warning_group.move_to(success_group.get_center())
@@ -1575,14 +1573,14 @@ class EntropyRegularizer(Scene):
         for i, label_text in enumerate(block_labels):
             block = RoundedRectangle(width=3.5, height=0.55, corner_radius=0.1, color=LOOP_COLOR, fill_opacity=0.7, stroke_width=2)
             block.move_to(stack_center + UP * i * 0.65)
-            label = Text(label_text, font_size=14, color=WHITE)
+            label = Tex(label_text, font_size=14, color=WHITE)
             label.move_to(block.get_center())
             blocks.add(VGroup(block, label))
 
         for block in blocks:
             self.play(FadeIn(block, shift=DOWN * 0.15), run_time=0.25)
 
-        icons_text = Text("Each loop = More compute + More memory", font_size=20, color=EXIT_COLOR)
+        icons_text = Tex(r"Each loop = More compute + More memory", font_size=20, color=EXIT_COLOR)
         icons_text.to_edge(DOWN, buff=0.5)
         self.play(Write(icons_text), run_time=0.5)
 

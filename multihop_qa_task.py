@@ -12,7 +12,7 @@ from manim import *
 import numpy as np
 
 # ==================== 颜色配置 ====================
-BACKGROUND_COLOR = "#0D1117"      # 深色背景
+BACKGROUND_COLOR = BLACK          # 纯黑色背景
 PRIMARY_COLOR = "#4361EE"         # 主色 - 蓝色
 SECONDARY_COLOR = "#2A9D8F"       # 次色 - 青色
 ACCENT_COLOR = "#E63946"          # 强调色 - 红色

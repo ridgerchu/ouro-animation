@@ -121,7 +121,7 @@ class TrainingPipelineAnimation(Scene):
     """完整的训练流程动画"""
 
     def construct(self):
-        self.camera.background_color = "#0D1117"  # 深色背景
+        self.camera.background_color = BLACK  # 纯黑色背景
 
         # 设置三个区域的位置
         self.header_y = 3.2
@@ -162,14 +162,14 @@ class TrainingPipelineAnimation(Scene):
                 "include_tip": False,
             },
             x_axis_config={
-                "numbers_to_include": [0, 2000, 4000, 6000, 8000],
+                "numbers_to_include": [],  # 不自动生成数字，我们将手动创建 Tex 标签
                 "decimal_number_config": {
                     "num_decimal_places": 0,
                     "color": GREY,
                 },
             },
             y_axis_config={
-                "numbers_to_include": [0, 2e-4, 4e-4, 6e-4],
+                "numbers_to_include": [],  # 不自动生成数字，我们将手动创建
                 "decimal_number_config": {
                     "num_decimal_places": 4,
                     "color": GREY,
@@ -178,22 +178,40 @@ class TrainingPipelineAnimation(Scene):
         )
         self.axes.shift(DOWN * 1.8)
 
-        # 手动设置字体大小
-        for number in self.axes.x_axis.numbers:
-            number.scale(0.7)  # 调整到合适大小
-        for number in self.axes.y_axis.numbers:
-            number.scale(0.6)  # 调整到合适大小
+        # 手动创建 X 轴标签（使用 Tex，格式为 1T-8T）
+        x_values = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
+        x_labels_text = ["1T", "2T", "3T", "4T", "5T", "6T", "7T", "8T"]
+        self.x_axis_labels = VGroup()
+        for x_val, label_text in zip(x_values, x_labels_text):
+            label = Tex(label_text, font_size=36, color=GREY)
+            label.scale(0.5)  # 与 y 轴使用相同的缩放（更小）
+            label.next_to(self.axes.c2p(x_val, 0), DOWN, buff=0.15)
+            self.x_axis_labels.add(label)
+
+        # 手动创建 Y 轴标签（使用科学计数法）- 与 x 轴字体大小保持一致
+        y_values = [0, 2e-4, 4e-4, 6e-4]
+        self.y_axis_labels = VGroup()
+        for y_val in y_values:
+            if y_val == 0:
+                label = Tex("0", font_size=36, color=GREY)
+            else:
+                # 转换为科学计数法格式：2e-4 -> 2×10⁻⁴
+                coeff = int(y_val * 1e4)  # 2e-4 -> 2
+                label = Tex(f"${coeff} \\times 10^{{-4}}$", font_size=36, color=GREY)
+            label.scale(0.5)  # 与 x 轴使用相同的缩放（更小）
+            label.next_to(self.axes.c2p(0, y_val), LEFT, buff=0.15)
+            self.y_axis_labels.add(label)
 
         # X轴标签
-        x_label = Tex(r"\text{Billions of Tokens}", font_size=18, color=GREY)
+        x_label = Tex(r"\text{Training Tokens}", font_size=18, color=GREY)
         x_label.next_to(self.axes.x_axis, DOWN, buff=0.4)
 
-        # Y轴标签
+        # Y轴标签 - 放在坐标轴左侧
         y_label = Tex(r"\text{Learning Rate}", font_size=18, color=GREY)
         y_label.rotate(90 * DEGREES)
-        y_label.next_to(self.axes.y_axis, LEFT, buff=0.5)
+        y_label.next_to(self.axes.y_axis, LEFT, buff=0.8)  # 增加距离，确保在左侧更明显
 
-        self.axis_labels = VGroup(x_label, y_label)
+        self.axis_labels = VGroup(x_label, y_label)  # 包含 X 和 Y 轴标签
 
         # 创建网格线
         self.grid_lines = VGroup()
@@ -300,10 +318,13 @@ class TrainingPipelineAnimation(Scene):
         """运行完整动画序列"""
 
         # ===== 初始化场景 =====
-        self.play(Write(self.header), run_time=1)
+        # 移除初始标题显示
+        # self.play(Write(self.header), run_time=1)
         self.play(
             Create(self.axes),
             FadeIn(self.axis_labels),
+            FadeIn(self.x_axis_labels),
+            FadeIn(self.y_axis_labels),
             run_time=1.5
         )
         self.play(
@@ -627,26 +648,8 @@ class TrainingPipelineAnimation(Scene):
         # ===== Phase 8: Post-Training (SFT & Thinking) =====
         self.update_header(r"\text{Phase 8: Reasoning SFT \& Thinking Models}", ACCENT_COLOR)
 
-        # 学习率保持最低
-        lr_final_top = Line(
-            self.axes.c2p(T_MID_END, LR_FINAL),
-            self.axes.c2p(T_END, LR_FINAL),
-            color=GOLD_COLOR,
-            stroke_width=3
-        )
-        lr_final_bottom = Line(
-            self.axes.c2p(T_MID_END, LR_FINAL),
-            self.axes.c2p(T_END, LR_FINAL),
-            color=BLUE_COLOR,
-            stroke_width=3
-        )
-        lr_final_bottom.shift(DOWN * 0.03)
-
-        self.play(
-            Create(lr_final_top),
-            Create(lr_final_bottom),
-            run_time=0.4
-        )
+        # 学习率曲线停在 SFT 之前，不再延长
+        # 学习率已经在 Mid-Training 结束时达到 LR_FINAL，不需要继续绘制
 
         # Mid-Train 框直接变换成 Ouro Base 框
         top_ouro_box = FlowchartBox(r"\text{Ouro-2.6B}", GOLD_COLOR, width=1.5)

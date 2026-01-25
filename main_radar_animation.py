@@ -171,6 +171,9 @@ class RadarChart(VGroup):
 class IntroScene(Scene):
     """引入场景 - 标题"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 主标题
         title = MathTex(
             r"\text{Model Performance Comparison}",
@@ -213,6 +216,9 @@ class IntroScene(Scene):
 class AxisScene(Scene):
     """显示雷达图坐标轴"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
         title = MathTex(
             r"\text{Radar Chart Framework}",
@@ -268,6 +274,9 @@ class AxisScene(Scene):
 class ModelsScene(Scene):
     """模型依次出现的场景"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
         title = MathTex(
             r"\text{Model Performance Comparison}",
@@ -354,6 +363,9 @@ class ModelsScene(Scene):
 class OuroHighlightScene(Scene):
     """Ouro 模型高亮展示场景"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # 标题
         title = MathTex(
             r"\text{Ouro 2.6B R4 - The Champion}",
@@ -544,6 +556,9 @@ class OuroHighlightScene(Scene):
 class RadarChartAnimation(Scene):
     """完整的雷达图动画"""
     def construct(self):
+        # 设置纯黑色背景
+        self.camera.background_color = BLACK
+
         # Scene 1: 显示坐标轴
         self.show_axis()
 

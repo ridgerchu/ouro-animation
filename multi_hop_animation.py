@@ -46,7 +46,7 @@ class MultiHopLineChart(Scene):
 
     def construct(self):
         # Scene setup
-        self.camera.background_color = "#0D1117"  # 深色背景
+        self.camera.background_color = BLACK  # 纯黑色背景
 
         # ===== 创建坐标轴 =====
         axes = Axes(
@@ -301,7 +301,7 @@ class MultiHopAnimationWithHighlight(Scene):
     """带有渐进高亮效果的 Multi-Hop 动画"""
 
     def construct(self):
-        self.camera.background_color = "#0D1117"
+        self.camera.background_color = BLACK  # 纯黑色背景
 
         # ===== 创建坐标轴 =====
         axes = Axes(

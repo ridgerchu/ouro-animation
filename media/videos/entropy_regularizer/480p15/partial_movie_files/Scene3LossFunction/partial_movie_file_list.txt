@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/1584795214_128144824_223132457.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_40132357_1523649043.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_3394500337_245483656.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_3681115256_1658835505.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_3866933953_2901069712.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_2623069343_1665804663.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_3394500337_3342058144.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_2844360058_1865817226.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/entropy_regularizer/480p15/partial_movie_files/Scene3LossFunction/4072820271_3585144732_3180218839.mp4'
