@@ -105,7 +105,7 @@ class Scene2DistributionSpreading(Scene):
             x_labels.add(label)
 
         # X轴标题
-        x_title = Tex(r"Loop Step", font_size=18, color=SECONDARY_TEXT)
+        x_title = Tex(r"Loop Step", font_size=28, color=SECONDARY_TEXT)
         x_title.next_to(axes.x_axis, DOWN, buff=0.6)
 
         # Y轴标题
@@ -410,16 +410,28 @@ class Scene8PonderNetGeometric(Scene):
             y_length=4,
             axis_config={"color": SECONDARY_TEXT, "include_tip": False},
             y_axis_config={"include_numbers": True, "font_size": 18},
+            x_axis_config={"include_numbers": False},
         )
         axes.shift(DOWN * 0.3 + RIGHT * 0.5)
 
-        x_label = Tex(r"Loop step $t$", font_size=18, color=SECONDARY_TEXT)
-        x_label.next_to(axes.x_axis, DOWN, buff=0.4)
+        # Add x-axis tick labels (1,2,3,4)
+        x_tick_labels = VGroup()
+        for t in range(1, 5):
+            tick_label = Tex(str(t), font_size=24, color=SECONDARY_TEXT)
+            tick_label.move_to(axes.c2p(t, 0) + DOWN * 0.3)
+            x_tick_labels.add(tick_label)
 
-        y_label = MathTex(r"\pi(t)", font_size=22, color=SECONDARY_TEXT)
+        x_label = Tex(r"Loop step $t$", font_size=28, color=SECONDARY_TEXT)
+        x_label.next_to(axes.x_axis, DOWN, buff=0.6)
+
+        y_label = MathTex(r"\pi(t)", font_size=28, color=SECONDARY_TEXT)
         y_label.next_to(axes.y_axis, UP, buff=0.2)
 
-        self.play(Create(axes), Write(x_label), Write(y_label), run_time=0.8)
+        self.play(
+            Create(axes), Write(x_label), Write(y_label),
+            LaggedStart(*[Write(l) for l in x_tick_labels], lag_ratio=0.1),
+            run_time=0.8
+        )
 
         # 几何分布曲线 (从大到小: 0.9 到 0.1)
         lambda_values = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
@@ -448,14 +460,15 @@ class Scene8PonderNetGeometric(Scene):
             curves.add(curve)
             all_dots.add(dots)
 
-            legend_line = Line(ORIGIN, RIGHT * 0.35, color=color, stroke_width=2.5)
-            legend_text = MathTex(rf"\lambda = {lam}", font_size=12, color=color)
+            legend_line = Line(ORIGIN, RIGHT * 0.4, color=color, stroke_width=3)
+            legend_text = MathTex(rf"\lambda = {lam}", font_size=18, color=color)
             legend_item = VGroup(legend_line, legend_text)
-            legend_text.next_to(legend_line, RIGHT, buff=0.06)
+            legend_text.next_to(legend_line, RIGHT, buff=0.08)
             legend_items.add(legend_item)
 
-        legend_items.arrange(DOWN, aligned_edge=LEFT, buff=0.06)
-        legend_items.to_corner(UR, buff=0.4)
+        legend_items.arrange(DOWN, aligned_edge=LEFT, buff=0.08)
+        # Position legend in top right inset of the plot
+        legend_items.move_to(axes.c2p(4.2, 0.85))
 
         formula = MathTex(r"\pi(t) = (1-\lambda)^{t-1} \cdot \lambda", font_size=28)
         formula.next_to(axes, UP, buff=0.3)
@@ -489,10 +502,10 @@ class Scene8PonderNetGeometric(Scene):
         uniform_curve.set_points_as_corners(uniform_points)
 
         uniform_legend_line = Line(ORIGIN, RIGHT * 0.4, color=uniform_color, stroke_width=4)
-        uniform_legend_text = Tex(r"Uniform", font_size=14, color=uniform_color)
+        uniform_legend_text = Tex(r"Uniform", font_size=18, color=uniform_color)
         uniform_legend_item = VGroup(uniform_legend_line, uniform_legend_text)
         uniform_legend_text.next_to(uniform_legend_line, RIGHT, buff=0.08)
-        uniform_legend_item.next_to(legend_items, DOWN, aligned_edge=LEFT, buff=0.15)
+        uniform_legend_item.next_to(legend_items, DOWN, aligned_edge=LEFT, buff=0.12)
 
         # 淡化之前的曲线
         self.play(
@@ -523,7 +536,7 @@ class Scene8PonderNetGeometric(Scene):
 
         # 将 prior distribution 组合并移动到左边（不包含 citation）
         prior_group = VGroup(
-            axes, x_label, y_label, formula,
+            axes, x_label, y_label, formula, x_tick_labels,
             curves, all_dots, legend_items,
             uniform_curve, uniform_dots, uniform_legend_item
         )
@@ -597,29 +610,39 @@ class Scene8PonderNetGeometric(Scene):
             all_steps_data.extend(data['steps'])
             all_losses_data.extend(data['losses'])
 
-        min_step = min(all_steps_data)
-        max_step = max(all_steps_data)
         min_loss = min(all_losses_data) - 0.02
         max_loss = max(all_losses_data) + 0.02
 
-        # 创建 loss 坐标轴（右侧）
+        # 创建 loss 坐标轴（右侧）- 只显示 30000-40000 的数据
         loss_axes = Axes(
-            x_range=[min_step, max_step, 10000],
+            x_range=[30000, 41000, 5000],
             y_range=[min_loss, max_loss, 0.05],
             x_length=5.5,
             y_length=3.5,
             axis_config={"color": SECONDARY_TEXT, "include_tip": False},
-            y_axis_config={"include_numbers": True, "font_size": 12, "decimal_number_config": {"num_decimal_places": 2}},
-            x_axis_config={"include_numbers": True, "font_size": 12},
+            y_axis_config={"include_numbers": True, "font_size": 16, "decimal_number_config": {"num_decimal_places": 2}},
+            x_axis_config={"include_numbers": False},
         )
         loss_axes.move_to(RIGHT * 3.2)
 
-        loss_x_label = Tex(r"Steps", font_size=14, color=SECONDARY_TEXT)
-        loss_x_label.next_to(loss_axes.x_axis, DOWN, buff=0.25)
-        loss_y_label = Tex(r"Loss", font_size=14, color=SECONDARY_TEXT)
-        loss_y_label.next_to(loss_axes.y_axis, LEFT, buff=0.1).shift(UP * 1.2)
+        # Add custom x-axis tick labels at 30,000 and 40,000 only
+        loss_x_tick_labels = VGroup()
+        for step in [30000, 40000]:
+            tick_label = Tex(f"{step:,}", font_size=16, color=SECONDARY_TEXT)
+            tick_label.move_to(loss_axes.c2p(step, min_loss) + DOWN * 0.25)
+            loss_x_tick_labels.add(tick_label)
 
-        self.play(Create(loss_axes), Write(loss_x_label), Write(loss_y_label), run_time=0.6)
+        loss_x_label = Tex(r"Training Steps", font_size=20, color=SECONDARY_TEXT)
+        loss_x_label.next_to(loss_axes.x_axis, DOWN, buff=0.45)
+        loss_y_label = Tex(r"Test Loss", font_size=20, color=SECONDARY_TEXT)
+        loss_y_label.rotate(PI / 2)
+        loss_y_label.next_to(loss_axes.y_axis, LEFT, buff=0.35)
+
+        self.play(
+            Create(loss_axes), Write(loss_x_label), Write(loss_y_label),
+            LaggedStart(*[Write(l) for l in loss_x_tick_labels], lag_ratio=0.2),
+            run_time=0.6
+        )
 
         # 准备 loss 曲线 (从大 λ 到小 λ)
         loss_curves = VGroup()
@@ -635,9 +658,17 @@ class Scene8PonderNetGeometric(Scene):
             steps_data = data['steps']
             losses_data = data['losses']
 
-            sample_rate = max(1, len(steps_data) // 150)
-            sampled_steps = steps_data[::sample_rate]
-            sampled_losses = losses_data[::sample_rate]
+            # 只筛选 30000-40000 范围内的数据
+            filtered_steps = []
+            filtered_losses = []
+            for s, l in zip(steps_data, losses_data):
+                if 30000 <= s <= 40960:
+                    filtered_steps.append(s)
+                    filtered_losses.append(l)
+
+            sample_rate = max(1, len(filtered_steps) // 150)
+            sampled_steps = filtered_steps[::sample_rate]
+            sampled_losses = filtered_losses[::sample_rate]
 
             points = [loss_axes.c2p(s, l) for s, l in zip(sampled_steps, sampled_losses)]
             loss_curve = VMobject(color=color, stroke_width=2)
@@ -655,9 +686,17 @@ class Scene8PonderNetGeometric(Scene):
             steps_data = data['steps']
             losses_data = data['losses']
 
-            sample_rate = max(1, len(steps_data) // 150)
-            sampled_steps = steps_data[::sample_rate]
-            sampled_losses = losses_data[::sample_rate]
+            # 只筛选 30000-40000 范围内的数据
+            filtered_steps = []
+            filtered_losses = []
+            for s, l in zip(steps_data, losses_data):
+                if 30000 <= s <= 40960:
+                    filtered_steps.append(s)
+                    filtered_losses.append(l)
+
+            sample_rate = max(1, len(filtered_steps) // 150)
+            sampled_steps = filtered_steps[::sample_rate]
+            sampled_losses = filtered_losses[::sample_rate]
 
             points = [loss_axes.c2p(s, l) for s, l in zip(sampled_steps, sampled_losses)]
             uniform_loss_curve = VMobject(color=color, stroke_width=3.5)
@@ -734,7 +773,7 @@ class EntropyRegularizer(Scene):
             label.move_to(axes.c2p(i + 1, 0) + DOWN * 0.35)
             x_labels.add(label)
 
-        x_title = Tex(r"Loop Step", font_size=18, color=SECONDARY_TEXT)
+        x_title = Tex(r"Loop Step", font_size=28, color=SECONDARY_TEXT)
         x_title.next_to(axes.x_axis, DOWN, buff=0.6)
 
         y_title = MathTex(r"p(t|x)", font_size=26, color=SECONDARY_TEXT)
@@ -979,15 +1018,27 @@ class EntropyRegularizer(Scene):
             x_length=7, y_length=3.5,
             axis_config={"color": SECONDARY_TEXT, "include_tip": False},
             y_axis_config={"include_numbers": True, "font_size": 16},
+            x_axis_config={"include_numbers": False},
         )
         axes.shift(DOWN * 0.5 + RIGHT * 0.5)
 
-        x_label = Tex(r"Loop step $t$", font_size=16, color=SECONDARY_TEXT)
-        x_label.next_to(axes.x_axis, DOWN, buff=0.3)
-        y_label = MathTex(r"\pi(t)", font_size=20, color=SECONDARY_TEXT)
+        # Add x-axis tick labels (1,2,3,4)
+        x_tick_labels = VGroup()
+        for t in range(1, 5):
+            tick_label = Tex(str(t), font_size=22, color=SECONDARY_TEXT)
+            tick_label.move_to(axes.c2p(t, 0) + DOWN * 0.25)
+            x_tick_labels.add(tick_label)
+
+        x_label = Tex(r"Loop step $t$", font_size=24, color=SECONDARY_TEXT)
+        x_label.next_to(axes.x_axis, DOWN, buff=0.5)
+        y_label = MathTex(r"\pi(t)", font_size=24, color=SECONDARY_TEXT)
         y_label.next_to(axes.y_axis, UP, buff=0.2)
 
-        self.play(Create(axes), Write(x_label), Write(y_label), run_time=0.6)
+        self.play(
+            Create(axes), Write(x_label), Write(y_label),
+            LaggedStart(*[Write(l) for l in x_tick_labels], lag_ratio=0.1),
+            run_time=0.6
+        )
 
         formula = MathTex(r"\pi(t) = (1-\lambda)^{t-1} \cdot \lambda", font_size=26)
         formula.next_to(axes, UP, buff=0.2)
@@ -1016,14 +1067,15 @@ class EntropyRegularizer(Scene):
             curves.add(curve)
             all_dots.add(dots)
 
-            legend_line = Line(ORIGIN, RIGHT * 0.35, color=color, stroke_width=2.5)
-            legend_text = MathTex(rf"\lambda = {lam}", font_size=10, color=color)
+            legend_line = Line(ORIGIN, RIGHT * 0.4, color=color, stroke_width=3)
+            legend_text = MathTex(rf"\lambda = {lam}", font_size=16, color=color)
             legend_item = VGroup(legend_line, legend_text)
-            legend_text.next_to(legend_line, RIGHT, buff=0.06)
+            legend_text.next_to(legend_line, RIGHT, buff=0.08)
             legend_items.add(legend_item)
 
-        legend_items.arrange(DOWN, aligned_edge=LEFT, buff=0.04)
-        legend_items.to_corner(UR, buff=0.4)
+        legend_items.arrange(DOWN, aligned_edge=LEFT, buff=0.06)
+        # Position legend in top right inset of the plot
+        legend_items.move_to(axes.c2p(4.2, 0.85))
 
         # 一条条曲线出现 (从大 λ 到小 λ)
         for curve, dots, legend_item in zip(curves, all_dots, legend_items):
@@ -1047,10 +1099,10 @@ class EntropyRegularizer(Scene):
         uniform_curve.set_points_as_corners(uniform_points)
 
         uniform_legend_line = Line(ORIGIN, RIGHT * 0.4, color=uniform_color, stroke_width=3.5)
-        uniform_legend_text = Tex(r"Uniform", font_size=12, color=uniform_color)
+        uniform_legend_text = Tex(r"Uniform", font_size=16, color=uniform_color)
         uniform_legend_item = VGroup(uniform_legend_line, uniform_legend_text)
         uniform_legend_text.next_to(uniform_legend_line, RIGHT, buff=0.08)
-        uniform_legend_item.next_to(legend_items, DOWN, aligned_edge=LEFT, buff=0.12)
+        uniform_legend_item.next_to(legend_items, DOWN, aligned_edge=LEFT, buff=0.1)
 
         # 淡化之前的曲线
         self.play(
@@ -1081,7 +1133,7 @@ class EntropyRegularizer(Scene):
 
         # 将 prior distribution 组合并移动到左边（不包含 citation）
         prior_group = VGroup(
-            axes, x_label, y_label, formula,
+            axes, x_label, y_label, formula, x_tick_labels,
             curves, all_dots, legend_items,
             uniform_curve, uniform_dots, uniform_legend_item
         )
@@ -1155,29 +1207,39 @@ class EntropyRegularizer(Scene):
             all_steps_data.extend(data['steps'])
             all_losses_data.extend(data['losses'])
 
-        min_step = min(all_steps_data)
-        max_step = max(all_steps_data)
         min_loss = min(all_losses_data) - 0.02
         max_loss = max(all_losses_data) + 0.02
 
-        # 创建 loss 坐标轴（右侧）
+        # 创建 loss 坐标轴（右侧）- 只显示 30000-40000 的数据
         loss_axes = Axes(
-            x_range=[min_step, max_step, 10000],
+            x_range=[30000, 41000, 5000],
             y_range=[min_loss, max_loss, 0.05],
             x_length=5.5,
             y_length=3.5,
             axis_config={"color": SECONDARY_TEXT, "include_tip": False},
-            y_axis_config={"include_numbers": True, "font_size": 12, "decimal_number_config": {"num_decimal_places": 2}},
-            x_axis_config={"include_numbers": True, "font_size": 12},
+            y_axis_config={"include_numbers": True, "font_size": 16, "decimal_number_config": {"num_decimal_places": 2}},
+            x_axis_config={"include_numbers": False},
         )
         loss_axes.move_to(RIGHT * 3.2)
 
-        loss_x_label = Tex(r"Steps", font_size=14, color=SECONDARY_TEXT)
-        loss_x_label.next_to(loss_axes.x_axis, DOWN, buff=0.25)
-        loss_y_label = Tex(r"Loss", font_size=14, color=SECONDARY_TEXT)
-        loss_y_label.next_to(loss_axes.y_axis, LEFT, buff=0.1).shift(UP * 1.2)
+        # Add custom x-axis tick labels at 30,000 and 40,000 only
+        loss_x_tick_labels = VGroup()
+        for step in [30000, 40000]:
+            tick_label = Tex(f"{step:,}", font_size=16, color=SECONDARY_TEXT)
+            tick_label.move_to(loss_axes.c2p(step, min_loss) + DOWN * 0.25)
+            loss_x_tick_labels.add(tick_label)
 
-        self.play(Create(loss_axes), Write(loss_x_label), Write(loss_y_label), run_time=0.6)
+        loss_x_label = Tex(r"Training Steps", font_size=20, color=SECONDARY_TEXT)
+        loss_x_label.next_to(loss_axes.x_axis, DOWN, buff=0.45)
+        loss_y_label = Tex(r"Test Loss", font_size=20, color=SECONDARY_TEXT)
+        loss_y_label.rotate(PI / 2)
+        loss_y_label.next_to(loss_axes.y_axis, LEFT, buff=0.35)
+
+        self.play(
+            Create(loss_axes), Write(loss_x_label), Write(loss_y_label),
+            LaggedStart(*[Write(l) for l in loss_x_tick_labels], lag_ratio=0.2),
+            run_time=0.6
+        )
 
         # 准备 loss 曲线 (从大 λ 到小 λ)
         loss_curves = VGroup()
@@ -1193,9 +1255,17 @@ class EntropyRegularizer(Scene):
             steps_data = data['steps']
             losses_data = data['losses']
 
-            sample_rate = max(1, len(steps_data) // 150)
-            sampled_steps = steps_data[::sample_rate]
-            sampled_losses = losses_data[::sample_rate]
+            # 只筛选 30000-40000 范围内的数据
+            filtered_steps = []
+            filtered_losses = []
+            for s, l in zip(steps_data, losses_data):
+                if 30000 <= s <= 40960:
+                    filtered_steps.append(s)
+                    filtered_losses.append(l)
+
+            sample_rate = max(1, len(filtered_steps) // 150)
+            sampled_steps = filtered_steps[::sample_rate]
+            sampled_losses = filtered_losses[::sample_rate]
 
             points = [loss_axes.c2p(s, l) for s, l in zip(sampled_steps, sampled_losses)]
             loss_curve = VMobject(color=color, stroke_width=2)
@@ -1213,9 +1283,17 @@ class EntropyRegularizer(Scene):
             steps_data = data['steps']
             losses_data = data['losses']
 
-            sample_rate = max(1, len(steps_data) // 150)
-            sampled_steps = steps_data[::sample_rate]
-            sampled_losses = losses_data[::sample_rate]
+            # 只筛选 30000-40000 范围内的数据
+            filtered_steps = []
+            filtered_losses = []
+            for s, l in zip(steps_data, losses_data):
+                if 30000 <= s <= 40960:
+                    filtered_steps.append(s)
+                    filtered_losses.append(l)
+
+            sample_rate = max(1, len(filtered_steps) // 150)
+            sampled_steps = filtered_steps[::sample_rate]
+            sampled_losses = filtered_losses[::sample_rate]
 
             points = [loss_axes.c2p(s, l) for s, l in zip(sampled_steps, sampled_losses)]
             uniform_loss_curve = VMobject(color=color, stroke_width=3.5)
