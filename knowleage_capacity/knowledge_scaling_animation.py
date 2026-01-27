@@ -70,13 +70,37 @@ def extract_data():
 
 DATA_LOOP1, DATA_LOOP4 = extract_data()
 
+
+def get_data_by_dataset_and_loop(dataset_k, max_loops):
+    """筛选指定数据集大小和循环次数的数据点"""
+    source = DATA_LOOP4 if max_loops == 4 else DATA_LOOP1
+    return [d for d in source if d['dataset_size_k'] == dataset_k]
+
+
+def get_smallest_param_data(dataset_k, max_loops):
+    """获取指定数据集中参数量最小的数据点"""
+    data = get_data_by_dataset_and_loop(dataset_k, max_loops)
+    if not data:
+        return None
+    return min(data, key=lambda d: d['x'])
+
+
+def get_remaining_data(dataset_k, max_loops, exclude_smallest=True):
+    """获取指定数据集中除最小参数外的数据点（按参数量排序）"""
+    data = get_data_by_dataset_and_loop(dataset_k, max_loops)
+    data_sorted = sorted(data, key=lambda d: d['x'])
+    if exclude_smallest and len(data_sorted) > 0:
+        return data_sorted[1:]  # 排除最小的
+    return data_sorted
+
+
 # 计算数据范围（对数坐标）
 ALL_X = [d['x'] for d in DATA_LOOP1 + DATA_LOOP4]
 ALL_Y = [d['y'] for d in DATA_LOOP1 + DATA_LOOP4]
 
-LOG_X_MIN = np.floor(np.log10(min(ALL_X))) - 0.2
+LOG_X_MIN = min(np.floor(np.log10(min(ALL_X))) - 0.2, 5 - 0.2)  # Ensure 0.1M (10^5) is included
 LOG_X_MAX = np.ceil(np.log10(max(ALL_X))) + 0.2
-LOG_Y_MIN = np.floor(np.log10(min(ALL_Y))) - 0.2
+LOG_Y_MIN = min(np.floor(np.log10(min(ALL_Y))) - 0.2, 5 - 0.2)  # Ensure 0.1M (10^5) is included
 LOG_Y_MAX = np.ceil(np.log10(max(ALL_Y))) + 0.2
 
 
@@ -682,13 +706,285 @@ class KnowledgeScalingByDataset(Scene):
         self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=1)
 
 
+class NarrativeKnowledgeScaling(Scene):
+    """叙事式知识容量缩放动画 - 按脚本顺序逐步展示数据"""
+
+    def construct(self):
+        self.camera.background_color = BG_COLOR
+
+        # ===== 坐标轴参数 =====
+        x_length = 7
+        y_length = 4.5
+        origin = LEFT * 3.5 + DOWN * 2.0
+
+        # ===== 辅助函数 =====
+        def log_to_screen(log_x, log_y):
+            sx = (log_x - LOG_X_MIN) / (LOG_X_MAX - LOG_X_MIN) * x_length
+            sy = (log_y - LOG_Y_MIN) / (LOG_Y_MAX - LOG_Y_MIN) * y_length
+            return origin + RIGHT * sx + UP * sy
+
+        def create_dot(data_point, is_loop4=False):
+            """根据数据点创建圆点"""
+            # 无偏移，完全重叠显示
+            log_x = np.log10(data_point['x'])
+            log_y = np.log10(data_point['y'])
+            pos = log_to_screen(log_x, log_y)
+            color = DATASET_COLORS.get(data_point['dataset_size_k'], WHITE)
+
+            if is_loop4:
+                dot = Dot(pos, color=color, radius=0.1, fill_opacity=0.6)
+                dot.set_stroke(color=WHITE, width=1.5)
+            else:
+                dot = Dot(pos, color=color, radius=0.06, fill_opacity=0.6)
+                dot.set_stroke(color=WHITE, width=0.8)
+            return dot
+
+        def create_dots_for_data(data_list, is_loop4=False):
+            """为数据列表创建圆点组"""
+            return VGroup(*[create_dot(d, is_loop4) for d in data_list])
+
+        # ==================== Phase 0: Setup ====================
+        # 坐标轴
+        x_axis = Arrow(
+            origin + LEFT * 0.3,
+            origin + RIGHT * (x_length + 0.3),
+            color=TEXT_COLOR, stroke_width=2, tip_length=0.2
+        )
+        y_axis = Arrow(
+            origin + DOWN * 0.3,
+            origin + UP * (y_length + 0.3),
+            color=TEXT_COLOR, stroke_width=2, tip_length=0.2
+        )
+
+        # 刻度
+        x_ticks = VGroup()
+        x_labels = VGroup()
+        for log_val in range(int(np.ceil(LOG_X_MIN)), int(np.floor(LOG_X_MAX)) + 1):
+            pos = log_to_screen(log_val, LOG_Y_MIN)
+            tick = Line(pos + DOWN * 0.1, pos + UP * 0.1, color=TEXT_COLOR, stroke_width=1.5)
+            x_ticks.add(tick)
+            val = 10 ** log_val
+            label_text = f"{val/1e6:.0f}M" if val >= 1e6 else f"{val/1e6:.1f}M"
+            label = Tex(label_text, font_size=18, color=TEXT_COLOR)
+            label.next_to(tick, DOWN, buff=0.15)
+            x_labels.add(label)
+
+        y_ticks = VGroup()
+        y_labels = VGroup()
+        for log_val in range(int(np.ceil(LOG_Y_MIN)), int(np.floor(LOG_Y_MAX)) + 1):
+            pos = log_to_screen(LOG_X_MIN, log_val)
+            tick = Line(pos + LEFT * 0.1, pos + RIGHT * 0.1, color=TEXT_COLOR, stroke_width=1.5)
+            y_ticks.add(tick)
+            val = 10 ** log_val
+            label_text = f"{val/1e6:.0f}M" if val >= 1e6 else f"{val/1e6:.1f}M"
+            label = Tex(label_text, font_size=18, color=TEXT_COLOR)
+            label.next_to(tick, LEFT, buff=0.15)
+            y_labels.add(label)
+
+        # 网格线
+        grid_lines = VGroup()
+        for log_x in range(int(np.ceil(LOG_X_MIN)), int(np.floor(LOG_X_MAX)) + 1):
+            start = log_to_screen(log_x, LOG_Y_MIN)
+            end = log_to_screen(log_x, LOG_Y_MAX)
+            grid_lines.add(DashedLine(start, end, color=GRID_COLOR, stroke_width=0.8, dash_length=0.05))
+        for log_y in range(int(np.ceil(LOG_Y_MIN)), int(np.floor(LOG_Y_MAX)) + 1):
+            start = log_to_screen(LOG_X_MIN, log_y)
+            end = log_to_screen(LOG_X_MAX, log_y)
+            grid_lines.add(DashedLine(start, end, color=GRID_COLOR, stroke_width=0.8, dash_length=0.05))
+
+        # 坐标轴标签
+        x_axis_label = Tex(r"Number of Params", font_size=24, color=TEXT_COLOR)
+        x_axis_label.next_to(x_axis, DOWN, buff=0.5)
+
+        y_axis_label = Tex(r"Bits of Knowledge", font_size=24, color=TEXT_COLOR)
+        y_axis_label.rotate(90 * DEGREES)
+        y_axis_label.next_to(y_axis, LEFT, buff=0.6)
+
+        # 参考线（只保留 2bit/param）
+        ref_2bit_points = []
+        for log_x in np.linspace(LOG_X_MIN, LOG_X_MAX, 50):
+            y = 2 * (10 ** log_x)
+            log_y = np.log10(y)
+            if LOG_Y_MIN <= log_y <= LOG_Y_MAX:
+                ref_2bit_points.append(log_to_screen(log_x, log_y))
+
+        ref_line_2bit = DashedVMobject(
+            VMobject(color=LINE_2BIT_COLOR, stroke_width=2.5).set_points_as_corners(ref_2bit_points),
+            num_dashes=25
+        ) if len(ref_2bit_points) >= 2 else VGroup()
+
+        # 2bit/param 线的标注（直接放在图上右侧）
+        ref_2bit_label = Tex(r"2 bit/param", font_size=18, color=LINE_2BIT_COLOR)
+        if len(ref_2bit_points) >= 2:
+            # 放在线的右端点旁边
+            ref_2bit_label.next_to(ref_2bit_points[-1], RIGHT, buff=0.1)
+
+        # ==================== 创建常驻图例（无边框）====================
+        # 图例基准位置
+        legend_base = RIGHT * 4.8 + UP * 2.0
+
+        # Model Type 图例（常驻）
+        loop_legend = VGroup()
+        loop_title = Tex(r"\textbf{Model Type}", font_size=20, color=TEXT_COLOR)
+        loop_title.move_to(legend_base)
+        loop_legend.add(loop_title)
+
+        loop1_legend_dot = Dot(color=GREY, radius=0.08)
+        loop1_legend_dot.set_stroke(color=WHITE, width=1)
+        loop1_legend_text = Tex(r"Loop-1 (small)", font_size=18, color=GREY)
+        loop1_legend_dot.move_to(legend_base + DOWN * 0.45 + LEFT * 0.6)
+        loop1_legend_text.next_to(loop1_legend_dot, RIGHT, buff=0.12)
+        loop_legend.add(VGroup(loop1_legend_dot, loop1_legend_text))
+
+        loop4_legend_dot = Dot(color=GREY, radius=0.12)
+        loop4_legend_dot.set_stroke(color=WHITE, width=1.5)
+        loop4_legend_text = Tex(r"Loop-4 (large)", font_size=18, color=GREY)
+        loop4_legend_dot.move_to(legend_base + DOWN * 0.9 + LEFT * 0.6)
+        loop4_legend_text.next_to(loop4_legend_dot, RIGHT, buff=0.12)
+        loop_legend.add(VGroup(loop4_legend_dot, loop4_legend_text))
+
+        # Dataset Size 标题
+        dataset_title = Tex(r"\textbf{Dataset Size}", font_size=20, color=TEXT_COLOR)
+        dataset_title.move_to(legend_base + DOWN * 1.5)
+
+        # 预创建各数据集图例项（稍后逐个显示）
+        dataset_legend_items = {}
+        for i, (size, color) in enumerate(sorted(DATASET_COLORS.items())):
+            dot = Dot(color=color, radius=0.09)
+            text = Tex(f"{size}k", font_size=18, color=color)
+            dot.move_to(legend_base + DOWN * (2.0 + i * 0.4) + LEFT * 0.6)
+            text.next_to(dot, RIGHT, buff=0.15)
+            dataset_legend_items[size] = VGroup(dot, text)
+
+        # Phase 0 动画: 绘制坐标系 + 常驻图例
+        self.play(Create(x_axis), Create(y_axis), run_time=1)
+        self.play(
+            *[Create(t) for t in x_ticks], *[Write(l) for l in x_labels],
+            *[Create(t) for t in y_ticks], *[Write(l) for l in y_labels],
+            run_time=1
+        )
+        self.play(Write(x_axis_label), Write(y_axis_label), run_time=0.6)
+        self.play(*[Create(line) for line in grid_lines], run_time=0.6)
+
+        # 显示 Model Type 图例（常驻）
+        self.play(FadeIn(loop_legend), FadeIn(dataset_title), run_time=0.8)
+        self.wait(0.3)
+
+        # ==================== Phase 1: 1M Model, Loop-1 ====================
+        # "First, a one million parameter model with one loop."
+        smallest_loop1_20k = get_smallest_param_data(20, 1)
+        if smallest_loop1_20k:
+            dot_1m_loop1 = create_dot(smallest_loop1_20k, is_loop4=False)
+            # 同时显示 20k 图例
+            self.play(
+                GrowFromCenter(dot_1m_loop1),
+                FadeIn(dataset_legend_items[20]),
+                run_time=0.8
+            )
+            self.wait(1.0)
+
+        # ==================== Phase 2: 1M Model, Loop-4 ====================
+        # "Then we cycled over 4 loops. Damn, no improvement."
+        smallest_loop4_20k = get_smallest_param_data(20, 4)
+        if smallest_loop4_20k:
+            dot_1m_loop4 = create_dot(smallest_loop4_20k, is_loop4=True)
+            self.play(GrowFromCenter(dot_1m_loop4), run_time=0.8)
+            self.wait(1.0)
+
+        # ==================== Phase 3: Scale Model Size, Loop-1 ====================
+        # "We could try and increase the model size for a single loop"
+        remaining_loop1_20k = get_remaining_data(20, 1, exclude_smallest=True)
+        remaining_loop1_20k_sorted = sorted(remaining_loop1_20k, key=lambda d: d['x'])
+        if remaining_loop1_20k_sorted:
+            dots_loop1_20k = create_dots_for_data(remaining_loop1_20k_sorted, is_loop4=False)
+            self.play(
+                LaggedStart(*[GrowFromCenter(d) for d in dots_loop1_20k], lag_ratio=0.05),
+                run_time=1.5
+            )
+            self.wait(0.5)
+
+        # ==================== Phase 4: Scale Model Size, Loop-4 ====================
+        # "And then test across four loops, but still there's no improvement."
+        remaining_loop4_20k = get_remaining_data(20, 4, exclude_smallest=True)
+        remaining_loop4_20k_sorted = sorted(remaining_loop4_20k, key=lambda d: d['x'])
+        if remaining_loop4_20k_sorted:
+            dots_loop4_20k = create_dots_for_data(remaining_loop4_20k_sorted, is_loop4=True)
+            self.play(
+                LaggedStart(*[GrowFromCenter(d) for d in dots_loop4_20k], lag_ratio=0.05),
+                run_time=1.5
+            )
+            self.wait(0.5)
+
+        # ==================== Phase 5: 50k Dataset ====================
+        # "Maybe we need to train on larger datasets? 50,000 samples."
+        data_50k_loop1 = sorted(get_data_by_dataset_and_loop(50, 1), key=lambda d: d['x'])
+        data_50k_loop4 = sorted(get_data_by_dataset_and_loop(50, 4), key=lambda d: d['x'])
+
+        dots_50k_loop1 = create_dots_for_data(data_50k_loop1, is_loop4=False)
+        dots_50k_loop4 = create_dots_for_data(data_50k_loop4, is_loop4=True)
+
+        # 同时显示 Loop-1 和 Loop-4，以及 50k 图例
+        all_50k_anims = []
+        for d1, d4 in zip(dots_50k_loop1, dots_50k_loop4):
+            all_50k_anims.extend([GrowFromCenter(d1), GrowFromCenter(d4)])
+
+        if all_50k_anims:
+            self.play(
+                LaggedStart(*all_50k_anims, lag_ratio=0.03),
+                FadeIn(dataset_legend_items[50]),
+                run_time=1.5
+            )
+            self.wait(0.5)
+
+        # ==================== Phase 6: 100k, 200k, 500k Datasets ====================
+        # "And this holds true across all parameter scales, and dataset scales."
+        for dataset_k in [100, 200, 500]:
+            data_loop1 = sorted(get_data_by_dataset_and_loop(dataset_k, 1), key=lambda d: d['x'])
+            data_loop4 = sorted(get_data_by_dataset_and_loop(dataset_k, 4), key=lambda d: d['x'])
+
+            dots_loop1 = create_dots_for_data(data_loop1, is_loop4=False)
+            dots_loop4 = create_dots_for_data(data_loop4, is_loop4=True)
+
+            all_anims = []
+            for d1, d4 in zip(dots_loop1, dots_loop4):
+                all_anims.extend([GrowFromCenter(d1), GrowFromCenter(d4)])
+            # 处理长度不等的情况
+            if len(dots_loop1) > len(dots_loop4):
+                for d in dots_loop1[len(dots_loop4):]:
+                    all_anims.append(GrowFromCenter(d))
+            elif len(dots_loop4) > len(dots_loop1):
+                for d in dots_loop4[len(dots_loop1):]:
+                    all_anims.append(GrowFromCenter(d))
+
+            if all_anims:
+                self.play(
+                    LaggedStart(*all_anims, lag_ratio=0.02),
+                    FadeIn(dataset_legend_items[dataset_k]),
+                    run_time=1.2
+                )
+                self.wait(0.3)
+
+        # ==================== Phase 7: 2bit/param 参考线 + End ====================
+        # 最后显示 2bit/param 参考线（标注直接在图上）
+        self.play(
+            Create(ref_line_2bit),
+            FadeIn(ref_2bit_label),
+            run_time=1
+        )
+        self.wait(2)
+
+        # 淡出
+        self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=1)
+
+
 if __name__ == "__main__":
     print("=" * 60)
     print("Knowledge Capacity Scaling Animation")
     print("=" * 60)
     print("\nCommands:")
-    print("  Main:     manim -pql knowledge_scaling_animation.py KnowledgeScalingAnimation")
-    print("  Compare:  manim -pql knowledge_scaling_animation.py LoopComparison")
-    print("  Dataset:  manim -pql knowledge_scaling_animation.py KnowledgeScalingByDataset")
-    print("  HQ:       manim -pqh knowledge_scaling_animation.py KnowledgeScalingAnimation")
+    print("  Main:      manim -pql knowledge_scaling_animation.py KnowledgeScalingAnimation")
+    print("  Narrative: manim -pql knowledge_scaling_animation.py NarrativeKnowledgeScaling")
+    print("  Compare:   manim -pql knowledge_scaling_animation.py LoopComparison")
+    print("  Dataset:   manim -pql knowledge_scaling_animation.py KnowledgeScalingByDataset")
+    print("  HQ:        manim -pqh knowledge_scaling_animation.py NarrativeKnowledgeScaling")
     print("=" * 60)

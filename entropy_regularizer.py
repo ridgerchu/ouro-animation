@@ -109,7 +109,7 @@ class Scene2DistributionSpreading(Scene):
         x_title.next_to(axes.x_axis, DOWN, buff=0.6)
 
         # Y轴标题
-        y_title = MathTex(r"p(t|x)", font_size=26, color=SECONDARY_TEXT)
+        y_title = MathTex(r"p_t", font_size=26, color=SECONDARY_TEXT)
         y_title.next_to(axes.y_axis, UP, buff=0.2)
 
         # ===== 创建折线图（spiky 分布）=====
@@ -179,7 +179,7 @@ class Scene3LossFunction(Scene):
         # ===== Phase A: 显示基础损失 (0-2s) =====
         # 第一项：期望任务损失
         term1 = MathTex(
-            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_\phi(t \mid x)\,\mathcal{L}^{(t)}",
+            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_t \cdot \mathcal{L}^{(t)}",
             font_size=42
         )
         term1.shift(UP * 1.5)
@@ -196,12 +196,12 @@ class Scene3LossFunction(Scene):
         self.wait(0.5)
 
         # ===== Phase B: 添加 KL 项 (2-5s) =====
-        # 准备 KL 项 - 分段以便后续高亮（beta 单独分出来）
+        # 准备 KL 项 - 先用简单的 p_t 形式
         kl_term = MathTex(
             r"-",
             r"\beta",  # [1] - beta coefficient
             r"\cdot \text{KL}\big(",
-            r"p_\phi(\cdot \mid x)",  # [3] - exit distribution
+            r"p_t",  # [3] - exit distribution (simple form)
             r"\,\|\,",
             r"\pi(\cdot)",  # [5] - prior distribution
             r"\big)",
@@ -228,6 +228,41 @@ class Scene3LossFunction(Scene):
         kl_term.next_to(term1, RIGHT, buff=0.15)
 
         self.play(Write(kl_term), run_time=1.5)
+
+        self.wait(0.5)
+
+        # ===== Transform p_t to p_phi(t|x) =====
+        # 创建完整形式的第一项 (期望任务损失)
+        term1_full = MathTex(
+            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_\phi(t|x) \cdot \mathcal{L}^{(t)}",
+            font_size=42
+        )
+        term1_full.move_to(term1.get_center())
+
+        # 创建完整形式的 KL 项
+        kl_term_full = MathTex(
+            r"-",
+            r"\beta",  # [1] - beta coefficient
+            r"\cdot \text{KL}\big(",
+            r"p_\phi(t|x)",  # [3] - exit distribution (full form)
+            r"\,\|\,",
+            r"\pi(\cdot)",  # [5] - prior distribution
+            r"\big)",
+            font_size=42,
+            color=LOOP_COLOR
+        )
+        kl_term_full.next_to(term1_full, RIGHT, buff=0.15)
+        # 保持各部分颜色一致
+        kl_term_full[3].set_color(LOOP_COLOR)
+
+        # 同时变换两项
+        self.play(
+            Transform(term1, term1_full),
+            Transform(kl_term, kl_term_full),
+            brace1.animate.next_to(term1_full[0][2:], DOWN),
+            brace1_label.animate.next_to(brace1, DOWN, buff=0.1),
+            run_time=1.0
+        )
 
         # 第二项的下括号 - 与第一个括号对齐
         brace2 = Brace(kl_term, DOWN, color=LOOP_COLOR)
@@ -776,7 +811,7 @@ class EntropyRegularizer(Scene):
         x_title = Tex(r"Loop Step", font_size=28, color=SECONDARY_TEXT)
         x_title.next_to(axes.x_axis, DOWN, buff=0.6)
 
-        y_title = MathTex(r"p(t|x)", font_size=26, color=SECONDARY_TEXT)
+        y_title = MathTex(r"p_t", font_size=26, color=SECONDARY_TEXT)
         y_title.next_to(axes.y_axis, UP, buff=0.2)
 
         # 折线图点
@@ -832,7 +867,7 @@ class EntropyRegularizer(Scene):
 
         # 第一项
         term1 = MathTex(
-            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_\phi(t \mid x)\,\mathcal{L}^{(t)}",
+            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_t \cdot \mathcal{L}^{(t)}",
             font_size=42
         )
         term1.shift(UP * 1)
@@ -845,12 +880,12 @@ class EntropyRegularizer(Scene):
 
         self.wait(0.3)
 
-        # KL 项 - 分段（beta 单独分出来）
+        # KL 项 - 先用简单的 p_t 形式
         kl_term = MathTex(
             r"-",
             r"\beta",  # [1] - beta coefficient
             r"\cdot \text{KL}\big(",
-            r"p_\phi(\cdot \mid x)",  # [3] - exit distribution
+            r"p_t",  # [3] - exit distribution (simple form)
             r"\,\|\,",
             r"\pi(\cdot)",  # [5] - prior distribution
             r"\big)",
@@ -873,6 +908,37 @@ class EntropyRegularizer(Scene):
 
         kl_term.next_to(term1, RIGHT, buff=0.15)
         self.play(Write(kl_term), run_time=1.2)
+
+        self.wait(0.4)
+
+        # ===== Transform p_t to p_phi(t|x) =====
+        # 创建完整形式的第一项 (期望任务损失)
+        term1_full = MathTex(
+            r"\mathcal{L} = \sum_{t=1}^{T_{\max}} p_\phi(t|x) \cdot \mathcal{L}^{(t)}",
+            font_size=42
+        )
+        term1_full.move_to(term1.get_center())
+
+        kl_term_full = MathTex(
+            r"-",
+            r"\beta",  # [1] - beta coefficient
+            r"\cdot \text{KL}\big(",
+            r"p_\phi(t|x)",  # [3] - exit distribution (full form)
+            r"\,\|\,",
+            r"\pi(\cdot)",  # [5] - prior distribution
+            r"\big)",
+            font_size=42, color=LOOP_COLOR
+        )
+        kl_term_full.next_to(term1_full, RIGHT, buff=0.15)
+
+        # 同时变换两项
+        self.play(
+            Transform(term1, term1_full),
+            Transform(kl_term, kl_term_full),
+            brace1.animate.next_to(term1_full[0][2:], DOWN),
+            brace1_label.animate.next_to(brace1, DOWN, buff=0.1),
+            run_time=1.0
+        )
 
         # KL 项的括号
         brace2 = Brace(kl_term, DOWN, color=LOOP_COLOR)

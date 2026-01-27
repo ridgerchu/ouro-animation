@@ -70,14 +70,14 @@ class MultiHopLineChart(Scene):
                     "num_decimal_places": 0,
                     "color": TEXT_COLOR,
                 },
-                "font_size": 22,
+                "font_size": 32,
             },
         ).shift(DOWN * 0.3 + LEFT * 0.3)
 
         # 自定义 X 轴标签 (以 k 为单位)
         x_labels = VGroup()
         for step in range(0, 21000, 2000):
-            label = Tex(f"{step//1000}k" if step > 0 else "0", font_size=22, color=TEXT_COLOR)
+            label = Tex(f"{step//1000}k" if step > 0 else "0", font_size=32, color=TEXT_COLOR)
             label.next_to(axes.c2p(step, 0), DOWN, buff=0.2)
             x_labels.add(label)
 
@@ -109,16 +109,16 @@ class MultiHopLineChart(Scene):
             grid_lines.add(line)
 
         # ===== 标题 =====
-        title = Tex(r"\text{3-Hop Reasoning Accuracy}", font_size=36, color=TEXT_COLOR)
-        title.to_edge(UP, buff=0.5)
+        # title = Tex(r"\text{3-Hop Reasoning Accuracy}", font_size=36, color=TEXT_COLOR)
+        # title.to_edge(UP, buff=0.5)
 
         # ===== 坐标轴标签 =====
-        x_axis_label = Tex(r"\text{Training Steps}", font_size=24, color=TEXT_COLOR)
-        x_axis_label.next_to(axes.x_axis, DOWN, buff=0.6)
+        x_axis_label = Tex(r"\text{Training Steps}", font_size=36, color=TEXT_COLOR)
+        x_axis_label.next_to(axes.x_axis, DOWN, buff=0.45)
 
-        y_axis_label = Tex(r"\text{Accuracy (\%)}", font_size=24, color=TEXT_COLOR)
+        y_axis_label = Tex(r"\text{Accuracy (\%)}", font_size=36, color=TEXT_COLOR)
         y_axis_label.rotate(90 * DEGREES)
-        y_axis_label.next_to(axes.y_axis, LEFT, buff=0.6)
+        y_axis_label.next_to(axes.y_axis, LEFT, buff=0.7)
 
         # ===== 创建数据点和线 =====
         def create_line_and_markers(data, color, marker_type="circle"):
@@ -156,41 +156,41 @@ class MultiHopLineChart(Scene):
 
         # ===== 创建图例 =====
         legend_box = RoundedRectangle(
-            corner_radius=0.1,
-            width=2.0,
-            height=1.5,
+            corner_radius=0.08,
+            width=1.6,
+            height=1.2,
             color=TEXT_COLOR,
             stroke_width=1.5,
             fill_color="#0D1117",
             fill_opacity=0.9,
         )
-        legend_box.to_corner(UR, buff=0.5).shift(DOWN * 0.3)
+        legend_box.to_corner(UR, buff=0.3).shift(DOWN * 0.3)
 
         # Loop1 图例
-        legend_loop1_marker = Square(side_length=0.12, color=LOOP1_COLOR, fill_color=LOOP1_COLOR, fill_opacity=1)
-        legend_loop1_line = Line(ORIGIN, RIGHT * 0.4, color=LOOP1_COLOR, stroke_width=3)
-        legend_loop1_line.move_to(legend_box.get_center() + UP * 0.4 + LEFT * 0.5)
+        legend_loop1_marker = Square(side_length=0.08, color=LOOP1_COLOR, fill_color=LOOP1_COLOR, fill_opacity=1)
+        legend_loop1_line = Line(ORIGIN, RIGHT * 0.3, color=LOOP1_COLOR, stroke_width=2)
+        legend_loop1_line.move_to(legend_box.get_center() + UP * 0.32 + LEFT * 0.38)
         legend_loop1_marker.move_to(legend_loop1_line.get_center())
         legend_loop1_text = Tex(r"\text{Loop1}", font_size=18, color=LOOP1_COLOR)
-        legend_loop1_text.next_to(legend_loop1_line, RIGHT, buff=0.15)
+        legend_loop1_text.next_to(legend_loop1_line, RIGHT, buff=0.1)
         legend_loop1 = VGroup(legend_loop1_line, legend_loop1_marker, legend_loop1_text)
 
         # Loop2 图例
-        legend_loop2_marker = Triangle(color=LOOP2_COLOR, fill_color=LOOP2_COLOR, fill_opacity=1).scale(0.1)
-        legend_loop2_line = Line(ORIGIN, RIGHT * 0.4, color=LOOP2_COLOR, stroke_width=3)
-        legend_loop2_line.move_to(legend_box.get_center() + LEFT * 0.5)
+        legend_loop2_marker = Triangle(color=LOOP2_COLOR, fill_color=LOOP2_COLOR, fill_opacity=1).scale(0.07)
+        legend_loop2_line = Line(ORIGIN, RIGHT * 0.3, color=LOOP2_COLOR, stroke_width=2)
+        legend_loop2_line.move_to(legend_box.get_center() + LEFT * 0.38)
         legend_loop2_marker.move_to(legend_loop2_line.get_center())
         legend_loop2_text = Tex(r"\text{Loop2}", font_size=18, color=LOOP2_COLOR)
-        legend_loop2_text.next_to(legend_loop2_line, RIGHT, buff=0.15)
+        legend_loop2_text.next_to(legend_loop2_line, RIGHT, buff=0.1)
         legend_loop2 = VGroup(legend_loop2_line, legend_loop2_marker, legend_loop2_text)
 
         # Loop4 图例
-        legend_loop4_marker = Dot(color=LOOP4_COLOR, radius=0.06)
-        legend_loop4_line = Line(ORIGIN, RIGHT * 0.4, color=LOOP4_COLOR, stroke_width=3)
-        legend_loop4_line.move_to(legend_box.get_center() + DOWN * 0.4 + LEFT * 0.5)
+        legend_loop4_marker = Dot(color=LOOP4_COLOR, radius=0.04)
+        legend_loop4_line = Line(ORIGIN, RIGHT * 0.3, color=LOOP4_COLOR, stroke_width=2)
+        legend_loop4_line.move_to(legend_box.get_center() + DOWN * 0.32 + LEFT * 0.38)
         legend_loop4_marker.move_to(legend_loop4_line.get_center())
         legend_loop4_text = Tex(r"\text{Loop4}", font_size=18, color=LOOP4_COLOR)
-        legend_loop4_text.next_to(legend_loop4_line, RIGHT, buff=0.15)
+        legend_loop4_text.next_to(legend_loop4_line, RIGHT, buff=0.1)
         legend_loop4 = VGroup(legend_loop4_line, legend_loop4_marker, legend_loop4_text)
 
         legend = VGroup(legend_box, legend_loop1, legend_loop2, legend_loop4)
@@ -198,7 +198,7 @@ class MultiHopLineChart(Scene):
         # ===== 动画序列 =====
 
         # 1. 显示标题
-        self.play(Write(title), run_time=1)
+        #self.play(Write(title), run_time=1)
 
         # 2. 绘制坐标轴
         self.play(
@@ -269,8 +269,8 @@ class MultiHopLineChart(Scene):
         self.wait(0.5)
 
         # 9. 高亮 Loop4 最终结果
-        final_value_text = Tex(r"\text{62.1\%}", font_size=24, color=LOOP4_COLOR)
-        final_value_text.next_to(axes.c2p(20000, 62.06), RIGHT, buff=0.15)
+        final_value_text = Tex(r"\text{62.1\%}", font_size=36, color=LOOP4_COLOR)
+        final_value_text.next_to(axes.c2p(20000, 62.06), DOWN, buff=0.2)
 
         # 高亮圆圈
         highlight_circle = Circle(radius=0.15, color=LOOP4_COLOR, stroke_width=3)
@@ -278,7 +278,7 @@ class MultiHopLineChart(Scene):
 
         self.play(
             Create(highlight_circle),
-            FadeIn(final_value_text, shift=RIGHT * 0.2),
+            FadeIn(final_value_text, shift=DOWN * 0.2),
             run_time=0.8
         )
         self.play(

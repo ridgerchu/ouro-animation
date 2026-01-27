@@ -127,14 +127,7 @@ class MultiHopQATask(Scene):
     def animate_sequence(self):
         """主动画序列"""
 
-        # ==================== 1. 显示标题 ====================
-        title = Tex(r"\textbf{Task 1: Multi-hop QA Task}", font_size=40, color=TEXT_COLOR)
-        title.to_edge(UP, buff=0.5)
-
-        self.play(FadeIn(title, shift=DOWN * 0.3), run_time=1)
-        self.wait(0.3)
-
-        # ==================== 2. 创建三层架构 ====================
+        # ==================== 1. 创建三层架构 ====================
         # 定义节点标签
         layer1_labels = [r"E_1^{(1)}", r"E_2^{(1)}", r"\cdots", r"E_n^{(1)}"]
         layer2_labels = [r"E_{n+1}^{(2)}", r"E_{n+2}^{(2)}", r"\cdots", r"E_{2n}^{(2)}"]
@@ -391,13 +384,13 @@ class MultiHopQATask(Scene):
             color=PRIMARY_COLOR,
             width=2.2
         )
-        robert_profile.next_to(robert_node, UP + RIGHT, buff=0.4)
-        robert_profile.shift(UP * 0.3 + RIGHT * 0.3)
+        robert_profile.next_to(robert_node, UP + LEFT, buff=0.4)
+        robert_profile.shift(UP * 0.2 + LEFT * 0.2)
 
         # 虚线连接
         dashed_line_robert = DashedLine(
             robert_node.get_center(),
-            robert_profile.get_left() + DOWN * 0.3,
+            robert_profile.get_right() + DOWN * 0.3,
             color=PRIMARY_COLOR,
             stroke_width=2,
             dash_length=0.1
@@ -421,48 +414,7 @@ class MultiHopQATask(Scene):
 
         self.wait(0.8)
 
-        # ==================== 9. Training & Evaluation 部分 ====================
-        train_header = Tex(r"\textbf{Training \& Evaluation:}", font_size=22, color=SECONDARY_COLOR)
-        train_header.next_to(bullet2, DOWN, buff=0.6)
-        train_header.align_to(example_header, LEFT)
-
-        self.play(Write(train_header), run_time=0.6)
-
-        # 详细内容
-        detail1 = Tex(
-            r"$\bullet$ Train on a subset of 3-hop QA pairs;",
-            font_size=16,
-            color=DIM_COLOR
-        )
-        detail1_b = Tex(
-            r"test on 3,000 held-out questions.",
-            font_size=16,
-            color=DIM_COLOR
-        )
-        detail2 = Tex(r"$\bullet$ Answers decoded greedily.", font_size=16, color=DIM_COLOR)
-        detail3 = Tex(r"$\bullet$ Metric: exact match accuracy.", font_size=16, color=DIM_COLOR)
-
-        detail1.next_to(train_header, DOWN, buff=0.3)
-        detail1.align_to(train_header, LEFT)
-        detail1_b.next_to(detail1, DOWN, buff=0.1)
-        detail1_b.align_to(detail1, LEFT).shift(RIGHT * 0.3)
-        detail2.next_to(detail1_b, DOWN, buff=0.2)
-        detail2.align_to(detail1, LEFT)
-        detail3.next_to(detail2, DOWN, buff=0.2)
-        detail3.align_to(detail1, LEFT)
-
-        self.play(
-            LaggedStart(
-                FadeIn(detail1, shift=RIGHT * 0.2),
-                FadeIn(detail1_b, shift=RIGHT * 0.2),
-                FadeIn(detail2, shift=RIGHT * 0.2),
-                FadeIn(detail3, shift=RIGHT * 0.2),
-                lag_ratio=0.2
-            ),
-            run_time=1.5
-        )
-
-        # ==================== 10. 最终展示 ====================
+        # ==================== 9. 最终展示 ====================
         self.wait(2)
 
         # 最终等待

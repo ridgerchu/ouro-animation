@@ -108,9 +108,9 @@ class Part1Setup(Scene):
         axes.shift(DOWN * 0.3 + LEFT * 0.5)
 
         # 坐标轴标签
-        x_label = Tex("Training Iterations", font_size=20, color=GREY_B)
+        x_label = Tex("Training Iterations", font_size=24, color=GREY_B)
         x_label.next_to(axes.x_axis, DOWN, buff=0.5)
-        y_label = MathTex(r"p_\theta(t|x)", font_size=20, color=GREY_B)
+        y_label = MathTex(r"p_t", font_size=36, color=GREY_B)
         y_label.next_to(axes.y_axis, UP, buff=0.2)
 
         self.play(Create(axes), Write(x_label), Write(y_label), run_time=1)
@@ -118,10 +118,10 @@ class Part1Setup(Scene):
         # ===== 图例 =====
         legend_group = VGroup()
         for i, color in enumerate(DEPTH_COLORS):
-            dot = Dot(color=color, radius=0.06)
-            dot.shift(RIGHT * 4.2 + UP * (2 - i * 0.35))
-            label = Tex(f"t={i+1}", font_size=14, color=color)
-            label.next_to(dot, RIGHT, buff=0.1)
+            dot = Dot(color=color, radius=0.08)
+            dot.shift(RIGHT * 4.2 + UP * (2 - i * 0.4))
+            label = Tex(f"t={i+1}", font_size=18, color=color)
+            label.next_to(dot, RIGHT, buff=0.12)
             legend_group.add(dot, label)
 
         self.play(FadeIn(legend_group), run_time=0.5)
@@ -170,28 +170,21 @@ class Part1Setup(Scene):
         self.play(progress.animate.set_value(180), run_time=5, rate_func=linear)
 
         # ===== 高亮 t=4 的主导 =====
-        # 添加圆圈高亮
-        highlight_circle = Circle(
-            radius=0.3, color=CELEBRATE_COLOR, stroke_width=4
-        )
-        highlight_circle.move_to(axes.c2p(180, 1.0))
-
         # 主导深度标签
         dominant_badge = VGroup()
         badge_rect = RoundedRectangle(
-            width=3.5, height=0.8, corner_radius=0.1,
+            width=3.8, height=0.9, corner_radius=0.1,
             color=CELEBRATE_COLOR, fill_opacity=0.2, stroke_width=2
         )
         badge_text = Tex(
             r"Dominant: t=4, $p$ = 1.000",
-            font_size=20, color=CELEBRATE_COLOR
+            font_size=24, color=CELEBRATE_COLOR
         )
         badge_text.move_to(badge_rect.get_center())
         dominant_badge.add(badge_rect, badge_text)
         dominant_badge.shift(RIGHT * 3 + DOWN * 1.5)
 
         self.play(
-            Create(highlight_circle),
             FadeIn(dominant_badge),
             run_time=0.8
         )
@@ -894,9 +887,9 @@ class SelfReinforcementCollapse(Scene):
         axes.shift(DOWN * 0.4 + LEFT * 0.5)
 
         # 坐标轴标签
-        x_label = Tex("Training Iterations", font_size=18, color=GREY_B)
+        x_label = Tex("Training Iterations", font_size=22, color=GREY_B)
         x_label.next_to(axes.x_axis, DOWN, buff=0.4)
-        y_label = MathTex(r"p_\theta(t|x)", font_size=18, color=GREY_B)
+        y_label = MathTex(r"p_\theta(t|x)", font_size=22, color=GREY_B)
         y_label.next_to(axes.y_axis, UP, buff=0.15)
 
         self.play(Create(axes), Write(x_label), Write(y_label), run_time=0.8)
@@ -904,10 +897,10 @@ class SelfReinforcementCollapse(Scene):
         # 图例
         legend = VGroup()
         for i, color in enumerate(DEPTH_COLORS):
-            dot = Dot(color=color, radius=0.05)
-            dot.shift(RIGHT * 4.5 + UP * (1.5 - i * 0.3))
-            label = Tex(f"t={i+1}", font_size=12, color=color)
-            label.next_to(dot, RIGHT, buff=0.08)
+            dot = Dot(color=color, radius=0.07)
+            dot.shift(RIGHT * 4.5 + UP * (1.5 - i * 0.35))
+            label = Tex(f"t={i+1}", font_size=16, color=color)
+            label.next_to(dot, RIGHT, buff=0.1)
             legend.add(dot, label)
         self.play(FadeIn(legend), run_time=0.4)
 
@@ -943,18 +936,15 @@ class SelfReinforcementCollapse(Scene):
         self.add(dynamic_curves)
         self.play(progress.animate.set_value(180), run_time=4, rate_func=linear)
 
-        # 高亮
-        highlight = Circle(radius=0.25, color=CELEBRATE_COLOR, stroke_width=3)
-        highlight.move_to(axes.c2p(180, 1.0))
-
+        # 高亮标签（移除圆圈避免与图例重叠）
         badge = VGroup()
-        badge_rect = RoundedRectangle(width=3, height=0.6, corner_radius=0.08, color=CELEBRATE_COLOR, fill_opacity=0.2, stroke_width=2)
-        badge_text = Tex(r"t=4 dominates: $p$=1.0", font_size=16, color=CELEBRATE_COLOR)
+        badge_rect = RoundedRectangle(width=3.2, height=0.7, corner_radius=0.08, color=CELEBRATE_COLOR, fill_opacity=0.2, stroke_width=2)
+        badge_text = Tex(r"t=4 dominates: $p$=1.0", font_size=20, color=CELEBRATE_COLOR)
         badge_text.move_to(badge_rect.get_center())
         badge.add(badge_rect, badge_text)
         badge.shift(RIGHT * 3 + DOWN * 1.5)
 
-        self.play(Create(highlight), FadeIn(badge), run_time=0.6)
+        self.play(FadeIn(badge), run_time=0.6)
 
         self.wait(1.5)
         self.play(*[FadeOut(mob) for mob in self.mobjects], run_time=0.6)
