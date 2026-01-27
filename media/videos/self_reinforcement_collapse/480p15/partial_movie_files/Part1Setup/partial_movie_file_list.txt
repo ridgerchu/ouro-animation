@@ -1,7 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/self_reinforcement_collapse/480p15/partial_movie_files/Part1Setup/1584795214_3824576942_223132457.mp4'
-file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/self_reinforcement_collapse/480p15/partial_movie_files/Part1Setup/4072820271_169156671_1472033163.mp4'
-file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/self_reinforcement_collapse/480p15/partial_movie_files/Part1Setup/4072820271_3128177307_1219361838.mp4'
-file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/self_reinforcement_collapse/480p15/partial_movie_files/Part1Setup/4072820271_2314602427_2520907921.mp4'
-file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/self_reinforcement_collapse/480p15/partial_movie_files/Part1Setup/4072820271_2844360058_3254997418.mp4'
-file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/self_reinforcement_collapse/480p15/partial_movie_files/Part1Setup/4072820271_196266585_2163732089.mp4'
