@@ -1,9 +1,9 @@
 """
-外推性能雷达图动画 - Ouro 2.6B Base Model
-展示不同循环深度（T=1到T=8）的性能变化
+Reasoning Extrapolation Radar Animation - Ouro 2.6B Thinking Model
+展示不同循环深度（T=1到T=8）的推理性能变化
 运行命令:
-  完整动画: manim -pql extrapolation_radar_animation.py ExtrapolationRadarAnimation
-  高质量:   manim -pqh extrapolation_radar_animation.py ExtrapolationRadarAnimation
+  完整动画: manim -pql 12_1-reasoning_extrapolation_radar_animation.py ReasoningExtrapolationRadarAnimation
+  高质量:   manim -pqh 12_1-reasoning_extrapolation_radar_animation.py ReasoningExtrapolationRadarAnimation
 """
 
 from manim import *
@@ -25,33 +25,33 @@ COLORS = {
 # 步骤名称
 STEPS = ['T=1', 'T=2', 'T=3', 'T=4', 'T=5', 'T=6', 'T=7', 'T=8']
 
-# 基准测试名称
+# 基准测试名称（4个reasoning benchmarks）
 BENCHMARKS = [
-    'ARC-C', 'ARC-E', 'C-QA', 'HellaSwag', 'MMLU', 'Winogrande'
+    'OlympiadBench', 'SuperGPQA', 'AIME 2024', 'AIME 2025'
 ]
 
 # 原始数据（按表格顺序：T=1到T=8）
-# 每行对应一个步骤，列对应：ARC-C, ARC-E, C-QA, HellaSwag, MMLU, Winogrande
+# 每行对应一个步骤，列对应：OlympiadBench, SuperGPQA, AIME 2024, AIME 2025
 RAW_DATA = np.array([
     # T=1
-    [47.95, 72.39, 57.58, 68.94, 51.55, 61.48],
+    [18.96, 15.66, 3.00, 2.00],
     # T=2
-    [62.37, 85.23, 76.90, 77.61, 67.63, 70.48],
-    # T=3
-    [65.36, 87.33, 79.77, 79.12, 73.57, 74.35],
-    # T=4
-    [66.38, 86.95, 81.65, 79.56, 74.60, 75.53],
+    [68.59, 48.58, 52.00, 40.67],
+    # T=3 (Best for SuperGPQA, AIME 2024, AIME 2025)
+    [75.56, 56.70, 70.33, 50.67],
+    # T=4 (Best for OlympiadBench)
+    [76.44, 53.68, 64.70, 50.30],
     # T=5 (外推)
-    [65.36, 86.83, 81.24, 79.57, 74.43, 75.93],
+    [71.85, 56.45, 57.00, 49.33],
     # T=6 (外推)
-    [65.02, 86.74, 81.08, 79.63, 73.79, 75.37],
+    [69.19, 55.44, 56.33, 46.00],
     # T=7 (外推)
-    [65.44, 86.57, 80.75, 79.59, 72.92, 75.77],
+    [57.63, 53.32, 49.67, 38.00],
     # T=8 (外推)
-    [64.76, 86.49, 81.08, 79.50, 72.24, 74.59],
+    [39.26, 46.84, 39.00, 24.33],
 ])
 
-# 归一化数据到 0-1 范围
+# 归一化数据到 0-1 范围（用于雷达图显示）
 def normalize_data(data):
     normalized = np.zeros_like(data)
     for i in range(data.shape[1]):
@@ -66,12 +66,12 @@ def normalize_data(data):
 NORMALIZED_DATA = normalize_data(RAW_DATA)
 
 
-class ExtrapolationRadarChart(VGroup):
-    """外推性能雷达图组件"""
+class ReasoningRadarChart(VGroup):
+    """推理性能雷达图组件"""
     def __init__(
         self,
         radius=3.5,
-        num_vars=6,
+        num_vars=4,  # 4 benchmarks
         inner_radius_ratio=0.35,
         outer_radius_ratio=1.0,
         **kwargs
@@ -83,8 +83,8 @@ class ExtrapolationRadarChart(VGroup):
         self.outer_radius = radius * outer_radius_ratio
         self.center_point = ORIGIN
 
-        # 计算角度
-        self.angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False)
+        # 计算角度（从顶部开始，顺时针）
+        self.angles = np.linspace(np.pi/2, np.pi/2 + 2 * np.pi, num_vars, endpoint=False)
 
         # 创建网格
         self.grid = self._create_grid()
@@ -167,14 +167,14 @@ class ExtrapolationRadarChart(VGroup):
         # 创建顶点标记
         dots = VGroup()
         for point in points[:-1]:
-            dot = Dot(point, color=color, radius=0.08 if not is_highlight else 0.1)
+            dot = Dot(point, color=color, radius=0.08 if not is_highlight else 0.12)
             dots.add(dot)
 
         return VGroup(polygon, dots)
 
 
-class ExtrapolationRadarAnimation(Scene):
-    """完整的外推性能雷达图动画"""
+class ReasoningExtrapolationRadarAnimation(Scene):
+    """完整的推理外推性能雷达图动画"""
     def construct(self):
         # 设置纯黑色背景
         self.camera.background_color = BLACK
@@ -188,34 +188,44 @@ class ExtrapolationRadarAnimation(Scene):
         # Scene 3: T=5-8 依次出现（外推阶段）
         self.show_extrapolation_steps()
 
-        # Scene 4: 高亮 T=4（最佳训练性能）
-        self.highlight_best_training()
+        # Scene 4: 高亮 T=3/T=4（最佳推理性能）
+        self.highlight_best_reasoning()
 
     def show_axis(self):
         """显示雷达图坐标轴"""
-        # 创建雷达图
-        self.radar = ExtrapolationRadarChart(radius=2.8)
-        self.radar_center = LEFT * 1 + DOWN * 0.2
+        # 创建雷达图（整体下移避免与标题重叠）
+        self.radar = ReasoningRadarChart(radius=2.8, num_vars=4)
+        self.radar_center = LEFT * 1 + DOWN * 0.5
         self.radar.move_to(self.radar_center)
 
         # 创建基准测试标签
         self.labels = VGroup()
-        angles = np.linspace(0, 2 * np.pi, len(BENCHMARKS), endpoint=False)
+        angles = np.linspace(np.pi/2, np.pi/2 + 2 * np.pi, len(BENCHMARKS), endpoint=False)
 
         for i, (benchmark, angle) in enumerate(zip(BENCHMARKS, angles)):
-            r = 3.3
+            # 顶部标签（OlympiadBench）使用较小的半径，避免与标题重叠
+            if i == 0:  # OlympiadBench 在顶部
+                r = 3.1
+            else:
+                r = 3.5
             x = r * np.cos(angle) + self.radar_center[0]
             y = r * np.sin(angle) + self.radar_center[1]
 
             # 使用 MathTex 渲染标签
-            label = MathTex(r"\text{" + benchmark.replace('-', r'{-}') + "}", font_size=26, color=GREY_B)
+            # 处理特殊字符
+            if benchmark == 'AIME 2024':
+                label = MathTex(r"\text{AIME 2024}", font_size=24, color=GREY_B)
+            elif benchmark == 'AIME 2025':
+                label = MathTex(r"\text{AIME 2025}", font_size=24, color=GREY_B)
+            else:
+                label = MathTex(r"\text{" + benchmark + "}", font_size=24, color=GREY_B)
             label.move_to(np.array([x, y, 0]))
             self.labels.add(label)
 
         # 标题
         self.title = MathTex(
-            r"\text{Performance by Recurrent Depth (Ouro 2.6B Base)}",
-            font_size=28,
+            r"\text{Reasoning Performance by Recurrent Depth (Ouro 2.6B Thinking)}",
+            font_size=26,
             color=WHITE
         )
         self.title.to_edge(UP, buff=0.4)
@@ -228,7 +238,7 @@ class ExtrapolationRadarAnimation(Scene):
             run_time=1.5
         )
         self.play(
-            LaggedStart(*[FadeIn(label) for label in self.labels], lag_ratio=0.05),
+            LaggedStart(*[FadeIn(label) for label in self.labels], lag_ratio=0.08),
             run_time=1.2
         )
 
@@ -356,74 +366,72 @@ class ExtrapolationRadarAnimation(Scene):
         self.extrapolation_label = extrapolation_label
         self.play(FadeIn(extrapolation_label), run_time=0.8)
 
-        self.wait(0.5)
-
-    def highlight_best_training(self):
-        """高亮 T=4（最佳训练性能）"""
+    def highlight_best_reasoning(self):
+        """高亮 T=3（最佳推理性能）"""
         # 更新标题
         final_title = MathTex(
-            r"\text{Best Performance at T=4 (Training Depth)}",
+            r"\text{Performance Around Trained Depth}",
             font_size=26,
-            color='#1E3A5F'
+            color='#2E5C8A'
         )
         final_title.to_edge(UP, buff=0.4)
 
         self.play(Transform(self.title, final_title), run_time=0.8)
 
-        # 淡化其他所有步骤
+        # 淡化其他所有步骤（除了 T=3，即 index 2）
         self.play(
-            *[p[0].animate.set_stroke(opacity=0.3).set_fill(opacity=0.05) for i, p in enumerate(self.all_polygons) if i != 3],
-            *[p[1].animate.set_opacity(0.3) for i, p in enumerate(self.all_polygons) if i != 3],
-            *[item.animate.set_opacity(0.4) for i, item in enumerate(self.legend_items) if i != 3],
+            *[p[0].animate.set_stroke(opacity=0.3).set_fill(opacity=0.05) for i, p in enumerate(self.all_polygons) if i != 2],
+            *[p[1].animate.set_opacity(0.3) for i, p in enumerate(self.all_polygons) if i != 2],
+            *[item.animate.set_opacity(0.4) for i, item in enumerate(self.legend_items) if i != 2],
             self.training_label.animate.set_opacity(0.4),
             self.extrapolation_label.animate.set_opacity(0.4),
             run_time=0.8
         )
 
-        # 高亮 T=4
-        t4_color = COLORS['T=4']
-        t4_polygon = self.radar.create_polygon_for_step(
-            3, t4_color,
+        # 高亮 T=3
+        t3_color = COLORS['T=3']
+        t3_polygon = self.radar.create_polygon_for_step(
+            2, t3_color,  # index 2 = T=3
             fill_opacity=0.35,
             stroke_width=4,
             is_highlight=True
         )
 
-        # 替换 T=4 的多边形
+        # 替换 T=3 的多边形
         self.play(
-            FadeOut(self.all_polygons[3]),
-            Create(t4_polygon[0]),
+            FadeOut(self.all_polygons[2]),
+            Create(t3_polygon[0]),
             run_time=1.2
         )
         self.play(
-            LaggedStart(*[GrowFromCenter(dot) for dot in t4_polygon[1]], lag_ratio=0.08),
+            LaggedStart(*[GrowFromCenter(dot) for dot in t3_polygon[1]], lag_ratio=0.1),
             run_time=1
         )
 
-        # 高亮 T=4 图例
+        # 高亮 T=3 图例
         self.play(
-            self.legend_items[3].animate.scale(1.15).set_opacity(1),
+            self.legend_items[2].animate.scale(1.15).set_opacity(1),
             run_time=0.8
         )
 
-        # 显示 T=4 的数值
-        angles = np.linspace(0, 2 * np.pi, len(BENCHMARKS), endpoint=False)
+        # 显示 T=3 的数值
+        angles = np.linspace(np.pi/2, np.pi/2 + 2 * np.pi, len(BENCHMARKS), endpoint=False)
         value_labels = VGroup()
-        t4_values = RAW_DATA[3]
+        t3_values = RAW_DATA[2]  # T=3 data
 
-        for i, (angle, value) in enumerate(zip(angles, t4_values)):
-            norm_value = NORMALIZED_DATA[3, i]
-            r = self.radar.radius * norm_value + 0.35
+        for i, (angle, value) in enumerate(zip(angles, t3_values)):
+            norm_value = NORMALIZED_DATA[2, i]
+            r = self.radar.radius * norm_value + 0.4
             x = r * np.cos(angle) + self.radar_center[0]
             y = r * np.sin(angle) + self.radar_center[1]
 
             # 使用 MathTex 渲染数值
-            value_label = MathTex(f'{value:.2f}', font_size=14, color=t4_color)
+            value_label = MathTex(f'{value:.2f}', font_size=16, color=t3_color)
             value_label.move_to(np.array([x, y, 0]))
             value_labels.add(value_label)
 
         self.play(
-            LaggedStart(*[FadeIn(vl, scale=1.3) for vl in value_labels], lag_ratio=0.06),
+            LaggedStart(*[FadeIn(vl, scale=1.3) for vl in value_labels], lag_ratio=0.08),
             run_time=1.2
         )
 
@@ -446,10 +454,10 @@ class ExtrapolationRadarAnimation(Scene):
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("外推性能雷达图动画 - Ouro 2.6B Base Model")
+    print("推理外推性能雷达图动画 - Ouro 2.6B Thinking Model")
     print("=" * 60)
     print("\n运行命令:")
-    print("  完整动画: manim -pql extrapolation_radar_animation.py ExtrapolationRadarAnimation")
-    print("  高质量:   manim -pqh extrapolation_radar_animation.py ExtrapolationRadarAnimation")
+    print("  完整动画: manim -pql 12_1-reasoning_extrapolation_radar_animation.py ReasoningExtrapolationRadarAnimation")
+    print("  高质量:   manim -pqh 12_1-reasoning_extrapolation_radar_animation.py ReasoningExtrapolationRadarAnimation")
     print("=" * 60)
 
