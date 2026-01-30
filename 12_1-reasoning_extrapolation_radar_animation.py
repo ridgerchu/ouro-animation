@@ -204,7 +204,10 @@ class ReasoningExtrapolationRadarAnimation(Scene):
 
         for i, (benchmark, angle) in enumerate(zip(BENCHMARKS, angles)):
             # 顶部标签（OlympiadBench）使用较小的半径，避免与标题重叠
+            # 底部标签（AIME 2024）也需要较小的半径，避免超出视频边缘
             if i == 0:  # OlympiadBench 在顶部
+                r = 3.1
+            elif i == 2:  # AIME 2024 在底部
                 r = 3.1
             else:
                 r = 3.5

@@ -1,13 +1,13 @@
 """
 雷达图模型性能对比动画
 运行命令:
-  完整动画: manim -pql main_radar_animation.py RadarChartAnimation
-  高质量:   manim -pqh main_radar_animation.py RadarChartAnimation
+  完整动画: manim -pql 6_1-main_radar_animation.py RadarChartAnimation
+  高质量:   manim -pqh 6_1-main_radar_animation.py RadarChartAnimation
   单独场景:
-    manim -pql main_radar_animation.py IntroScene         # 引入标题
-    manim -pql main_radar_animation.py AxisScene          # 显示坐标轴
-    manim -pql main_radar_animation.py ModelsScene        # 模型依次出现
-    manim -pql main_radar_animation.py OuroHighlightScene # Ouro 高亮展示
+    manim -pql 6_1-main_radar_animation.py IntroScene         # 引入标题
+    manim -pql 6_1-main_radar_animation.py AxisScene          # 显示坐标轴
+    manim -pql 6_1-main_radar_animation.py ModelsScene        # 模型依次出现
+    manim -pql 6_1-main_radar_animation.py OuroHighlightScene # Ouro 高亮展示
 """
 
 from manim import *
@@ -331,12 +331,12 @@ class ModelsScene(Scene):
                 stroke_width=2
             )
 
-            # 图例项
-            legend_dot = Dot(color=color, radius=0.1)
+            # 图例项 - 左对齐，统一圆大小
+            legend_dot = Dot(color=color, radius=0.08)
+            legend_dot.move_to(legend_start + DOWN * (idx * 0.6))
             legend_text = MathTex(r"\text{" + model.replace(' ', r'\ ') + "}", font_size=18, color=color)
             legend_text.next_to(legend_dot, RIGHT, buff=0.15)
             legend_item = VGroup(legend_dot, legend_text)
-            legend_item.move_to(legend_start + DOWN * (idx * 0.6))
 
             # 动画：模型出现
             self.play(
@@ -438,11 +438,11 @@ class OuroHighlightScene(Scene):
             color = COLORS[model]
             legend_dot = Dot(color=color, radius=0.08)
             legend_dot.set_opacity(0.5)
+            legend_dot.move_to(legend_start + DOWN * (idx * 0.5))
             legend_text = MathTex(r"\text{" + model.replace(' ', r'\ ') + "}", font_size=16, color=color)
             legend_text.set_opacity(0.5)
             legend_text.next_to(legend_dot, RIGHT, buff=0.15)
             legend_item = VGroup(legend_dot, legend_text)
-            legend_item.move_to(legend_start + DOWN * (idx * 0.5))
             legend_items.add(legend_item)
 
         self.play(
@@ -463,12 +463,12 @@ class OuroHighlightScene(Scene):
             is_highlight=True
         )
 
-        # Ouro 图例
-        ouro_legend_dot = Dot(color=ouro_color, radius=0.12)
+        # Ouro 图例 - 左对齐，保持相同圆大小
+        ouro_legend_dot = Dot(color=ouro_color, radius=0.08)
+        ouro_legend_dot.move_to(legend_start + DOWN * (4 * 0.5))
         ouro_legend_text = MathTex(r"\textbf{Ouro 2.6B R4}", font_size=20, color=ouro_color)
         ouro_legend_text.next_to(ouro_legend_dot, RIGHT, buff=0.15)
         ouro_legend = VGroup(ouro_legend_dot, ouro_legend_text)
-        ouro_legend.move_to(legend_start + DOWN * (4 * 0.5))
 
         # 高亮圆圈效果
         highlight_circle = Circle(radius=0.3, color=ouro_color, stroke_width=3)
@@ -517,33 +517,6 @@ class OuroHighlightScene(Scene):
             LaggedStart(*[FadeIn(vl, scale=1.3) for vl in value_labels], lag_ratio=0.08),
             run_time=1.5
         )
-
-        self.wait(1)
-
-        # ===== 高亮最佳表现 =====
-        # 找出 Ouro 在哪些指标上表现最好
-        best_indices = []
-        for i in range(len(BENCHMARKS)):
-            if RAW_DATA[4, i] == RAW_DATA[:, i].max():
-                best_indices.append(i)
-
-        # 高亮最佳指标
-        if best_indices:
-            highlight_text = MathTex(r"\text{Best in:}", font_size=18, color='#FFD700')
-            highlight_text.move_to(RIGHT * 4 + DOWN * 1.5)
-
-            best_benchmarks = [BENCHMARKS[i] for i in best_indices]
-            best_text = MathTex(
-                r"\text{" + r", ".join([b.replace('-', r'{-}') for b in best_benchmarks]) + "}",
-                font_size=16,
-                color='#FFD700'
-            )
-            best_text.next_to(highlight_text, DOWN, buff=0.2)
-
-            self.play(Write(highlight_text), run_time=0.5)
-            self.play(Write(best_text), run_time=1)
-
-        self.wait(2)
 
         self.wait(2)
 
@@ -631,12 +604,12 @@ class RadarChartAnimation(Scene):
                 stroke_width=2
             )
 
-            # 图例项
+            # 图例项 - 左对齐
             legend_dot = Dot(color=color, radius=0.08)
+            legend_dot.move_to(legend_start + DOWN * (idx * 0.5))
             legend_text = MathTex(r"\text{" + model.replace(' ', r'\ ') + "}", font_size=16, color=color)
             legend_text.next_to(legend_dot, RIGHT, buff=0.15)
             legend_item = VGroup(legend_dot, legend_text)
-            legend_item.move_to(legend_start + DOWN * (idx * 0.5))
 
             # 动画
             self.play(
@@ -683,13 +656,13 @@ class RadarChartAnimation(Scene):
             is_highlight=True
         )
 
-        # Ouro 图例
+        # Ouro 图例 - 左对齐，保持相同圆大小
         legend_start = RIGHT * 4 + UP * 2
-        ouro_legend_dot = Dot(color=ouro_color, radius=0.12)
+        ouro_legend_dot = Dot(color=ouro_color, radius=0.08)
+        ouro_legend_dot.move_to(legend_start + DOWN * (4 * 0.5))
         ouro_legend_text = MathTex(r"\textbf{Ouro 2.6B R4}", font_size=18, color=ouro_color)
         ouro_legend_text.next_to(ouro_legend_dot, RIGHT, buff=0.15)
         ouro_legend = VGroup(ouro_legend_dot, ouro_legend_text)
-        ouro_legend.move_to(legend_start + DOWN * (4 * 0.5))
 
         # Ouro 登场
         self.play(
@@ -733,31 +706,6 @@ class RadarChartAnimation(Scene):
             LaggedStart(*[FadeIn(vl, scale=1.3) for vl in value_labels], lag_ratio=0.06),
             run_time=1.2
         )
-
-        # 高亮最佳表现
-        best_indices = []
-        for i in range(len(BENCHMARKS)):
-            if RAW_DATA[4, i] == RAW_DATA[:, i].max():
-                best_indices.append(i)
-
-        if best_indices:
-            best_benchmarks = [BENCHMARKS[i] for i in best_indices]
-            highlight_text = MathTex(
-                r"\text{Best in " + str(len(best_benchmarks)) + r" benchmarks:}",
-                r"\text{" + ', '.join([b.replace('-', r'{-}') for b in best_benchmarks[:3]]) + "}",
-                font_size=16,
-                color='#FFD700'
-            )
-            if len(best_benchmarks) > 3:
-                highlight_text.add(MathTex(
-                    r"\text{" + ', '.join([b.replace('-', r'{-}') for b in best_benchmarks[3:]]) + "}",
-                    font_size=16,
-                    color='#FFD700'
-                ))
-            highlight_text.arrange(DOWN, buff=0.15)
-            highlight_text.to_edge(RIGHT, buff=0.3).shift(DOWN * 2)
-
-            self.play(Write(highlight_text), run_time=1)
 
         self.wait(2)
 

@@ -260,6 +260,10 @@ class ReasoningAxisScene(Scene):
             r = 3.8
             x = r * np.cos(angle) + radar_center[0]
             y = r * np.sin(angle) + radar_center[1]
+            
+            # AIME24 标签向右偏移，避免重叠
+            if i == 0:  # AIME24
+                x += 0.4
 
             # 使用 MathTex 渲染标签
             label = MathTex(r"\text{" + benchmark.replace('-', r'{-}') + "}", font_size=30, color=WHITE)
@@ -317,14 +321,19 @@ class ReasoningModelsScene(Scene):
             r = 3.3
             x = r * np.cos(angle) + radar_center[0]
             y = r * np.sin(angle) + radar_center[1]
+            
+            # AIME24 标签向右偏移，避免重叠
+            if i == 0:  # AIME24
+                x += 0.4
 
             # 使用 MathTex 渲染标签
             label = MathTex(r"\text{" + benchmark.replace('-', r'{-}') + "}", font_size=26, color=GREY_B)
             label.move_to(np.array([x, y, 0]))
             labels.add(label)
 
-        # 图例位置
-        legend_start = RIGHT * 3.5 + UP * 2
+        # 图例位置（左对齐）
+        legend_left_x = 3.8
+        legend_start_y = 2
 
         # 显示基础结构
         self.play(Write(title), run_time=0.8)
@@ -351,14 +360,16 @@ class ReasoningModelsScene(Scene):
                 stroke_width=2
             )
 
-            # 图例项
-            legend_dot = Dot(color=color, radius=0.1)
+            # 图例项（左对齐）
+            legend_dot = Dot(color=color, radius=0.08)
             # 简化模型名称显示
             model_display = model.replace('-', r'{-}')
             legend_text = MathTex(r"\text{" + model_display + "}", font_size=18, color=color)
             legend_text.next_to(legend_dot, RIGHT, buff=0.15)
             legend_item = VGroup(legend_dot, legend_text)
-            legend_item.move_to(legend_start + DOWN * (len(all_polygons) * 0.5))
+            # 左对齐：将 dot 放在固定的 x 位置
+            legend_item.move_to(np.array([legend_left_x, legend_start_y - len(all_polygons) * 0.5, 0]))
+            legend_item.align_to(np.array([legend_left_x, 0, 0]), LEFT)
 
             # 动画：模型出现
             self.play(
@@ -417,6 +428,10 @@ class ReasoningOuroHighlightScene(Scene):
             r = 3.3
             x = r * np.cos(angle) + radar_center[0]
             y = r * np.sin(angle) + radar_center[1]
+            
+            # AIME24 标签向右偏移，避免重叠
+            if i == 0:  # AIME24
+                x += 0.4
 
             # 使用 MathTex 渲染标签
             label = MathTex(r"\text{" + benchmark.replace('-', r'{-}') + "}", font_size=26, color=GREY_B)
@@ -452,8 +467,9 @@ class ReasoningOuroHighlightScene(Scene):
             run_time=1.5
         )
 
-        # 图例（其他模型淡化显示）
-        legend_start = RIGHT * 4 + UP * 1.5
+        # 图例（其他模型淡化显示，左对齐）
+        legend_left_x = 3.8
+        legend_start_y = 1.5
         legend_items = VGroup()
 
         for idx in other_indices:
@@ -466,7 +482,8 @@ class ReasoningOuroHighlightScene(Scene):
             legend_text.set_opacity(0.5)
             legend_text.next_to(legend_dot, RIGHT, buff=0.15)
             legend_item = VGroup(legend_dot, legend_text)
-            legend_item.move_to(legend_start + DOWN * (len(legend_items) * 0.4))
+            legend_item.move_to(np.array([legend_left_x, legend_start_y - len(legend_items) * 0.4, 0]))
+            legend_item.align_to(np.array([legend_left_x, 0, 0]), LEFT)
             legend_items.add(legend_item)
 
         self.play(
@@ -487,12 +504,13 @@ class ReasoningOuroHighlightScene(Scene):
             is_highlight=False
         )
 
-        # Ouro 1.4B 图例
-        ouro_14b_legend_dot = Dot(color=ouro_14b_color, radius=0.1)
-        ouro_14b_legend_text = MathTex(r"\text{Ouro{-}1.4B{-}Thinking{-}R4}", font_size=20, color=ouro_14b_color)
+        # Ouro 1.4B 图例（左对齐，统一 dot 大小）
+        ouro_14b_legend_dot = Dot(color=ouro_14b_color, radius=0.08)
+        ouro_14b_legend_text = MathTex(r"\text{Ouro{-}1.4B{-}Thinking{-}R4}", font_size=18, color=ouro_14b_color)
         ouro_14b_legend_text.next_to(ouro_14b_legend_dot, RIGHT, buff=0.15)
         ouro_14b_legend = VGroup(ouro_14b_legend_dot, ouro_14b_legend_text)
-        ouro_14b_legend.move_to(legend_start + DOWN * (len(legend_items) * 0.4))
+        ouro_14b_legend.move_to(np.array([legend_left_x, legend_start_y - len(legend_items) * 0.4, 0]))
+        ouro_14b_legend.align_to(np.array([legend_left_x, 0, 0]), LEFT)
 
         # Ouro 1.4B 登场动画
         self.play(
@@ -518,12 +536,13 @@ class ReasoningOuroHighlightScene(Scene):
             is_highlight=True
         )
 
-        # Ouro 2.6B 图例
-        ouro_26b_legend_dot = Dot(color=ouro_26b_color, radius=0.12)
-        ouro_26b_legend_text = MathTex(r"\textbf{Ouro{-}2.6B{-}Thinking{-}R4}", font_size=22, color=ouro_26b_color)
+        # Ouro 2.6B 图例（左对齐，统一 dot 大小）
+        ouro_26b_legend_dot = Dot(color=ouro_26b_color, radius=0.08)
+        ouro_26b_legend_text = MathTex(r"\textbf{Ouro{-}2.6B{-}Thinking{-}R4}", font_size=18, color=ouro_26b_color)
         ouro_26b_legend_text.next_to(ouro_26b_legend_dot, RIGHT, buff=0.15)
         ouro_26b_legend = VGroup(ouro_26b_legend_dot, ouro_26b_legend_text)
-        ouro_26b_legend.move_to(legend_start + DOWN * ((len(legend_items) + 1) * 0.4))
+        ouro_26b_legend.move_to(np.array([legend_left_x, legend_start_y - (len(legend_items) + 1) * 0.4, 0]))
+        ouro_26b_legend.align_to(np.array([legend_left_x, 0, 0]), LEFT)
 
         # 高亮圆圈效果
         highlight_circle = Circle(radius=0.3, color=ouro_26b_color, stroke_width=3)
@@ -562,6 +581,10 @@ class ReasoningOuroHighlightScene(Scene):
             r = radar.radius * norm_value + 0.4
             x = r * np.cos(angle) + radar_center[0]
             y = r * np.sin(angle) + radar_center[1]
+            
+            # Beyond AIME 数值向下偏移，避免重叠
+            if i == 3:  # Beyond AIME
+                y -= 0.3
 
             # 使用 MathTex 渲染数值
             value_label = MathTex(f'{value:.2f}', font_size=14, color=ouro_26b_color)
@@ -572,31 +595,6 @@ class ReasoningOuroHighlightScene(Scene):
             LaggedStart(*[FadeIn(vl, scale=1.3) for vl in value_labels], lag_ratio=0.08),
             run_time=1.5
         )
-
-        self.wait(1)
-
-        # ===== 高亮最佳表现 =====
-        # 找出 Ouro 2.6B 在哪些指标上表现最好
-        best_indices = []
-        for i in range(len(BENCHMARKS)):
-            if RAW_DATA[1, i] == RAW_DATA[:, i].max():
-                best_indices.append(i)
-
-        # 高亮最佳指标
-        if best_indices:
-            highlight_text = MathTex(r"\text{Best in:}", font_size=20, color='#FFD700')
-            highlight_text.move_to(RIGHT * 4 + DOWN * 1.5)
-
-            best_benchmarks = [BENCHMARKS[i] for i in best_indices]
-            best_text = MathTex(
-                r"\text{" + r", ".join([b.replace('-', r'{-}') for b in best_benchmarks]) + "}",
-                font_size=18,
-                color='#FFD700'
-            )
-            best_text.next_to(highlight_text, DOWN, buff=0.2)
-
-            self.play(Write(highlight_text), run_time=0.5)
-            self.play(Write(best_text), run_time=1)
 
         self.wait(2)
 
@@ -636,6 +634,10 @@ class ReasoningRadarAnimation(Scene):
             r = 3.3
             x = r * np.cos(angle) + self.radar_center[0]
             y = r * np.sin(angle) + self.radar_center[1]
+            
+            # AIME24 标签向右偏移，避免重叠
+            if i == 0:  # AIME24
+                x += 0.4
 
             # 使用 MathTex 渲染标签
             label = MathTex(r"\text{" + benchmark.replace('-', r'{-}') + "}", font_size=26, color=GREY_B)
@@ -666,8 +668,9 @@ class ReasoningRadarAnimation(Scene):
 
     def show_models_one_by_one(self):
         """模型依次出现"""
-        # 图例位置
-        legend_start = RIGHT * 4 + UP * 2
+        # 图例位置（左对齐）
+        self.legend_left_x = 3.8
+        self.legend_start_y = 2
 
         self.all_polygons = VGroup()
         self.legend_items = VGroup()
@@ -685,13 +688,14 @@ class ReasoningRadarAnimation(Scene):
                 stroke_width=2
             )
 
-            # 图例项
+            # 图例项（左对齐，统一 dot 大小）
             legend_dot = Dot(color=color, radius=0.08)
             model_display = model.replace('-', r'{-}')
             legend_text = MathTex(r"\text{" + model_display + "}", font_size=18, color=color)
             legend_text.next_to(legend_dot, RIGHT, buff=0.15)
             legend_item = VGroup(legend_dot, legend_text)
-            legend_item.move_to(legend_start + DOWN * (len(self.all_polygons) * 0.45))
+            legend_item.move_to(np.array([self.legend_left_x, self.legend_start_y - len(self.all_polygons) * 0.45, 0]))
+            legend_item.align_to(np.array([self.legend_left_x, 0, 0]), LEFT)
 
             # 动画
             self.play(
@@ -739,13 +743,13 @@ class ReasoningRadarAnimation(Scene):
             is_highlight=False
         )
 
-        # Ouro 1.4B 图例
-        legend_start = RIGHT * 4 + UP * 2
-        ouro_14b_legend_dot = Dot(color=ouro_14b_color, radius=0.1)
+        # Ouro 1.4B 图例（左对齐，统一 dot 大小）
+        ouro_14b_legend_dot = Dot(color=ouro_14b_color, radius=0.08)
         ouro_14b_legend_text = MathTex(r"\text{Ouro{-}1.4B{-}Thinking{-}R4}", font_size=18, color=ouro_14b_color)
         ouro_14b_legend_text.next_to(ouro_14b_legend_dot, RIGHT, buff=0.15)
         ouro_14b_legend = VGroup(ouro_14b_legend_dot, ouro_14b_legend_text)
-        ouro_14b_legend.move_to(legend_start + DOWN * (len(self.all_polygons) * 0.45))
+        ouro_14b_legend.move_to(np.array([self.legend_left_x, self.legend_start_y - len(self.all_polygons) * 0.45, 0]))
+        ouro_14b_legend.align_to(np.array([self.legend_left_x, 0, 0]), LEFT)
 
         # Ouro 1.4B 登场
         self.play(
@@ -768,12 +772,13 @@ class ReasoningRadarAnimation(Scene):
             is_highlight=True
         )
 
-        # Ouro 2.6B 图例
-        ouro_26b_legend_dot = Dot(color=ouro_26b_color, radius=0.12)
-        ouro_26b_legend_text = MathTex(r"\textbf{Ouro{-}2.6B{-}Thinking{-}R4}", font_size=20, color=ouro_26b_color)
+        # Ouro 2.6B 图例（左对齐，统一 dot 大小）
+        ouro_26b_legend_dot = Dot(color=ouro_26b_color, radius=0.08)
+        ouro_26b_legend_text = MathTex(r"\textbf{Ouro{-}2.6B{-}Thinking{-}R4}", font_size=18, color=ouro_26b_color)
         ouro_26b_legend_text.next_to(ouro_26b_legend_dot, RIGHT, buff=0.15)
         ouro_26b_legend = VGroup(ouro_26b_legend_dot, ouro_26b_legend_text)
-        ouro_26b_legend.move_to(legend_start + DOWN * ((len(self.all_polygons) + 1) * 0.45))
+        ouro_26b_legend.move_to(np.array([self.legend_left_x, self.legend_start_y - (len(self.all_polygons) + 1) * 0.45, 0]))
+        ouro_26b_legend.align_to(np.array([self.legend_left_x, 0, 0]), LEFT)
 
         # Ouro 2.6B 登场
         self.play(
@@ -806,6 +811,10 @@ class ReasoningRadarAnimation(Scene):
             r = self.radar.radius * norm_value + 0.35
             x = r * np.cos(angle) + self.radar_center[0]
             y = r * np.sin(angle) + self.radar_center[1]
+            
+            # Beyond AIME 数值向下偏移，避免重叠
+            if i == 3:  # Beyond AIME
+                y -= 0.3
 
             # 使用 MathTex 渲染数值
             value_label = MathTex(f'{value:.2f}', font_size=14, color=ouro_26b_color)
@@ -816,31 +825,6 @@ class ReasoningRadarAnimation(Scene):
             LaggedStart(*[FadeIn(vl, scale=1.3) for vl in value_labels], lag_ratio=0.06),
             run_time=1.2
         )
-
-        # 高亮最佳表现
-        best_indices = []
-        for i in range(len(BENCHMARKS)):
-            if RAW_DATA[1, i] == RAW_DATA[:, i].max():
-                best_indices.append(i)
-
-        if best_indices:
-            best_benchmarks = [BENCHMARKS[i] for i in best_indices]
-            highlight_text = MathTex(
-                r"\text{Best in " + str(len(best_benchmarks)) + r" benchmarks:}",
-                r"\text{" + ', '.join([b.replace('-', r'{-}') for b in best_benchmarks[:3]]) + "}",
-                font_size=18,
-                color='#FFD700'
-            )
-            if len(best_benchmarks) > 3:
-                highlight_text.add(MathTex(
-                    r"\text{" + ', '.join([b.replace('-', r'{-}') for b in best_benchmarks[3:]]) + "}",
-                    font_size=18,
-                    color='#FFD700'
-                ))
-            highlight_text.arrange(DOWN, buff=0.15)
-            highlight_text.to_edge(RIGHT, buff=0.3).shift(DOWN * 2)
-
-            self.play(Write(highlight_text), run_time=1)
 
         self.wait(2)
 
