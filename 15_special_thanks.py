@@ -6,14 +6,14 @@ Special Thanks Animation
   预览:     manim -pql 15_special_thanks.py SpecialThanks
   高质量:   manim -pqh 15_special_thanks.py SpecialThanks
   1080p60:  manim -pqh --fps 60 15_special_thanks.py SpecialThanks
-  4K:       manim -pqk --fps 100 15_special_thanks.py SpecialThanks
+  4K100fps: manim -pqk --fps 100 15_special_thanks.py SpecialThanks
 """
 
 from manim import *
 import numpy as np
 
 # ==================== 颜色配置 ====================
-BG_COLOR = "#0D1117"
+BG_COLOR = BLACK
 TITLE_COLOR = "#FFD700"  # 金色标题
 CORE_COLOR = "#E63946"   # 红色 - Core Contributors
 CONTRIB_COLOR = "#3498DB"  # 蓝色 - Contributors

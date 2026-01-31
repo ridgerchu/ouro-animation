@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/3601600992_3916445164_223132457.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/244708026_4281502861_3671695593.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/244708026_2147531547_964034222.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/244708026_974699013_1461190126.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/244708026_1280407223_3295446781.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/244708026_4252241234_74268415.mp4'
+file 'file:/Users/ridgerchu/Documents/科研/Ouro/Podcast for Ouro/ouro-animation/media/videos/4_3-rl_vs_base/2160p100/partial_movie_files/QwenLineChart/244708026_2844360058_2623164452.mp4'

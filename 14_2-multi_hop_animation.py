@@ -74,12 +74,16 @@ class MultiHopLineChart(Scene):
             },
         ).shift(DOWN * 0.3 + LEFT * 0.3)
 
-        # 自定义 X 轴标签 (以 k 为单位)
+        # 自定义 X 轴标签 (科学计数法 × 10³)
         x_labels = VGroup()
         for step in range(0, 21000, 2000):
-            label = Tex(f"{step//1000}k" if step > 0 else "0", font_size=32, color=TEXT_COLOR)
+            label = Tex(f"{step//1000}", font_size=32, color=TEXT_COLOR)
             label.next_to(axes.c2p(step, 0), DOWN, buff=0.2)
             x_labels.add(label)
+        
+        # 添加 ×10³ 标注在X轴末端
+        x_axis_power = Tex(r"$\times 10^3$", font_size=28, color=TEXT_COLOR)
+        x_axis_power.next_to(axes.c2p(21000, 0), RIGHT, buff=0.15).shift(DOWN * 0.2)
 
         # 修正 Y 轴数字颜色
         for num in axes.y_axis.numbers:
@@ -210,6 +214,7 @@ class MultiHopLineChart(Scene):
         self.play(
             Write(x_labels),
             Write(x_axis_label),
+            Write(x_axis_power),
             Write(y_axis_label),
             run_time=1.2
         )
@@ -324,12 +329,16 @@ class MultiHopAnimationWithHighlight(Scene):
             },
         ).shift(DOWN * 0.3 + LEFT * 0.3)
 
-        # X 轴标签
+        # X 轴标签 (科学计数法 × 10³)
         x_labels = VGroup()
         for step in range(0, 21000, 2000):
-            label = Tex(f"{step//1000}k" if step > 0 else "0", font_size=22, color=TEXT_COLOR)
+            label = Tex(f"{step//1000}", font_size=22, color=TEXT_COLOR)
             label.next_to(axes.c2p(step, 0), DOWN, buff=0.2)
             x_labels.add(label)
+        
+        # 添加 ×10³ 标注在X轴末端
+        x_axis_power = Tex(r"$\times 10^3$", font_size=20, color=TEXT_COLOR)
+        x_axis_power.next_to(axes.c2p(21000, 0), RIGHT, buff=0.15).shift(DOWN * 0.2)
 
         for num in axes.y_axis.numbers:
             num.set_color(TEXT_COLOR)
@@ -369,7 +378,7 @@ class MultiHopAnimationWithHighlight(Scene):
         # 动画
         self.play(Write(title), run_time=1)
         self.play(Create(axes), run_time=1)
-        self.play(Write(x_labels), Write(x_axis_label), Write(y_axis_label), run_time=0.8)
+        self.play(Write(x_labels), Write(x_axis_label), Write(x_axis_power), Write(y_axis_label), run_time=0.8)
         self.play(*[Create(line) for line in grid_lines], run_time=0.5)
 
         # 同时绘制三条线
